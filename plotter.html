@@ -1,0 +1,393 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Data Plotter</title>
+  <!-- Chart.js & Papa Parse from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    :root {
+      --bg: #0b0c10; --panel:#111318; --card:#151823; --muted:#8187a2; --fg:#e6e8f2; --accent:#8ab4ff; --border:#232633;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: radial-gradient(1200px 600px at 20% -10%, #1b2030, var(--bg)); color: var(--fg); }
+    .container { max-width: 1100px; margin: 28px auto; padding: 0 16px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    h1 { font-size: clamp(20px, 3vw, 28px); margin:0; display:flex; gap:10px; align-items:center; }
+    .badge { border:1px solid var(--border); color: var(--muted); padding: 4px 10px; border-radius: 999px; font-size:12px; }.panel { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); border:1px solid var(--border); border-radius: 16px; padding: 18px; }
+.grid { display:grid; gap:16px; }
+.grid.cols-3 { grid-template-columns: repeat(1,1fr); }
+@media (min-width: 900px){ .grid.cols-3 { grid-template-columns: 1.2fr 1fr 1fr; } }
+label { font-size: 12px; color: var(--muted); display:block; margin-bottom:6px; }
+select, input[type="file"], button, textarea { width:100%; background: var(--card); border:1px solid var(--border); color: var(--fg); border-radius: 12px; padding:10px 12px; font-size:14px; }
+button { cursor:pointer; }
+button.primary { background: #1f6feb; border-color: #2759c4; }
+button.ghost { background: transparent; }
+.row { display:flex; gap:10px; align-items:center; }
+.row.wrap { flex-wrap:wrap; }
+.chip { border:1px solid var(--border); background: var(--panel); padding: 6px 10px; border-radius: 999px; font-size:12px; cursor:pointer; }
+.chip.active { outline: 1px solid var(--accent); color: #d9e6ff; }
+.muted { color: var(--muted); font-size: 12px; }
+.dropzone { text-align:center; padding: 28px; border: 2px dashed var(--border); border-radius:16px; background: var(--panel); }
+.footer { text-align:center; color: var(--muted); font-size:12px; padding-top: 10px; }
+.hidden { display:none; }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📈 DataPlotter</h1>
+      <div class="badge" id="fileBadge">No file loaded</div>
+    </header><section class="panel" ondragover="event.preventDefault()" ondrop="onDrop(event)">
+  <div class="dropzone">
+    <p><strong>Drop a CSV or JSON file</strong> here, or choose a file.</p>
+    <div class="row" style="justify-content:center; gap:12px; margin-top:10px;">
+      <input id="fileInput" type="file" accept=".csv,.json,text/csv,application/json" />
+      <button class="ghost" onclick="loadSample()">Load sample</button>
+    </div>
+    <p class="muted" style="margin-top:8px">Parsed fully in your browser. Your data never leaves your device.</p>
+  </div>
+</section>
+
+<section class="grid cols-3" style="margin-top:16px">
+  <div class="panel">
+    <h3 style="margin:0 0 10px 0">1) Configure</h3>
+    <label>Chart type</label>
+    <select id="chartType">
+      <option value="line">Line</option>
+      <option value="bar">Bar</option>
+      <option value="pie">Pie</option>
+      <option value="scatter">Scatter</option>
+    </select>
+    <div style="height:12px"></div>
+    <div id="xAxisGroup">
+      <label>X Axis</label>
+      <select id="xKey"></select>
+    </div>
+    <div style="height:12px"></div>
+    <div id="ySeriesGroup">
+      <label>Y Series (choose one or more)</label>
+      <div id="ySeries" class="row wrap"></div>
+    </div>
+    <div id="pieGroup" class="hidden">
+      <div style="height:12px"></div>
+      <label>Category (labels)</label>
+      <select id="categoryKey"></select>
+      <div style="height:12px"></div>
+      <label>Value (slice size)</label>
+      <select id="valueKey"></select>
+    </div>
+    <div id="scatterGroup" class="hidden">
+      <div style="height:12px"></div>
+      <label>Y Axis</label>
+      <select id="scatterY"></select>
+      <div style="height:12px"></div>
+      <label>Color by (optional)</label>
+      <select id="colorKey"></select>
+    </div>
+    <div style="height:12px"></div>
+    <div class="row">
+      <button class="ghost" onclick="resetConfig()">Reset</button>
+      <span class="muted" id="stats">0 rows</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 style="margin:0 0 10px 0">2) Data</h3>
+    <div>
+      <label>Paste CSV</label>
+      <textarea id="csvIn" rows="6" placeholder="csv,headers,go,here"></textarea>
+      <div class="row" style="margin-top:8px">
+        <button class="primary" onclick="parseCsvText()">Parse CSV</button>
+        <button class="ghost" onclick="clearData()">Clear Data</button>
+      </div>
+    </div>
+    <div style="height:12px"></div>
+    <div>
+      <label>Paste JSON</label>
+      <textarea id="jsonIn" rows="6" placeholder='[{"x":1,"y":2}] or {"data":[...]}'></textarea>
+      <div class="row" style="margin-top:8px">
+        <button class="primary" onclick="parseJsonText()">Parse JSON</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 style="margin:0 0 10px 0">3) Chart</h3>
+    <canvas id="chart" height="300"></canvas>
+    <div class="row" style="margin-top:10px; justify-content: space-between">
+      <span class="muted" id="hint"></span>
+      <button class="ghost" onclick="exportPng()">Export PNG</button>
+    </div>
+  </div>
+</section>
+
+<p class="footer">Built with Vanilla JS, Chart.js and Papa Parse by Cesar Gomez.</p>
+
+  </div><script>
+
+const sampleCsv = `date,city,temp,humidity,category,value\n2025-08-01,Madrid,36,24,A,120\n2025-08-02,Madrid,37,22,A,130\n2025-08-03,Madrid,35,28,B,90\n2025-08-01,Barcelona,31,40,A,95\n2025-08-02,Barcelona,30,42,B,110\n2025-08-03,Barcelona,29,45,B,105`;
+    
+let rows = [];
+let chart; 
+function updateStats() {
+  document.getElementById('stats').textContent = `${rows.length} rows`;
+}
+
+function setBadge(filename){
+  document.getElementById('fileBadge').textContent = filename || 'No file loaded';
+}
+
+function inferColumns(data){
+  if(!data || !data.length) return { numeric:[], categorical:[], all:[] };
+  const keys = Object.keys(data[0]);
+  const numeric = [], categorical = [];
+  for(const k of keys){
+    const vals = data.slice(0,50).map(r=>r?.[k]).filter(v=>v!==undefined && v!==null && v!=='');
+    const numericCount = vals.filter(v=> typeof v === 'number' || (!isNaN(Number(v)) && v !== '')).length;
+    if(numericCount >= Math.max(3, Math.ceil(vals.length*0.6))) numeric.push(k); else categorical.push(k);
+  }
+  return { numeric, categorical, all: keys };
+}
+
+function fillSelect(sel, items){
+  sel.innerHTML = '<option value="" disabled selected>Pick field</option>' + items.map(k=>`<option value="${k}">${k}</option>`).join('');
+}
+
+function makeChips(container, items, onToggle){
+  container.innerHTML = '';
+  const selected = new Set();
+  items.forEach(k=>{
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = k;
+    b.addEventListener('click', ()=>{
+      if(selected.has(k)){ selected.delete(k); b.classList.remove('active'); }
+      else { selected.add(k); b.classList.add('active'); }
+      onToggle(Array.from(selected));
+    });
+    container.appendChild(b);
+  });
+}
+
+function groupBy(arr, key){
+  const m = new Map();
+  for(const r of arr){ const v = r?.[key]; if(!m.has(v)) m.set(v, []); m.get(v).push(r); }
+  return m;
+}
+
+async function onDrop(ev){
+  ev.preventDefault();
+  const file = ev.dataTransfer.files?.[0];
+  if(file) await handleFile(file);
+}
+
+document.getElementById('fileInput').addEventListener('change', async (e)=>{
+  const file = e.target.files?.[0];
+  if(file) await handleFile(file);
+});
+
+async function handleFile(file){
+  const text = await file.text();
+  setBadge(file.name);
+  if(file.name.toLowerCase().endsWith('.json')) loadJsonText(text); else loadCsvText(text);
+}
+
+function loadSample(){
+  setBadge('sample.csv');
+  loadCsvText(sampleCsv);
+}
+
+// ---------- Parsing ----------
+function loadCsvText(text){
+  const res = Papa.parse(text, { header:true, skipEmptyLines:true, dynamicTyping:true });
+  rows = res.data.map(r=>{
+    const o = { ...r };
+    for(const k in o){
+      if(typeof o[k] === 'string'){
+        const n = Number(o[k]); if(!isNaN(n) && o[k].trim()!=='') o[k] = n;
+      }
+    }
+    return o;
+  });
+  updateStats();
+  refreshControls();
+  renderChart();
+}
+
+function loadJsonText(text){
+  try{
+    const parsed = JSON.parse(text);
+    rows = Array.isArray(parsed) ? parsed : (parsed?.data ?? []);
+  }catch(e){
+    alert('JSON parse error: '+ e.message);
+    return;
+  }
+  updateStats();
+  refreshControls();
+  renderChart();
+}
+
+function parseCsvText(){ loadCsvText(document.getElementById('csvIn').value); }
+function parseJsonText(){ loadJsonText(document.getElementById('jsonIn').value); }
+function clearData(){ rows = []; updateStats(); refreshControls(); renderChart(); }
+
+// ---------- Controls ----------
+const chartTypeSel = document.getElementById('chartType');
+const xKeySel = document.getElementById('xKey');
+const ySeriesDiv = document.getElementById('ySeries');
+const pieGroup = document.getElementById('pieGroup');
+const scatterGroup = document.getElementById('scatterGroup');
+const categoryKeySel = document.getElementById('categoryKey');
+const valueKeySel = document.getElementById('valueKey');
+const scatterYSel = document.getElementById('scatterY');
+const colorKeySel = document.getElementById('colorKey');
+
+chartTypeSel.addEventListener('change', ()=>{
+  updateModeVisibility();
+  renderChart();
+});
+
+xKeySel.addEventListener('change', renderChart);
+categoryKeySel.addEventListener('change', renderChart);
+valueKeySel.addEventListener('change', renderChart);
+scatterYSel.addEventListener('change', renderChart);
+colorKeySel.addEventListener('change', renderChart);
+
+let ySelected = [];
+function refreshControls(){
+  const cols = inferColumns(rows);
+  fillSelect(xKeySel, cols.all);
+  fillSelect(categoryKeySel, cols.all);
+  fillSelect(valueKeySel, cols.numeric);
+  fillSelect(scatterYSel, cols.numeric);
+  fillSelect(colorKeySel, cols.all);
+  makeChips(ySeriesDiv, cols.numeric, (sel)=>{ ySelected = sel; renderChart(); });
+  updateModeVisibility();
+}
+
+function updateModeVisibility(){
+  const t = chartTypeSel.value;
+  const showXY = (t==='line'||t==='bar'||t==='scatter');
+  document.getElementById('xAxisGroup').style.display = showXY ? '' : 'none';
+  document.getElementById('ySeriesGroup').style.display = (t==='line'||t==='bar') ? '' : 'none';
+  pieGroup.style.display = (t==='pie') ? '' : 'none';
+  scatterGroup.style.display = (t==='scatter') ? '' : 'none';
+  updateHint();
+}
+
+function resetConfig(){
+  chartTypeSel.value = 'line';
+  xKeySel.selectedIndex = 0;
+  categoryKeySel.selectedIndex = 0;
+  valueKeySel.selectedIndex = 0;
+  scatterYSel.selectedIndex = 0;
+  colorKeySel.selectedIndex = 0;
+  ySelected = [];
+  Array.from(ySeriesDiv.children).forEach(c=>c.classList.remove('active'));
+  updateModeVisibility();
+  renderChart();
+}
+
+function updateHint(){
+  const t = chartTypeSel.value;
+  let msg = '';
+  if(t==='pie') msg = 'Choose a category and value field for a pie chart.';
+  if((t==='line'||t==='bar')) msg = 'Pick an X field and at least one Y field.';
+  if(t==='scatter') msg = 'Pick X and Y fields (and optional color-by).';
+  document.getElementById('hint').textContent = msg;
+}
+
+// ---------- Chart rendering ----------
+function destroyChart(){ if(chart){ chart.destroy(); chart = undefined; } }
+
+function parseMaybeDate(x){
+  const d = new Date(x); return isNaN(d.getTime()) ? x : x; // keep as string label
+}
+
+function toDatasetsLineBar(data, xKey, yKeys){
+  return yKeys.map((k, idx)=>({
+    label: k,
+    data: data.map(r=>({ x: r?.[xKey], y: r?.[k] })),
+    borderWidth: 2,
+    pointRadius: 0,
+  }));
+}
+
+function toDatasetsScatter(data, xKey, yKey, colorKey){
+  if(colorKey){
+    const g = groupBy(data, colorKey);
+    return Array.from(g.entries()).map(([name, arr])=>({ label: String(name), data: arr.map(r=>({x:r?.[xKey], y:r?.[yKey]})) }));
+  }
+  return [{ label: yKey, data: data.map(r=>({x:r?.[xKey], y:r?.[yKey]})) }];
+}
+
+function renderChart(){
+  destroyChart();
+  const ctx = document.getElementById('chart').getContext('2d');
+  if(!rows.length){ chart = new Chart(ctx, { type:'line', data:{ datasets:[] }, options:{ responsive:true } }); return; }
+
+  const t = chartTypeSel.value;
+  if(t==='pie'){
+    const cat = categoryKeySel.value; const val = valueKeySel.value;
+    if(!cat || !val){ chart = new Chart(ctx, { type:'pie', data:{ labels:[], datasets:[{ data:[] }] } }); return; }
+    const labels = rows.map(r=>r?.[cat]);
+    const values = rows.map(r=>Number(r?.[val]||0));
+    chart = new Chart(ctx, { type:'pie', data:{ labels, datasets:[{ data: values }] }, options:{ plugins:{ legend:{ position:'bottom' } } } });
+    return;
+  }
+
+  const xKey = xKeySel.value; if(!xKey){ chart = new Chart(ctx, { type:'line', data:{ datasets:[] } }); return; }
+  const data = rows.map(r=> ({ ...r, [xKey]: parseMaybeDate(r?.[xKey]) }));
+
+  if(t==='line' || t==='bar'){
+    if(!ySelected.length){ chart = new Chart(ctx, { type: t, data:{ datasets:[] } }); return; }
+    const datasets = toDatasetsLineBar(data, xKey, ySelected);
+    chart = new Chart(ctx, {
+      type: t,
+      data: { datasets },
+      options: {
+        parsing: false,
+        scales: {
+          x: { type: 'category', title: { display:true, text: xKey } },
+          y: { title: { display:true, text: ySelected.join(', ') } }
+        },
+        plugins: { legend: { position:'bottom' }, tooltip: { mode:'nearest', intersect:false } },
+      }
+    });
+    return;
+  }
+
+  if(t==='scatter'){
+    const yKey = scatterYSel.value; if(!yKey){ chart = new Chart(ctx, { type:'scatter', data:{ datasets:[] } }); return; }
+    const datasets = toDatasetsScatter(data, xKey, yKey, colorKeySel.value || null);
+    chart = new Chart(ctx, {
+      type: 'scatter',
+      data: { datasets },
+      options: {
+        parsing: false,
+        scales: {
+          x: { type:'category', title: { display:true, text:xKey } },
+          y: { title: { display:true, text:yKey } }
+        },
+        plugins: { legend: { position:'bottom' } },
+      }
+    });
+    return;
+  }
+}
+function exportPng(){
+  if(!chart) return; const a = document.createElement('a');
+  a.href = chart.toBase64Image();
+  a.download = 'chart.png';
+  a.click();
+}
+updateStats();
+updateHint();
+refreshControls();
+
+</script></body>
+      </html>
