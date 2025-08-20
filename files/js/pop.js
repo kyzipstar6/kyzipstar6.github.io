@@ -37,9 +37,7 @@ let year = 4.65e9;
   function ornicopora(){
     //document.getElementsByClassName("title").innerText = `Live Hamanumida Daedalus population`;
     
-     popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+  
     initPopLoop(2.345e09);
     year-=450e06;
     setInterval(updateData, 5000);
@@ -47,9 +45,7 @@ let year = 4.65e9;
 
     function rafatazmiachitrakootensis(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+        
 initPopLoop(2.78e09);
       year-=560e06;
       setInterval(updateData, 5000);
@@ -58,9 +54,7 @@ initPopLoop(2.78e09);
 
     function cyclomedusa(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+
     initPopLoop(2.78e05);
     year-=115e06;
     setInterval(updateData, 5000);
@@ -69,9 +63,7 @@ initPopLoop(2.78e09);
 
     function kymbrella(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+        
     initPopLoop(2.78e08);
     year-=552e06;
     setInterval(updateData, 5000);
@@ -79,9 +71,7 @@ initPopLoop(2.78e09);
       started ="y";}
 
     function haplophrentis(){
-       popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+       
      if(started.includes("f")){ 
     initPopLoop(2.78e05);
     year-=515e06;
@@ -102,9 +92,7 @@ initPopLoop(2.78e09);
 
     function onychophora(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+        
      initPopLoop(2.345e09);
     year-=450e06;
     setInterval(updateData, 5000);
@@ -113,9 +101,7 @@ initPopLoop(2.78e09);
 
     function herrerasaurus(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+        
     initPopLoop(2.78e05);
     year-=115e06;
     setInterval(updateData, 5000);
@@ -124,9 +110,7 @@ initPopLoop(2.78e09);
 
     function abrictosaurus(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+  
  initPopLoop(2e06);
      year-=250e06;
     setInterval(updateData, 5000);
@@ -135,9 +119,7 @@ initPopLoop(2.78e09);
 
     function caseosaurus(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+        
     initPopLoop(2.78e05);
     year-=115e06;
     setInterval(updateData, 5000);
@@ -146,9 +128,7 @@ initPopLoop(2.78e09);
 
     function staurikosaurus(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+        
     initPopLoop(2.78e05);
     year-=115e06;
     setInterval(updateData, 5000);
@@ -165,9 +145,7 @@ initPopLoop(2.78e09);
 
     function tawahallae(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+        
     initPopLoop(2.78e05);
     year-=115e06;
     setInterval(updateData, 5000);
@@ -176,9 +154,8 @@ initPopLoop(2.78e09);
 
     function tyrannosaurusrex(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+        
+  
   initPopLoop(78e07);
     year-=75e06;
     setInterval(updateData, 5000);
@@ -187,9 +164,7 @@ initPopLoop(2.78e09);
 
     function triceratops(){
      if(started.includes("f")){ 
-        popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+        
     initPopLoop(2.78e05);
     year-=85e06;
     setInterval(updateData, 5000);
