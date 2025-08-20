@@ -1,0 +1,395 @@
+{
+    "items": [
+      {
+        "name": "Rafatazmia chitrakootensis",
+        "background": "files/images/rafatazmia.png",
+        "left": [
+          "Domain: Eukaryota",
+          "(unranked): Archaeplastida",
+          "Division: Rodophita",
+          "Class: Bangiophyceae",
+          "Order: Bangiales"
+        ],
+        "right": [
+          "First life vestiges",
+          "Fossil location: Found in  Vindhya Ranges of central India"
+        ],
+        "tags": ["Rodophita eukaryota", "Proterozoic"]
+      },
+      {
+        "name": "Cyclomedusa",
+        "background": "files/images/cyclomedusa.png",
+        "left": [
+          "Kingdom: Animalia",
+          "Subkingdom: Eumetazoa"
+        ],
+        "right": [
+          "Measuring up to 35 mm (1.4 in) long",
+          "Temporal Range: 550-545 Ma",
+          "Fossil location: JiangChuang, China"
+        ],
+        "tags": ["Eumetazoa", "Edicarian"]
+      },
+      {
+        "name": "Kymbrella",
+        "background": "files/images/kimbrella.png",
+        "left": [
+          "Kingdom: Animalia",
+          "Clade: Billateria"
+        ],
+        "right": [
+          "Reached up to 15 cm in length, 5–7 cm in width, and 3–4 cm in height.",
+          "Temporal Range: 558-555 Ma",
+          "Fossil location: Near the white sea, Russia"
+        ],
+        "tags": ["Billateria", "Edicarian"]
+      },
+      {
+        "name": "Haplophrentis",
+        "background": "files/images/mollusc1.png",
+        "left": [
+          "Kingdom: Animalia",
+          "Class: Hyolitha",
+          "Clade: Hyolitida"
+        ],
+        "right": [
+          "Reached shell length up to 4.6 centimetres (1.8 in) ",
+          "Temporal Range: ~536 Ma",
+          "Fossil location: Spence Shale, and occurs prolifically at the Marble Canyon, USA"
+        ],
+        "tags": ["Hyolitha", "Furongian, late Cambrian"]
+      },
+      {
+        "name": "Aegirocassis",
+        "background": "files/images/aegirocassis.png",
+        "left": [
+          "Kingdom: Animalia",
+          "Phylum: Arthropoda",
+          "Order: †Radiodonta",
+          "Family: †Hurdiidae",
+          "Subfamily: †Aegirocassisinae"
+        ],
+        "right": [
+          "Length exceeding 2 meters (6.6 ft) ",
+          "Temporal Range: ~480 Ma",
+          "Fossil location: In the Fezouata Formation of Morocco."
+        ],
+        "tags": ["Hurdiidae", "Late tremadocian, Ordoviian"]
+      },
+      {
+        "name": "Onychophora",
+        "background": "files/images/onychophora.png",
+        "left": [
+          "Kingdom: Animalia",
+          "Subkingdom: Eumetazoa",
+          "Clade: ParaHoxozoa",
+          "Clade: Bilateria",
+          "Clade: Nephrozoa",
+          "Clade: Protostomia",
+          "Superphylum: Ecdysozoa",
+          "Clade: Panarthropoda",
+          "Phylum: Onychophora"
+        ],
+        "right": [
+          "Temporal Range: ~480 Ma"
+        ],
+        "tags": ["Billateria", "Carboniferus"]
+      },
+      {
+        "name": "Herrerasaurus",
+        "background": "files/images/herrerasaurus.png",
+        "left": [
+          "Phylum: Chordata",
+          "Class: Reptilia",
+          "Clade: Dinosauria",
+          "Clade: Saurischia",
+          "Family: †Herrerasauridae"
+        ],
+        "right": [
+          "Measuring 6 m (20 ft) long",
+          "Weighing around 350 kg (770 lb)",
+          "Temporal Range: 231.4–228.91 Ma",
+          "Diet: Carnivoric",
+          "Fossil location: Ischigualasto Formation, Argentina"
+        ],
+        "tags": ["Saurischia", "Triassic"]
+      },
+      {
+        "name": "Abrictosaurus",
+        "background": "files/images/abrictosaurus.png",
+        "left": [
+          "Phylum: Chordata",
+          "Class: Reptilia",
+          "Clade: Dinosauria",
+          "Clade: Ornithischia",
+          "Family & Subfamily: †Heterodontosauridae"
+        ],
+        "right": [
+          "Measuring 1.2 metres (3.9 ft) long",
+          "Weighed less than 45 kilograms (99 lb)",
+          "Temporal Range: 199–196 Ma",
+          "Diet: Herbivore or omnivore",
+          "Found in what is now in parts of southern Africa such as Lesotho and South Africa."
+        ],
+        "tags": ["Ornithischia", "Triassic"]
+      },
+      {
+        "name": "Caseosaurus",
+        "background": "files/images/herrerasaurus.png",
+        "left": [
+          "Phylum: Chordata",
+          "Class: Reptilia",
+          "Clade: Dinosauria",
+          "Clade: Saurischia",
+          "Family: †Herrerasauridae"
+        ],
+        "right": [
+          "Measuring 2 m (6.6 ft) long",
+          "Unknown weighing, maybe 350 kg",
+          "Temporal Range: 221.5 to 212 Ma",
+          "Diet: Perhaps Carnivoric",
+          "Found in Texas, North America."
+        ],
+        "tags": ["Herrerasauridae", "Norian, Triassic"]
+      },
+      {
+        "name": "Staurikosaurus",
+        "background": "files/images/staurikosaurus.png",
+        "left": [
+          "Phylum: Chordata",
+          "Class: Reptilia",
+          "Clade: Dinosauria",
+          "Clade: Saurischia",
+          "Family: †Herrerasauridae"
+        ],
+        "right": [
+          "Measuring 2.2–2.25 metres (7 ft 3 in – 7 ft 5 in) ",
+          "Body mass: 12 kilograms (26 lb)",
+          "Temporal Range: 213 to 210 Ma",
+          "Diet: Perhaps Carnivorous",
+          "Found in Santa Maria Formation, Brazil."
+        ],
+        "tags": ["Chindesaurus, Saurischia", "Late Triassic"]
+      },
+      {
+        "name": "Chindesaurus",
+        "background": "files/images/herrerasaurus.png",
+        "left": [
+          "Phylum: Chordata",
+          "Class: Reptilia",
+          "Clade: Dinosauria",
+          "Clade: Saurischia",
+          "Family: †Chindesaurus"
+        ],
+        "right": [
+          "Length: measuring 3 to 4 meters (9.8 to 13.1 feet)",
+          "Body mass: 23–45 kg",
+          "Temporal Range: 213 to 210 Ma",
+          "Diet: Carnivorous",
+          "Found in Late Triassic sediments throughout Arizona, New Mexico, and Texas"
+        ],
+        "tags": ["Chindesaurus, Saurischia", "Late Triassic"]
+      },
+      {
+        "name": "Tawa hallae",
+        "background": "files/images/tawahallae.png",
+        "left": [
+          "Phylum: Chordata",
+          "Class: Reptilia",
+          "Clade: Dinosauria",
+          "Clade: Saurischia",
+          "Family: Theropoda"
+        ],
+        "right": [
+          "Length: measuring  2.5 m (8 ft 2 in)",
+          "Body mass: 15 kg (33 lb)",
+          "Temporal Range: 215 Ma",
+          "Diet: Carnivorous",
+          "Found in the Hayden Quarry of Ghost Ranch, New Mexico, US"
+        ],
+        "tags": ["Theropodae", "Late Triassic"]
+      },
+      
+      {
+        "name": "Tyrannosaurus rex",
+        "background": "files/images/herrerasaurus.png",
+        "left": [
+          "Phylum: Chordata",
+          "Class: Reptilia",
+          "Clade: Dinosauria",
+          "Clade: Saurischia",
+          "Family: †Tyrannosauridae"
+        ],
+        "right": [
+          "Up to 12.3 m (40 ft) long",
+          "Mass ~8–14 t",
+          "Temporal Range: 68–66 Ma",
+          "Fossil location: Hell Creek Formation, USA"
+          
+        ],
+        "tags": ["Saurischia", "Cretaceous"]
+      },
+      {
+        "name": "Triceratops",
+        "background": "files/images/herrerasaurus.png",
+        "left": [
+          "Phylum: Chordata",
+          "Class: Reptilia",
+          "Clade: Dinosauria",
+          "Clade: Ornithischia",
+          "Family: †Ceratopsidae"
+        ],
+        "right": [
+          "~9 m (30 ft) long",
+          "Mass ~6–12 t",
+          "Temporal Range: 68–66 Ma",
+          "Fossil location: Lance Formation, USA"
+        ],
+        "tags": ["Ornithischia", "Cretaceous"]
+      },
+      {
+      "name": "Stegosaurus",
+      "background": "files/images/stegosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Ornithischia",
+        "Family: †Stegosauridae"
+      ],
+      "right": [
+        "Up to 9 m (30 ft) long",
+        "Mass ~5–7 t",
+        "Temporal Range: 155–150 Ma",
+        "Fossil location: Morrison Formation, USA"
+      ],
+      "tags": ["Ornithischia", "Jurassic"]
+    },
+    {
+      "name": "Velociraptor",
+      "background": "files/images/velociraptor.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Family: †Dromaeosauridae"
+      ],
+      "right": [
+        "Up to 2 m (6.6 ft) long",
+        "Mass ~15–20 kg",
+        "Temporal Range: 75–71 Ma",
+        "Fossil location: Djadochta Formation, Mongolia"
+      ],
+      "tags": ["Saurischia", "Cretaceous"]
+    },
+    {
+      "name": "Brachiosaurus",
+      "background": "files/images/brachiosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Family: †Brachiosauridae"
+      ],
+      "right": [
+        "Up to 22 m (72 ft) long",
+        "Mass ~28–58 t",
+        "Temporal Range: 154–153 Ma",
+        "Fossil location: Lance Formation, USA"
+      ],
+      "tags": ["Saurischia", "Jurassic"]
+    },
+    {
+    "name": "Spinosaurus",
+      "background": "files/images/stegosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Family: †Spinosauridae"
+      ],
+      "right": [
+        "Up to 15 m (49 ft) long",
+        "Mass ~7–20 t",
+        "Temporal Range: 112–93 Ma",
+        "Fossil location: Kem Kem Beds, Morocco"
+      ],
+      "tags": ["Saurischia", "Cretaceous"]
+    },
+    {
+    "name": "Ankylosaurus",
+      "background": "files/images/stegosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Ornithischia",
+        "Family: †Ankylosauridae"
+      ],
+      "right": [
+        "Up to 8 m (26 ft) long",
+        "Mass ~6 t",
+        "Temporal Range: 68–66 Ma",
+        "Fossil location: Hell Creek Formation, USA"
+      ],
+      "tags": ["Ornithischia", "Cretaceous"]
+    },
+    {
+    "name": "Diplodocus",
+      "background": "files/images/stegosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Ornithischia",
+        "Family: †Diplodocidae"
+      ],
+      "right": [
+        "Up to 25 m (82 ft) long",
+        "Mass ~10-16 t",
+        "Temporal Range: 154–150 Ma",
+        "Fossil location: Morrisson Formation, USA"
+      ],
+      "tags": ["Saurischia", "Jurassic"]
+    },
+    {
+    "name": "Parasaurolophus",
+      "background": "files/images/stegosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Ornithischia",
+        "Family: †Hadrosauridae"
+      ],
+      "right": [
+        "Up to 10 m (33 ft) long",
+        "Mass ~2.5 t",
+        "Temporal Range: 76–73 Ma",
+        "Fossil location: Alberta, Canada"
+      ],
+      "tags": ["Ornithischia", "Cretaceous"]
+    },
+    {
+    "name": "Allosaurus",
+      "background": "files/images/stegosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Ornithischia",
+        "Family: †Allosauridae"
+      ],
+      "right": [
+        "Up to 12 m (39 ft) long",
+        "Mass ~2 t",
+        "Temporal Range: 155–145 Ma",
+        "Fossil location: Morrison Formation, USA"
+      ],
+      "tags": ["Saurischia", "Jurassic"]
+    }
+    ]
+  }

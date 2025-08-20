@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All Species — Browser</title>
+  <script src="files/js/chart.js"></script>
+  
+  <link rel="icon" type="image/png" href="files/images/aegirocassis.png" />
+  <style>
+    :root{
+      --panel-bg: rgba(255,255,255,0.85);
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+      --focus: #2563eb;
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: url('files/images/herrerasaurus.png') center/cover no-repeat fixed; /* per-species bg can override */
+    }
+    .scrim { position: fixed; inset: 0; backdrop-filter: blur(8px); background: rgba(255,255,255,.25); }
+    .window { position: relative; width: min(880px, 96vw); min-height: 420px; margin: 4vh auto 2rem; background: var(--panel-bg); border-radius: var(--radius); box-shadow: var(--shadow); display: grid; grid-template-rows: auto auto 1fr auto; overflow: hidden; }
+    header { padding: .75rem 1rem .25rem; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: .75rem; }
+    h1 { margin: 0; font-family: "Arial Black", Arial Black, Arial, Helvetica, sans-serif; font-size: clamp(1.2rem,3.6vw,1.8rem); }
+    .controls { display: flex; gap: .5rem; align-items: center; }
+    .controls input[type="search"], .controls select { padding: .55rem .7rem; border-radius: 12px; border: 1px solid #cfcfcf; background: #fff; box-shadow: inset 0 1px 0 rgba(0,0,0,.03); font-size: 14px; }
+    .controls input:focus, .controls select:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+    .meta { display: flex; gap: .5rem; padding: 0 1rem .25rem; color: #333; font-size: 13px; opacity: .9; }
+    .meta .tag { background: rgba(0,0,0,.05); border-radius: 999px; padding: .25rem .6rem; }
+
+    .chart-container {
+      background: #fff;
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .content { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .5rem 1rem 0; }
+    .left, .right { display: flex; flex-direction: column; gap: .2rem; font-style: italic; font-family: Georgia, "Times New Roman", serif; font-size: 14px; }
+    .left .row { text-align: left; }
+    .right { align-items: flex-end; }
+    .right .row { text-align: right; }
+    canvas {
+      width: 100%;
+      height: 300px;
+    }
+
+    footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75rem 1rem 1rem; align-items: center; }
+    .btn { justify-self: start; border: 0; border-radius: 999px; padding: .6rem 1rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 16px; color: #fff; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.15); user-select: none; }
+    .btn.back { background: #2563eb; }
+    .btn.forward { background: #16a34a; justify-self: end; }
+
+    @media (max-width: 560px) {
+      .window { margin: 0; border-radius: 0; min-height: 100vh; }
+      .content { grid-template-columns: 1fr; }
+      .right { align-items: flex-start; }
+      .right .row { text-align: left; }
+      footer { grid-template-columns: 1fr; }
+      .btn.forward { justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scrim"></div>
+  <main class="window" role="application" aria-label="All Species browser">
+    <header>
+      <h1 id="title">—</h1>
+      <div class="controls">
+        <input id="search" type="search" placeholder="Search species…" aria-label="Search species" autocomplete="off" />
+        <select id="picker" aria-label="Pick species"></select>
+      </div>
+    </header>
+
+    <div class="meta" id="meta"></div>
+    
+    <section class="content">
+      <div class="left" id="left"></div>
+      <div class="right" id="right"></div>
+    </section>
+    <div class="chart-container",  onclick= updateData()>
+      <h3>Population over time</h3>
+      <canvas id="popChart"></canvas>
+    </div>
+    <footer>
+      <button class="btn back" id="btnBack" type="button" title="Previous (←)">Back</button>
+      <button class="btn forward" id="btnForward" type="button" title="Next (→)">Forward</button>
+    </footer>
+  </main>
+
+  <!-- Embedded JSON data for a single-file setup. You can later move this to species.json and fetch(). -->
+  <script type="application/json" id="dino-data" src="species.json"></script>
+
+  <script>
+    const el = id => document.getElementById(id);
+    const title = el('title');
+    const left = el('left');
+    const right = el('right');
+    const meta = el('meta');
+    const picker = el('picker');
+    const search = el('search');
+
+    const items = [];
+    let idx = 0;
+
+    function optionize() {
+      picker.innerHTML = '';
+      for (let i = 0; i < items.length; i++) {
+        const o = document.createElement('option');
+        o.value = i;
+        o.textContent = items[i].name;
+        picker.appendChild(o);
+      }
+    }
+
+    function setBackground(url) {
+      if (!url) return;
+      document.body.style.background = `url('${url}') center/cover no-repeat fixed`;
+    }
+
+    function render(i) {
+      idx = (i + items.length) % items.length;
+      const d = items[idx];
+      title.textContent = d.name;
+      picker.value = String(idx);
+
+      left.innerHTML = '';
+      right.innerHTML = '';
+      (d.left || []).forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'row';
+        div.textContent = t;
+        left.appendChild(div);
+      });
+      (d.right || []).forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'row';
+        div.textContent = t;
+        right.appendChild(div);
+      });
+
+      meta.innerHTML = '';
+      (d.tags || []).forEach(t => {
+        const tag = document.createElement('div');
+        tag.className = 'tag';
+        tag.textContent = t;
+        meta.appendChild(tag);
+      });
+
+      setBackground(d.background);
+    }
+
+    function next() { render(idx + 1); }
+    function prev() { render(idx - 1); }
+
+    // Fetch species.json from same folder
+    fetch('files/species.json')
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then(json => {
+        items.splice(0, items.length, ...json.items);
+        optionize();
+        render(0);
+      })
+      .catch(err => {
+        console.error('Failed to load species.json:', err);
+        title.textContent = 'Failed to load data';
+      });
+
+    el('btnForward').addEventListener('click', next);
+    el('btnBack').addEventListener('click', prev);
+    picker.addEventListener('change', () => render(Number(picker.value)));
+
+    search.addEventListener('input', () => {
+      const q = search.value.trim().toLowerCase();
+      if (!q) return;
+      const i = items.findIndex(x => x.name.toLowerCase().includes(q));
+      if (i !== -1) render(i);
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
+        e.preventDefault(); search.focus(); search.select();
+      }
+    });
+    </script>
+  <script src="files/js/pop.js"></script>
+</body>
+</html>
