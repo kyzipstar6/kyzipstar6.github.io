@@ -367,7 +367,7 @@ function renderChart(){
           y: { title: { display:true, text: ySelected.join(', ') } }
         },
         plugins: { legend: { position:'bottom' }, tooltip: { mode:'nearest', intersect:false } },
-      }
+      
     });
     return;
   }
@@ -385,10 +385,10 @@ function renderChart(){
           y: { title: { display:true, text:yKey } }
         },
         plugins: { legend: { position:'bottom' } },
-      }
-    });
+      });
+    
     return;
-  }
+  
 }
 
 // ---------- Export ----------
@@ -403,6 +403,7 @@ function exportPng(){
 updateStats();
 updateHint();
 refreshControls();
+}
 
 </script></body>
 </html>
