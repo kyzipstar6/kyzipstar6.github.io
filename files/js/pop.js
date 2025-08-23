@@ -1,6 +1,8 @@
 let pop = 2500000;    let males =pop/2; let femal = pop/2; let sum = males+femal;
 function initPopLoop(population){
-  
+  popChart.data.labels = [];
+  popChart.data.datasets = [];
+  popChart.update();
     pop = population;
     males = pop/2;
     femal =pop/2;
@@ -77,9 +79,7 @@ initPopLoop(2.78e09);
       started ="y";}
 
     function aegirocassis(){
-       popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
+       
      if(started.includes("f")){ 
     initPopLoop(2.78e05);
     year-=115e06;
@@ -201,7 +201,7 @@ function watchForTitle() {
     if (!titleEl) return; // safety check
 
     const text = titleEl.innerText;
-    
+    started = "f";
 
     if (text.includes("Rafatazmia chitrakootensis") && !(lastTitle.length == text.length)) rafatazmiachitrakootensis();
     if (text.includes("Cyclomedusa") && !(lastTitle.length == text.length)) cyclomedusa();
