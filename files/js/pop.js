@@ -1,9 +1,6 @@
 let pop = 2500000;    let males =pop/2; let femal = pop/2; let sum = males+femal;
 function initPopLoop(population){
-  popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
-
+  
     pop = population;
     males = pop/2;
     femal =pop/2;
@@ -174,7 +171,10 @@ initPopLoop(2.78e09);
 let started = "f";
 //herebeginsappendlet pop = 2500000;    let males =pop/2; let femal = pop/2; let sum = males+femal;
 function initPopLoop(population){
- 
+ popChart.data.labels = [];
+  popChart.data.datasets = [];
+  popChart.update();
+
     pop = population;
     males = pop/2;
     femal =pop/2;
