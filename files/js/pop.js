@@ -1,5 +1,4 @@
-<!-- Assumes Chart.js is already loaded and there is a <canvas id="popChart"></canvas> and an element with id="title"> -->
-<script>
+
   // ----- State -----
   let pop = 2_500_000;
   let males = pop / 2;
@@ -125,4 +124,4 @@
 
   // Kick off watcher
   watchForTitle();
-</script>
+
