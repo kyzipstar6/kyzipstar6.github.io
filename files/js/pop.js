@@ -1,246 +1,128 @@
-let pop = 2500000;    let males =pop/2; let femal = pop/2; let sum = males+femal;
-function initPopLoop(population){
-  popChart.data.labels = [];
-  popChart.data.datasets = [];
-  popChart.update();
-    pop = population;
-    males = pop/2;
-    femal =pop/2;
-    console.log("Started new loop.");
-}
+<!-- Assumes Chart.js is already loaded and there is a <canvas id="popChart"></canvas> and an element with id="title"> -->
+<script>
+  // ----- State -----
+  let pop = 2_500_000;
+  let males = pop / 2;
+  let females = pop / 2;
+  let sum = males + females;
+  let year = 4.65e9;
+  let started = false;         // use boolean instead of "f"/"y"
+  let intervalId = null;       // so we don't stack intervals
 
-//let title = "";
-
-
-const popCtx = document.getElementById('popChart').getContext('2d');
-const popChart = new Chart(popCtx, {
-  type: 'line',
-  data: {
-    labels: [],
-    datasets: [{
-      label: 'Population',
-      data: [],
-      borderColor: 'rgba(241, 198, 114, 1)',
-      tension: 0.3
-    }]
-  },
-  options: {
-    scales: {
-      x: { title: { display: true, text: 'Time in Earth age (years)' }},
-      y: { title: { display: true, text: 'Population in number of individuals' }}
-    }
+  // ----- Chart -----
+  const canvas = document.getElementById('popChart');
+  if (!canvas) {
+    console.warn('popChart canvas not found');
   }
-});
+  const popCtx = canvas ? canvas.getContext('2d') : null;
 
-let year = 4.65e9;
-  function ornicopora(){
-    //document.getElementsByClassName("title").innerText = `Live Hamanumida Daedalus population`;
-    
-  
-    initPopLoop(2.345e09);
-    year-=450e06;
-    setInterval(updateData, 5000);
-}
-
-    function rafatazmiachitrakootensis(){
-     if(started.includes("f")){ 
-        
-initPopLoop(2.78e09);
-      year-=560e06;
-      setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function cyclomedusa(){
-     if(started.includes("f")){ 
-
-    initPopLoop(2.78e05);
-    year-=115e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function kymbrella(){
-     if(started.includes("f")){ 
-        
-    initPopLoop(2.78e08);
-    year-=552e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function haplophrentis(){
-       
-     if(started.includes("f")){ 
-    initPopLoop(2.78e05);
-    year-=515e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function aegirocassis(){
-       
-     if(started.includes("f")){ 
-    initPopLoop(2.78e05);
-    year-=115e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function onychophora(){
-     if(started.includes("f")){ 
-        
-     initPopLoop(2.345e09);
-    year-=450e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function herrerasaurus(){
-     if(started.includes("f")){ 
-        
-    initPopLoop(2.78e05);
-    year-=115e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function abrictosaurus(){
-     if(started.includes("f")){ 
-  
- initPopLoop(2e06);
-     year-=250e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function caseosaurus(){
-     if(started.includes("f")){ 
-        
-    initPopLoop(2.78e05);
-    year-=115e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function staurikosaurus(){
-     if(started.includes("f")){ 
-        
-    initPopLoop(2.78e05);
-    year-=115e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function chindesaurus(){
-     if(started.includes("f")){ 
-    initPopLoop(2.78e05);
-    year-=115e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function tawahallae(){
-     if(started.includes("f")){ 
-        
-    initPopLoop(2.78e05);
-    year-=115e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function tyrannosaurusrex(){
-     if(started.includes("f")){ 
-        
-  
-  initPopLoop(78e07);
-    year-=75e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-    function triceratops(){
-     if(started.includes("f")){ 
-        
-    initPopLoop(2.78e05);
-    year-=85e06;
-    setInterval(updateData, 5000);
- }
-      started ="y";}
-
-let started = "f";
-//herebeginsappendlet pop = 2500000;    let males =pop/2; let femal = pop/2; let sum = males+femal;
-function initPopLoop(population){
- 
-
-    pop = population;
-    males = pop/2;
-    femal =pop/2;
-
-}
-
-//let title = "";
-
-function ornicopora(){
-    //document.getElementsByClassName("title").innerText = `Live Hamanumida Daedalus population`;
-      if(started.includes("f")){
-    initPopLoop(2.345e09);
-    year-=450e06;
-    setInterval(updateData, 5000);
+  const popChart = popCtx ? new Chart(popCtx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Population',
+        data: [],
+        borderColor: 'rgba(241, 198, 114, 1)',
+        tension: 0.3
+      }]
+    },
+    options: {
+      animation: false,
+      parsing: false,
+      normalized: true,
+      scales: {
+        x: { title: { display: true, text: 'Time in Earth age (years)' }},
+        y: { title: { display: true, text: 'Population (individuals)' }, beginAtZero: true }
       }
-      started ="y";
-    
-}
+    }
+  }) : null;
 
-//hereendsappend
-let lastTitle = "";
-function watchForTitle() {
-  setInterval(() => {
-    const titleEl = document.getElementById("title"); 
-   
-    if (!titleEl) return; // safety check
+  // ----- Helpers -----
+  function initPopLoop(population) {
+    // reset data safely (keep dataset object so dataset[0] always exists)
+    if (popChart) {
+      popChart.data.labels.length = 0;
+      popChart.data.datasets[0].data.length = 0;
+      popChart.update();
+    }
+    pop = population;
+    males = pop / 2;
+    females = pop / 2;
+    sum = males + females;
+    console.log('Started new loop.');
+  }
 
-    const text = titleEl.innerText;
-    started = "f";
+  function startScenario({ popStart, yearDelta }) {
+    initPopLoop(popStart);
+    year += yearDelta;
+    if (intervalId) clearInterval(intervalId);
+    intervalId = setInterval(updateData, 5000);
+    started = true;
+  }
 
-    if (text.includes("Rafatazmia chitrakootensis") && !(lastTitle.length == text.length)) rafatazmiachitrakootensis();
-    if (text.includes("Cyclomedusa") && !(lastTitle.length == text.length)) cyclomedusa();
-    if (text.includes("Kymbrella") && !(lastTitle.length == text.length)) kymbrella();
-    if (text.includes("Haplophrentis") && !(lastTitle.length == text.length)) haplophrentis();
-    if (text.includes("Aegirocassis") && !(lastTitle.length == text.length)) aegirocassis();
-    if (text.includes("Onychophora") && !(lastTitle.length == text.length)) onychophora();
-    if (text.includes("Herrerasaurus") && !(lastTitle.length == text.length)) herrerasaurus();
-    if (text.includes("Abrictosaurus") && !(lastTitle.length == text.length)) abrictosaurus();
-    if (text.includes("Caseosaurus") && !(lastTitle.length == text.length)) caseosaurus();
-    if (text.includes("Staurikosaurus") && !(lastTitle.length == text.length)) staurikosaurus();
-    if (text.includes("Chindesaurus") && !(lastTitle.length == text.length)) chindesaurus();
-    if (text.includes("Tawa hallae") && !(lastTitle.length == text.length)) tawahallae();
-    if (text.includes("Tyrannosaurus rex") && !(lastTitle.length == text.length)) tyrannosaurusrex();
-    if (text.includes("Triceratops") && !(lastTitle.length == text.length)) triceratops();
-    lastTitle= text;
-  }, 5000);
-}
+  // Centralized catalog (DRY)
+  const SPECIES = {
+    'Rafatazmia chitrakootensis': { popStart: 2.78e9,  yearDelta: -560e6 },
+    'Cyclomedusa':                { popStart: 2.78e5,  yearDelta: -115e6 },
+    'Kymbrella':                  { popStart: 2.78e8,  yearDelta: -552e6 },
+    'Haplophrentis':              { popStart: 2.78e5,  yearDelta: -515e6 },
+    'Aegirocassis':               { popStart: 2.78e5,  yearDelta: -115e6 },
+    'Onychophora':                { popStart: 2.345e9, yearDelta: -450e6 },
+    'Herrerasaurus':              { popStart: 2.78e5,  yearDelta: -115e6 },
+    'Abrictosaurus':              { popStart: 2e6,     yearDelta: -250e6 },
+    'Caseosaurus':                { popStart: 2.78e5,  yearDelta: -115e6 },
+    'Staurikosaurus':             { popStart: 2.78e5,  yearDelta: -115e6 },
+    'Chindesaurus':               { popStart: 2.78e5,  yearDelta: -115e6 },
+    'Tawa hallae':                { popStart: 2.78e5,  yearDelta: -115e6 },
+    'Tyrannosaurus rex':          { popStart: 7.8e8,   yearDelta: -75e6  },
+    'Triceratops':                { popStart: 2.78e5,  yearDelta: -85e6  },
+  };
 
-function updateData() {
-    pop*= (1+(-0.5+Math.random())/3);
+  // Watch title changes and trigger scenario once per change
+  let lastTitle = '';
+  function watchForTitle() {
+    setInterval(() => {
+      const titleEl = document.getElementById('title');
+      if (!titleEl) return;
 
-    males= (pop/2)*(1+(-0.5+Math.random())/3);
-    femal= (pop/2)*(1+(-0.5+Math.random())/3);
+      const text = titleEl.innerText.trim();
+      if (!text || text === lastTitle) return;
 
-    sum= males+femal;
-    let malpt = males/sum;
-    let fempt = femal/sum;
+      // find first matching key
+      const match = Object.keys(SPECIES).find(k => text.includes(k));
+      if (match) {
+        started = false;          // allow new start for a new title
+        if (!started) startScenario(SPECIES[match]);
+      }
+      lastTitle = text;
+    }, 1000);
+  }
+
+  function clamp(n, min, max) {
+    return Math.max(min, Math.min(max, n));
+  }
+
+  function updateData() {
+    // evolve population; keep it >= 0
+    const popGrowth = 1 + clamp((-0.5 + Math.random()) / 3, -0.9, 0.9);
+    pop = Math.max(0, pop * popGrowth);
+
+    // randomize male ratio around 0.5 but keep males + females === pop
+    const maleRatio = clamp(0.5 + (-0.5 + Math.random()) / 6, 0.05, 0.95);
+    males = pop * maleRatio;
+    females = pop - males;
+    sum = pop; // by construction
 
     year += 1;
-    //document.getElementById("pop").innerText = `Population: ${pop.toFixed(0)} individuals.`;
-    //document.getElementById("yr").innerText = `Earth year: ${year}`;
-    //document.getElementById("mal").innerText = `Males ${(malpt*pop).toFixed(0)}`;
-    //document.getElementById("fem").innerText = `Females: ${(fempt*pop).toFixed(0)}`;
 
-  // Add to chart
-  popChart.data.labels.push(`${year}`);
-  popChart.data.datasets[0].data.push(pop);
-  popChart.update();
-}
+    if (popChart) {
+      popChart.data.labels.push(`${year}`);
+      popChart.data.datasets[0].data.push(pop);
+      popChart.update();
+    }
+  }
 
-watchForTitle();
+  // Kick off watcher
+  watchForTitle();
+</script>
