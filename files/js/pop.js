@@ -1,6 +1,6 @@
 
   // ----- State -----
-  let pop = 2_500_000;
+  let pop = 2500000;
   let males = pop / 2;
   let females = pop / 2;
   let sum = males + females;
