@@ -18,7 +18,7 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: url('files/images/herrerasaurus.png') center/cover no-repeat fixed; /* per-species bg can override */
+      background: url('files/images/herrerasaurus.png') center/cover no-repeat fixed;
     }
     .scrim { position: fixed; inset: 0; backdrop-filter: blur(8px); background: rgba(255,255,255,.25); }
     .window { position: relative; width: min(880px, 96vw); min-height: 420px; margin: 4vh auto 2rem; background: var(--panel-bg); border-radius: var(--radius); box-shadow: var(--shadow); display: grid; grid-template-rows: auto auto 1fr auto; overflow: hidden; }
@@ -31,24 +31,52 @@
     .meta { display: flex; gap: .5rem; padding: 0 1rem .25rem; color: #333; font-size: 13px; opacity: .9; }
     .meta .tag { background: rgba(0,0,0,.05); border-radius: 999px; padding: .25rem .6rem; }
 
-    .chart-container {
-      background: #fff;
-      padding: 1em;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    }
     .content { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .5rem 1rem 0; }
     .left, .right { display: flex; flex-direction: column; gap: .2rem; font-style: italic; font-family: Georgia, "Times New Roman", serif; font-size: 14px; }
     .left .row { text-align: left; }
     .right { align-items: flex-end; }
     .right .row { text-align: right; }
-    canvas {
-      width: 100%;
-      height: 300px;
+
+    .chart-wrap { padding: 0 1rem 1rem; }
+    .chart-container {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      display: grid;
+      gap: .75rem;
     }
+    .chart-header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
+    .pills { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .pill { background: rgba(0,0,0,.06); border-radius: 999px; padding: .25rem .6rem; font-size: 12px; }
+    .pill strong { font-variant-numeric: tabular-nums; }
+
+    .chart-controls {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0,1fr));
+      gap: .5rem;
+      align-items: end;
+    }
+    .field { display: grid; gap: .25rem; }
+    .field label { font-size: 12px; color: #333; }
+    .field input[type="number"] {
+      width: 100%;
+      padding: .5rem .6rem;
+      border: 1px solid #cfcfcf;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .btn { border: 0; border-radius: 999px; padding: .55rem .9rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; color: #fff; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.12); user-select: none; }
+    .btn.grow { background: #16a34a; }
+    .btn.steady { background: #2563eb; }
+    .btn.decline { background: #dc2626; }
+    .btn.secondary { background: #6b7280; }
+    .buttons { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+    canvas { width: 100%; height: 300px; }
 
     footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75rem 1rem 1rem; align-items: center; }
-    .btn { justify-self: start; border: 0; border-radius: 999px; padding: .6rem 1rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 16px; color: #fff; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.15); user-select: none; }
+    .btn.nav { justify-self: start; border-radius: 999px; padding: .6rem 1rem; font-size: 16px; }
     .btn.back { background: #2563eb; }
     .btn.forward { background: #16a34a; justify-self: end; }
 
@@ -59,6 +87,7 @@
       .right .row { text-align: left; }
       footer { grid-template-columns: 1fr; }
       .btn.forward { justify-self: start; }
+      .chart-controls { grid-template-columns: repeat(2,minmax(0,1fr)); }
     }
   </style>
 </head>
@@ -79,13 +108,58 @@
       <div class="left" id="left"></div>
       <div class="right" id="right"></div>
     </section>
-    <div class="chart-container",  onclick= updateData()>
-      <h3>Population over time</h3>
-      <canvas id="popChart"></canvas>
-    </div>
+
+    <!-- CHARTS SECTION -->
+    <section class="chart-wrap">
+      <div class="chart-container" id="chartBox">
+        <div class="chart-header">
+          <h3 style="margin:0">Population over time</h3>
+          <div class="pills">
+            <span class="pill">Total: <strong id="pillTotal">—</strong></span>
+            <span class="pill">Males: <strong id="pillMales">—</strong></span>
+            <span class="pill">Females: <strong id="pillFemales">—</strong></span>
+            <span class="pill">Year: <strong id="pillYear">—</strong></span>
+            <span class="pill">Mode: <strong id="pillMode">steady</strong></span>
+          </div>
+        </div>
+
+        <div class="chart-controls">
+          <div class="field">
+            <label for="yearInput">Set year</label>
+            <input id="yearInput" type="number" step="1" value="4650000000" />
+          </div>
+          <div class="field">
+            <label for="popInput">Set population</label>
+            <input id="popInput" type="number" step="1" value="2500000" />
+          </div>
+          <div class="field">
+            <label for="maleRatioInput">Male ratio (0–1)</label>
+            <input id="maleRatioInput" type="number" step="0.01" min="0.01" max="0.99" value="0.50" />
+          </div>
+          <div class="buttons">
+            <button class="btn grow"   type="button" id="btnGrow"onAction=mkgr()>Make population grow</button>
+          </div>
+          <div class="buttons">
+            <button class="btn steady" type="button" id="btnSteady" onAction=mkst()>Make population stay steady</button>
+          </div>
+          <div class="buttons">
+            <button class="btn decline" type="button" id="btnDecline" onAction=mkde()>Make population decline</button>
+          </div>
+        </div>
+
+        <canvas id="popChart"></canvas>
+
+        <div class="buttons">
+          <button class="btn secondary" id="btnApply" type="button">Apply year & population</button>
+          <button class="btn secondary" id="btnTick" type="button" title="Advance one step">Tick +1 year</button>
+          <button class="btn secondary" id="btnReset" type="button">Reset chart</button>
+        </div>
+      </div>
+    </section>
+
     <footer>
-      <button class="btn back" id="btnBack" type="button" title="Previous (←)">Back</button>
-      <button class="btn forward" id="btnForward" type="button" title="Next (→)">Forward</button>
+      <button class="btn nav back" id="btnBack" type="button" title="Previous (←)">Back</button>
+      <button class="btn nav forward" id="btnForward" type="button" title="Next (→)">Forward</button>
     </footer>
   </main>
 
@@ -93,6 +167,7 @@
   <script type="application/json" id="dino-data" src="species.json"></script>
 
   <script>
+    /* ========= Species browser (unchanged) ========= */
     const el = id => document.getElementById(id);
     const title = el('title');
     const left = el('left');
@@ -149,17 +224,17 @@
       });
 
       setBackground(d.background);
+
+      // Optional: if your species.json contains defaults, you can hook them here:
+      // if (d.defaultYear)  setYear(d.defaultYear);
+      // if (d.defaultPop)   setPopulation(d.defaultPop);
     }
 
     function next() { render(idx + 1); }
     function prev() { render(idx - 1); }
 
-    // Fetch species.json from same folder
     fetch('files/species.json')
-      .then(response => {
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.json();
-      })
+      .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
       .then(json => {
         items.splice(0, items.length, ...json.items);
         optionize();
@@ -173,14 +248,12 @@
     el('btnForward').addEventListener('click', next);
     el('btnBack').addEventListener('click', prev);
     picker.addEventListener('change', () => render(Number(picker.value)));
-
     search.addEventListener('input', () => {
       const q = search.value.trim().toLowerCase();
       if (!q) return;
       const i = items.findIndex(x => x.name.toLowerCase().includes(q));
       if (i !== -1) render(i);
     });
-
     window.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') next();
       if (e.key === 'ArrowLeft') prev();
@@ -188,7 +261,184 @@
         e.preventDefault(); search.focus(); search.select();
       }
     });
-    </script>
-  <script src="files/js/pop.js"></script>
+
+    /* ========= Population chart engine ========= */
+
+    // State
+    let year = 4.65e9;
+    let pop = 2_500_000;
+    let maleRatio = 0.5; // 0..1
+    let males = pop * maleRatio;
+    let females = pop - males;
+    let mode = 'steady'; // 'grow' | 'steady' | 'decline'
+
+    const pillTotal = el('pillTotal');
+    const pillMales = el('pillMales');
+    const pillFemales = el('pillFemales');
+    const pillYear = el('pillYear');
+    const pillMode = el('pillMode');
+
+    const yearInput = el('yearInput');
+    const popInput = el('popInput');
+    const maleRatioInput = el('maleRatioInput');
+
+    const btnGrow = el('btnGrow');
+    const btnSteady = el('btnSteady');
+    const btnDecline = el('btnDecline');
+    const btnApply = el('btnApply');
+    const btnTick = el('btnTick');
+    const btnReset = el('btnReset');
+
+    // Chart
+    const popCtx = document.getElementById('popChart').getContext('2d');
+    const popChart = new Chart(popCtx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'Total Population',
+            data: [],
+            borderColor: 'rgba(17, 24, 39, 1)', // slate-ish
+            tension: 0.25
+          },
+          {
+            label: 'Males',
+            data: [],
+            borderColor: 'rgba(59, 130, 246, 1)', // blue
+            tension: 0.25
+          },
+          {
+            label: 'Females',
+            data: [],
+            borderColor: 'rgba(244, 63, 94, 1)', // rose
+            tension: 0.25
+          }
+        ]
+      },
+      options: {
+        animation: false,
+        parsing: false,
+        normalized: true,
+        scales: {
+          x: { title: { display: true, text: 'Time in Earth age (years)' } },
+          y: { title: { display: true, text: 'Population (individuals)' }, beginAtZero: true }
+        },
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+
+    function fmt(n){ return Number(n).toLocaleString(); }
+
+    function updatePills() {
+      pillTotal.textContent = fmt(pop);
+      pillMales.textContent = fmt(males);
+      pillFemales.textContent = fmt(females);
+      pillYear.textContent = fmt(year);
+      pillMode.textContent = mode;
+    }
+
+    function resetChart() {
+      popChart.data.labels.length = 0;
+      popChart.data.datasets[0].data.length = 0;
+      popChart.data.datasets[1].data.length = 0;
+      popChart.data.datasets[2].data.length = 0;
+      popChart.update();
+    }
+
+    function setYear(v){
+      year = Math.floor(Number(v) || 0);
+      yearInput.value = String(year);
+      updatePills();
+    }
+
+    function setPopulation(v){
+      pop = Math.max(0, Number(v) || 0);
+      males = Math.max(0, Math.min(pop, pop * maleRatio));
+      females = Math.max(0, pop - males);
+      popInput.value = String(Math.floor(pop));
+      updatePills();
+    }
+
+    function setMaleRatio(v){
+      maleRatio = Math.max(0.01, Math.min(0.99, Number(v) || 0.5));
+      maleRatioInput.value = String(maleRatio.toFixed(2));
+      // keep total constant, recompute split
+      males = pop * maleRatio;
+      females = pop - males;
+      updatePills();
+    }
+
+    function setMode(m){
+      mode = m;
+      updatePills();
+    }
+
+    // One simulation step (+1 year)
+    function tick() {
+      // Growth factor by mode
+      // grow ~ +0%..+6.7% ; steady ~ -1.7%..+1.7% ; decline ~ -6.7%..0%
+      const rnd = (-0.5 + Math.random()) / 3;
+      let drift = 0;
+      if (mode === 'grow') drift = Math.abs(rnd);      // 0..~0.167
+      if (mode === 'decline') drift = -Math.abs(rnd);  // -~0.167..0
+      if (mode === 'steady') drift = rnd / 2;          // tighter band
+
+      const growth = 1 + drift;
+      pop = Math.max(0, pop * growth);
+
+      // slight wobble around target ratio but keep total consistent
+      const ratioJitter = (-0.5 + Math.random()) / 50; // +/-1%
+      const r = Math.max(0.01, Math.min(0.99, maleRatio + ratioJitter));
+      males = pop * r;
+      females = pop - males;
+
+      year += 1;
+
+      popChart.data.labels.push(`${year}`);
+      popChart.data.datasets[0].data.push(pop);
+      popChart.data.datasets[1].data.push(males);
+      popChart.data.datasets[2].data.push(females);
+      popChart.update('none');
+
+      updatePills();
+    }
+
+    // Wire UI
+    btnGrow.addEventListener('click', () => setMode('grow'));
+    btnSteady.addEventListener('click', () => setMode('steady'));
+    btnDecline.addEventListener('click', () => setMode('decline'));
+
+    btnApply.addEventListener('click', () => {
+      setYear(yearInput.value);
+      setPopulation(popInput.value);
+      setMaleRatio(maleRatioInput.value);
+      // After applying, plot the current state as a point (optional)
+      popChart.data.labels.push(`${year}`);
+      popChart.data.datasets[0].data.push(pop);
+      popChart.data.datasets[1].data.push(males);
+      popChart.data.datasets[2].data.push(females);
+      popChart.update('none');
+      updatePills();
+    });
+
+    btnTick.addEventListener('click', tick);
+    btnReset.addEventListener('click', () => { resetChart(); updatePills(); });
+
+    // Initialize UI with defaults
+    setYear(year);
+    setPopulation(pop);
+    setMaleRatio(maleRatio);
+
+    // Optional: click chart box to tick once (handy)
+    document.getElementById('chartBox').addEventListener('click', (e) => {
+      // avoid ticking when clicking inputs/buttons
+      const tag = e.target.tagName.toLowerCase();
+      if (['button','input','canvas','label','select'].includes(tag)) return;
+      tick();
+    });
+  </script>
 </body>
 </html>
