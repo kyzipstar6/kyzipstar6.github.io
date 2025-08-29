@@ -129,13 +129,7 @@ function watchForTitle(){
   }, 1000);
 }
 
-// ---------- Trend controls (your method names) ----------
-/*
- status meanings:
-  1  = grow
-  0  = steady
- -1  = decline
-*/
+
 let status = 0;
 
 function mkgr(){ status = 1;  updatePills('grow'); }
@@ -176,17 +170,17 @@ function applyYearPop(){
     popChart.update('none');
   }
 }
+let status =10;
 
-// ---------- Core updater ----------
 function updateData(){
-  // growth factor per status (stable, non-zero)
-  let factor = 1;
-  if (status === 1)  factor = 1 + (0.01 + Math.random()*0.04);   // +1%..+5%
-  if (status === 0)  factor = 1 + (-0.005 + Math.random()*0.01); // -0.5%..+0.5%
-  if (status === -1) factor = 1 - (0.01 + Math.random()*0.04);   // -1%..-5%
-
-  pop = Math.max(1, pop * factor);
-
+  let gm = 1 + ((0.6 + Math.random()/3);
+    let sm = 1 + ((0.5 + Math.random()/3);
+    let stm = 1 + ((0.5 + Math.random()/10)
+    let dm = 1 + ((0.4 + Math.random()/3);
+    if(status == 0)pop*=stm;
+    if(status == -1)pop*=dm;
+    if(status == 10)pop*=sm
+    if(status == 1)pop*=gm;
   // jitter around 0.5 but keep males+females = pop
   const r = clamp(0.5 + (-0.5 + Math.random())/25, 0.05, 0.95);
   maleRatio = r;
@@ -205,8 +199,33 @@ function updateData(){
   }
   updatePills();
 }
+// === Chart theming hook ===
+function applyChartTheme(isDark){
+  if (!popChart) return;
+  const axisColor = isDark ? 'rgba(229,231,235,0.9)' : 'rgba(31,41,55,0.9)'; // labels
+  const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
 
-// ---------- Expose to HTML ----------
+  // axes
+  popChart.options.scales.x.ticks.color = axisColor;
+  popChart.options.scales.y.ticks.color = axisColor;
+  popChart.options.scales.x.grid.color = gridColor;
+  popChart.options.scales.y.grid.color = gridColor;
+
+  // legend
+  if (!popChart.options.plugins) popChart.options.plugins = {};
+  if (!popChart.options.plugins.legend) popChart.options.plugins.legend = {};
+  if (!popChart.options.plugins.legend.labels) popChart.options.plugins.legend.labels = {};
+  popChart.options.plugins.legend.labels.color = axisColor;
+
+  popChart.update('none');
+}
+
+// apply current theme once on load (matches HTML script)
+applyChartTheme(document.documentElement.getAttribute('data-theme') === 'dark');
+
+// expose for the HTML toggle script
+window.applyChartTheme = applyChartTheme;
+
 window.mkgr = mkgr;
 window.mkst = mkst;
 window.mkde = mkde;
@@ -216,6 +235,6 @@ window.applyYearPop = applyYearPop;
 window.updateData = updateData;
 window.resetChart = resetChart;
 
-// ---------- Boot ----------
+
 updatePills('steady');
 watchForTitle();
