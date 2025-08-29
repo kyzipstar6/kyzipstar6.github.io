@@ -89,6 +89,69 @@
       .btn.forward { justify-self: start; }
       .chart-controls { grid-template-columns: repeat(2,minmax(0,1fr)); }
     }
+    /* Base colors (light) — already have some, adding a few) */
+:root{
+  --panel-bg: rgba(255,255,255,0.85);
+  --panel-fg: #0b1220;
+  --muted-fg: #334155;
+  --field-bg: #ffffff;
+  --field-border: #cfcfcf;
+  --scrim-bg: rgba(255,255,255,.25);
+  --grid-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+/* Dark theme overrides */
+:root[data-theme="dark"]{
+  --panel-bg: rgba(17,24,39,0.85);     /* slate-900 */
+  --panel-fg: #e5e7eb;                 /* gray-200 */
+  --muted-fg: #9ca3af;                 /* gray-400 */
+  --field-bg: rgba(31,41,55,0.9);      /* slate-800 */
+  --field-border: rgba(148,163,184,0.35);
+  --scrim-bg: rgba(0,0,0,.35);
+}
+
+/* apply variables */
+body { color: var(--panel-fg); }
+.window { background: var(--panel-bg); box-shadow: var(--grid-shadow); }
+.meta { color: var(--muted-fg); }
+.controls input[type="search"], .controls select {
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  color: var(--panel-fg);
+}
+.controls input::placeholder { color: var(--muted-fg); }
+.scrim { background: var(--scrim-bg); }
+
+/* Chart container contrast in dark */
+:root[data-theme="dark"] .chart-container {
+  background: rgba(2,6,23,0.6);       /* slate-950-ish glass */
+  border: 1px solid rgba(148,163,184,0.15);
+}
+
+/* Pills contrast */
+:root[data-theme="dark"] .pill { background: rgba(148,163,184,0.15); }
+
+/* Toggle button */
+.theme-toggle{
+  border: 0;
+  border-radius: 999px;
+  padding: .5rem .6rem;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  background: var(--field-bg);
+  color: var(--panel-fg);
+  border: 1px solid var(--field-border);
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+.theme-toggle:focus{ outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Inputs inside chart controls (if not already styled) */
+.chart-controls .field input, .chart-controls .field select{
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  color: var(--panel-fg);
+}
   </style>
 </head>
 <body>
@@ -97,8 +160,11 @@
     <header>
       <h1 id="title">—</h1>
       <div class="controls">
-        <input id="search" type="search" placeholder="Search species…" aria-label="Search species" autocomplete="off" />
-        <select id="picker" aria-label="Pick species"></select>
+  <input id="search" type="search" placeholder="Search species…" aria-label="Search species" autocomplete="off" />
+  <select id="picker" aria-label="Pick species"></select>
+
+  
+  <button id="themeToggle" type="button" class="theme-toggle" aria-label="Toggle theme" title="Toggle day/night">🌙</button>
       </div>
     </header>
 
@@ -109,53 +175,65 @@
       <div class="right" id="right"></div>
     </section>
 
-    <!-- CHARTS SECTION -->
-    <section class="chart-wrap">
-      <div class="chart-container" id="chartBox">
-        <div class="chart-header">
-          <h3 style="margin:0">Population over time</h3>
-          <div class="pills">
-            <span class="pill">Total: <strong id="pillTotal">—</strong></span>
-            <span class="pill">Males: <strong id="pillMales">—</strong></span>
-            <span class="pill">Females: <strong id="pillFemales">—</strong></span>
-            <span class="pill">Year: <strong id="pillYear">—</strong></span>
-            <span class="pill">Mode: <strong id="pillMode">steady</strong></span>
-          </div>
-        </div>
-
-        <div class="chart-controls">
-          <div class="field">
-            <label for="yearInput">Set year</label>
-            <input id="yearInput" type="number" step="1" value="4650000000" />
-          </div>
-          <div class="field">
-            <label for="popInput">Set population</label>
-            <input id="popInput" type="number" step="1" value="2500000" />
-          </div>
-          <div class="field">
-            <label for="maleRatioInput">Male ratio (0–1)</label>
-            <input id="maleRatioInput" type="number" step="0.01" min="0.01" max="0.99" value="0.50" />
-          </div>
-          <div class="buttons">
-            <button class="btn grow"   type="button" id="btnGrow"onAction=mkgr()>Make population grow</button>
-          </div>
-          <div class="buttons">
-            <button class="btn steady" type="button" id="btnSteady" onAction=mkst()>Make population stay steady</button>
-          </div>
-          <div class="buttons">
-            <button class="btn decline" type="button" id="btnDecline" onAction=mkde()>Make population decline</button>
-          </div>
-        </div>
-
-        <canvas id="popChart"></canvas>
-
-        <div class="buttons">
-          <button class="btn secondary" id="btnApply" type="button">Apply year & population</button>
-          <button class="btn secondary" id="btnTick" type="button" title="Advance one step">Tick +1 year</button>
-          <button class="btn secondary" id="btnReset" type="button">Reset chart</button>
-        </div>
+    <!-- CHARTS SECTION (combo) -->
+<section class="chart-wrap">
+  <div class="chart-container" id="chartBox">
+    <div class="chart-header" style="display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;">
+      <h3 style="margin:0">Population over time</h3>
+      <div class="pills" style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span class="pill">Total: <strong id="pillTotal">—</strong></span>
+        <span class="pill">Males: <strong id="pillMales">—</strong></span>
+        <span class="pill">Females: <strong id="pillFemales">—</strong></span>
+        <span class="pill">Year: <strong id="pillYear">—</strong></span>
+        <span class="pill">Mode: <strong id="pillMode">steady</strong></span>
       </div>
-    </section>
+    </div>
+
+    <!-- Combo controls -->
+    <div class="chart-controls" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.5rem;align-items:end;">
+      <div class="field" style="display:grid;gap:.25rem;">
+        <label for="yearInput" style="font-size:12px;">Set year</label>
+        <input id="yearInput" type="number" step="1" value="4650000000" style="padding:.5rem .6rem;border:1px solid #cfcfcf;border-radius:10px;font-size:14px;">
+      </div>
+      <div class="field" style="display:grid;gap:.25rem;">
+        <label for="popInput" style="font-size:12px;">Set population</label>
+        <input id="popInput" type="number" step="1" value="2500000" style="padding:.5rem .6rem;border:1px solid #cfcfcf;border-radius:10px;font-size:14px;">
+      </div>
+
+      <!-- Trend combobox (optional) -->
+      <div class="field" style="display:grid;gap:.25rem;">
+        <label for="trendSelect" style="font-size:12px;">Trend</label>
+        <select id="trendSelect" aria-label="Trend"
+                style="padding:.55rem .7rem;border:1px solid #cfcfcf;border-radius:10px;font-size:14px;"
+                onchange="this.value==='grow'?mkgr():this.value==='steady'?mkst():mide();">
+          <option value="steady" selected>Stay steady</option>
+          <option value="grow">Grow</option>
+          <option value="decline">Decline</option>
+        </select>
+      </div>
+
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn steady"  type="button" onclick="mkst()">Make population stay steady</button>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn grow"    type="button" onclick="mkgr()">Make population grow</button>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn decline" type="button" onclick="mide()">Make population decline</button>
+      </div>
+    </div>
+
+    <canvas id="popChart"></canvas>
+
+    <div class="buttons" style="display:flex;gap:.5rem;flex-wrap:wrap;">
+      <button class="btn secondary" type="button" onclick="applyYearPop()">Apply year & population</button>
+      <button class="btn secondary" type="button" onclick="updateData()" title="Advance one step">Tick +1 year</button>
+      <button class="btn secondary" type="button" onclick="toggleAutoUpdate(this)">Auto-update: OFF</button>
+      <button class="btn secondary" type="button" onclick="resetChart()">Reset chart</button>
+    </div>
+  </div>
+      </section>
+    
 
     <footer>
       <button class="btn nav back" id="btnBack" type="button" title="Previous (←)">Back</button>
@@ -442,3 +520,4 @@
   </script>
 </body>
 </html>
+
