@@ -201,7 +201,8 @@ function updateData(){
 }
 // === Chart theming hook ===
 function applyChartTheme(isDark){
-  if (!popChart) return;
+  if (!window.popChart) return;            
+
   const axisColor = isDark ? 'rgba(229,231,235,0.9)' : 'rgba(31,41,55,0.9)'; // labels
   const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
 
@@ -221,7 +222,6 @@ function applyChartTheme(isDark){
 }
 
 // apply current theme once on load (matches HTML script)
-applyChartTheme(document.documentElement.getAttribute('data-theme') === 'dark');
 
 // expose for the HTML toggle script
 window.applyChartTheme = applyChartTheme;
@@ -237,4 +237,7 @@ window.resetChart = resetChart;
 
 
 updatePills('steady');
+
 watchForTitle();
+
+applyChartTheme(document.documentElement.getAttribute('data-theme') === 'dark');
