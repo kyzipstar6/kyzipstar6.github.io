@@ -39,17 +39,13 @@
 
   // ----- Helpers -----
   function initPopLoop(population) {
-    // reset data safely (keep dataset object so dataset[0] always exists)
-    if (popChart) {
-      popChart.data.labels.length = 0;
-      popChart.data.datasets[0].data.length = 0;
-      popChart.update();
-    }
-    pop = population;
-    males = pop / 2;
-    females = pop / 2;
-    sum = males + females;
-    console.log('Started new loop.');
+  popChart.data.labels.length = 0;
+  popChart.data.datasets[0].data.length = 0;  // clear, don’t replace
+  popChart.update();
+
+  pop = population;
+  males = pop / 2;
+  femal = pop / 2;
   }
 
   function startScenario({ popStart, yearDelta }) {
