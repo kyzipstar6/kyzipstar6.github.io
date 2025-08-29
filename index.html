@@ -232,6 +232,7 @@ body { color: var(--panel-fg); }
       <button class="btn secondary" type="button" onclick="resetChart()">Reset chart</button>
     </div>
   </div>
+  <script src = "files/js/pop.js"></script>
       </section>
     
 
@@ -340,184 +341,16 @@ body { color: var(--panel-fg); }
       }
     });
 
-    /* ========= Population chart engine ========= */
+    
+    
 
-    // State
-    let year = 4.65e9;
-    let pop = 2_500_000;
-    let maleRatio = 0.5; // 0..1
-    let males = pop * maleRatio;
-    let females = pop - males;
-    let mode = 'steady'; // 'grow' | 'steady' | 'decline'
-
-    const pillTotal = el('pillTotal');
-    const pillMales = el('pillMales');
-    const pillFemales = el('pillFemales');
-    const pillYear = el('pillYear');
-    const pillMode = el('pillMode');
-
-    const yearInput = el('yearInput');
-    const popInput = el('popInput');
-    const maleRatioInput = el('maleRatioInput');
-
-    const btnGrow = el('btnGrow');
-    const btnSteady = el('btnSteady');
-    const btnDecline = el('btnDecline');
-    const btnApply = el('btnApply');
-    const btnTick = el('btnTick');
-    const btnReset = el('btnReset');
-
-    // Chart
-    const popCtx = document.getElementById('popChart').getContext('2d');
-    const popChart = new Chart(popCtx, {
-      type: 'line',
-      data: {
-        labels: [],
-        datasets: [
-          {
-            label: 'Total Population',
-            data: [],
-            borderColor: 'rgba(17, 24, 39, 1)', // slate-ish
-            tension: 0.25
-          },
-          {
-            label: 'Males',
-            data: [],
-            borderColor: 'rgba(59, 130, 246, 1)', // blue
-            tension: 0.25
-          },
-          {
-            label: 'Females',
-            data: [],
-            borderColor: 'rgba(244, 63, 94, 1)', // rose
-            tension: 0.25
-          }
-        ]
-      },
-      options: {
-        animation: false,
-        parsing: false,
-        normalized: true,
-        scales: {
-          x: { title: { display: true, text: 'Time in Earth age (years)' } },
-          y: { title: { display: true, text: 'Population (individuals)' }, beginAtZero: true }
-        },
-        plugins: {
-          legend: { position: 'bottom' }
-        }
-      }
-    });
-
-    function fmt(n){ return Number(n).toLocaleString(); }
-
-    function updatePills() {
-      pillTotal.textContent = fmt(pop);
-      pillMales.textContent = fmt(males);
-      pillFemales.textContent = fmt(females);
-      pillYear.textContent = fmt(year);
-      pillMode.textContent = mode;
-    }
-
-    function resetChart() {
-      popChart.data.labels.length = 0;
-      popChart.data.datasets[0].data.length = 0;
-      popChart.data.datasets[1].data.length = 0;
-      popChart.data.datasets[2].data.length = 0;
-      popChart.update();
-    }
-
-    function setYear(v){
-      year = Math.floor(Number(v) || 0);
-      yearInput.value = String(year);
-      updatePills();
-    }
-
-    function setPopulation(v){
-      pop = Math.max(0, Number(v) || 0);
-      males = Math.max(0, Math.min(pop, pop * maleRatio));
-      females = Math.max(0, pop - males);
-      popInput.value = String(Math.floor(pop));
-      updatePills();
-    }
-
-    function setMaleRatio(v){
-      maleRatio = Math.max(0.01, Math.min(0.99, Number(v) || 0.5));
-      maleRatioInput.value = String(maleRatio.toFixed(2));
-      // keep total constant, recompute split
-      males = pop * maleRatio;
-      females = pop - males;
-      updatePills();
-    }
-
-    function setMode(m){
-      mode = m;
-      updatePills();
-    }
-
-    // One simulation step (+1 year)
-    function tick() {
-      // Growth factor by mode
-      // grow ~ +0%..+6.7% ; steady ~ -1.7%..+1.7% ; decline ~ -6.7%..0%
-      const rnd = (-0.5 + Math.random()) / 3;
-      let drift = 0;
-      if (mode === 'grow') drift = Math.abs(rnd);      // 0..~0.167
-      if (mode === 'decline') drift = -Math.abs(rnd);  // -~0.167..0
-      if (mode === 'steady') drift = rnd / 2;          // tighter band
-
-      const growth = 1 + drift;
-      pop = Math.max(0, pop * growth);
-
-      // slight wobble around target ratio but keep total consistent
-      const ratioJitter = (-0.5 + Math.random()) / 50; // +/-1%
-      const r = Math.max(0.01, Math.min(0.99, maleRatio + ratioJitter));
-      males = pop * r;
-      females = pop - males;
-
-      year += 1;
-
-      popChart.data.labels.push(`${year}`);
-      popChart.data.datasets[0].data.push(pop);
-      popChart.data.datasets[1].data.push(males);
-      popChart.data.datasets[2].data.push(females);
-      popChart.update('none');
-
-      updatePills();
-    }
-
-    // Wire UI
-    btnGrow.addEventListener('click', () => setMode('grow'));
-    btnSteady.addEventListener('click', () => setMode('steady'));
-    btnDecline.addEventListener('click', () => setMode('decline'));
-
-    btnApply.addEventListener('click', () => {
-      setYear(yearInput.value);
-      setPopulation(popInput.value);
-      setMaleRatio(maleRatioInput.value);
-      // After applying, plot the current state as a point (optional)
-      popChart.data.labels.push(`${year}`);
-      popChart.data.datasets[0].data.push(pop);
-      popChart.data.datasets[1].data.push(males);
-      popChart.data.datasets[2].data.push(females);
-      popChart.update('none');
-      updatePills();
-    });
-
-    btnTick.addEventListener('click', tick);
-    btnReset.addEventListener('click', () => { resetChart(); updatePills(); });
-
-    // Initialize UI with defaults
-    setYear(year);
-    setPopulation(pop);
-    setMaleRatio(maleRatio);
+    
 
     // Optional: click chart box to tick once (handy)
-    document.getElementById('chartBox').addEventListener('click', (e) => {
-      // avoid ticking when clicking inputs/buttons
-      const tag = e.target.tagName.toLowerCase();
-      if (['button','input','canvas','label','select'].includes(tag)) return;
-      tick();
-    });
-  </script>
+    
+    
+  </script>kiki
 </body>
 </html>
+
 
