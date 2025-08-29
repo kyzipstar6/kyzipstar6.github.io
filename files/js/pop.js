@@ -1,14 +1,14 @@
 
-  // ----- State -----
+  
   let pop = 2500000;
   let males = pop / 2;
   let females = pop / 2;
   let sum = males + females;
   let year = 4.65e9;
-  let started = false;         // use boolean instead of "f"/"y"
-  let intervalId = null;       // so we don't stack intervals
+  let started = false;         
+  let intervalId = null;      
 
-  // ----- Chart -----
+  
   const canvas = document.getElementById('popChart');
   if (!canvas) {
     console.warn('popChart canvas not found');
