@@ -97,17 +97,21 @@
   function clamp(n, min, max) {
     return Math.max(min, Math.min(max, n));
   }
-
+  let status = 0;
   function updateData() {
     // evolve population; keep it >= 0
     const popGrowth = 1 + clamp((-0.5 + Math.random()) / 3, -0.9, 0.9);
-    pop = Math.max(0, pop * popGrowth);
-
-    // randomize male ratio around 0.5 but keep males + females === pop
+    let gm = 1 + ((0.6 + Math.random()/3);
+    let sm = 1 + ((0.5 + Math.random()/3);
+    let dm = 1 + ((0.4 + Math.random()/3);
+    if(status == 0)pop*=sm;
+    if(status == -1)pop*=dm;
+    if(status == 1)pop*=gm;
+    
     const maleRatio = clamp(0.5 + (-0.5 + Math.random()) / 6, 0.05, 0.95);
     males = pop * maleRatio;
     females = pop - males;
-    sum = pop; // by construction
+    sum = pop;
 
     year += 1;
 
@@ -117,7 +121,9 @@
       popChart.update();
     }
   }
+  function mkgr() {status = 1;}
+  function mkdec() {status = -1;}
 
-  // Kick off watcher
+  
   watchForTitle();
 
