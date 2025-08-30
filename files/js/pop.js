@@ -72,7 +72,7 @@ function initPopLoop(population){
     popChart.data.datasets[2].data.length = 0;
     popChart.update('none');
   }
-  pop = Math.max(1, Number(population) || 1);
+  pop = population;
   males = pop * maleRatio;
   females = pop - males;
   sum = pop;
@@ -173,10 +173,10 @@ function applyYearPop(){
 
 
 function updateData(){
-  let gm = 1 + ((0.6 + Math.random())/3);
-    let sm = 1 + ((0.5 + Math.random())/3);
-    let stm = 1 + ((0.5 + Math.random())/10);
-    let dm = 1 + ((0.4 + Math.random())/3);
+  let gm = 1 + ((-0.4 + Math.random())/3);
+    let sm = 1 + ((-0.5 + Math.random())/3);
+    let stm = 1 + (-(0.5 + Math.random())/10);
+    let dm = 1 + ((-0.6 + Math.random())/3);
     if(status == 0)pop*=stm;
     if(status == -1)pop*=dm;
     if(status == 10)pop*=sm
