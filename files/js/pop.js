@@ -35,7 +35,7 @@ const popChart = popCtx ? new Chart(popCtx, {
     normalized: true,
     scales: {
       x: { title: { display: true, text: 'Time in Earth age (years)' } },
-      y: { title: { display: true, text: 'Population (individuals)' }, beginAtZero: true }
+      y: { title: { display: true, text: 'Population (individuals)' }, beginAtZero: false}
     },
     plugins: { legend: { position: 'bottom' } }
   }
@@ -164,9 +164,9 @@ function applyYearPop(){
   // plot current state as a point
   if (popChart){
     popChart.data.labels.push(`${year}`);
-    popChart.data.datasets[0].push(pop);
-    popChart.data.datasets[1].push(males);
-    popChart.data.datasets[2].push(females);
+    popChart.data.datasets[0].data.push(pop);
+    popChart.data.datasets[1].data.push(males);
+    popChart.data.datasets[2].data.push(females);
     popChart.update('none');
   }
 }
@@ -192,9 +192,9 @@ function updateData(){
 
   if (popChart){
     popChart.data.labels.push(`${year}`);
-    popChart.data.datasets[0].push(pop);     // numbers, not strings
-    popChart.data.datasets[1].push(males);
-    popChart.data.datasets[2].push(females);
+    popChart.data.datasets[0].data.push(pop);     // numbers, not strings
+    popChart.data.datasets[1].data.push(males);
+    popChart.data.datasets[2].data.push(females);
     popChart.update('none');
   }
   updatePills();
