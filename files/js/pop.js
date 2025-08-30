@@ -58,6 +58,7 @@ function updatePills(modeText){
   if (pillFemales) pillFemales.textContent = fmt(females);
   if (pillYear)    pillYear.textContent    = fmt(year);
   if (pillMode && modeText) pillMode.textContent = modeText;
+}
 function initPopLoop(population){
  
     popChart.data.labels.length = 0;                 // clear safely
