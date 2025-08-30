@@ -59,13 +59,13 @@ function updatePills(modeText){
   if (pillYear)    pillYear.textContent    = fmt(year);
   if (pillMode && modeText) pillMode.textContent = modeText;
 function initPopLoop(population){
-  if (popChart){
+ 
     popChart.data.labels.length = 0;                 // clear safely
     popChart.data.datasets[0].data.length = 0;
     popChart.data.datasets[1].data.length = 0;
     popChart.data.datasets[2].data.length = 0;
     popChart.update('none');
-  }
+  
   pop = population;
   males = pop * maleRatio;
   females = pop - males;
@@ -156,12 +156,13 @@ function applyYearPop(){
   updatePills();
 
   
-  
+  if(popChart) {
     popChart.data.labels.push(`${year}`);
     popChart.data.datasets[0].data.push(pop);
     popChart.data.datasets[1].data.push(males);
     popChart.data.datasets[2].data.push(females);
     popChart.update();
+  }
   
 }
 
