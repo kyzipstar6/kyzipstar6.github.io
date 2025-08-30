@@ -173,10 +173,10 @@ function applyYearPop(){
 
 
 function updateData(){
-  let gm = 1 + ((0.6 + Math.random()/3);
-    let sm = 1 + ((0.5 + Math.random()/3);
-    let stm = 1 + ((0.5 + Math.random()/10)
-    let dm = 1 + ((0.4 + Math.random()/3);
+  let gm = 1 + ((0.6 + Math.random())/3);
+    let sm = 1 + ((0.5 + Math.random())/3);
+    let stm = 1 + ((0.5 + Math.random())/10);
+    let dm = 1 + ((0.4 + Math.random())/3);
     if(status == 0)pop*=stm;
     if(status == -1)pop*=dm;
     if(status == 10)pop*=sm
