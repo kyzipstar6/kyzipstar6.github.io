@@ -130,7 +130,7 @@ function watchForTitle(){
 }
 
 
-let status = 0;
+let status = 10;
 
 function mkgr(){ status = 1;  updatePills('grow'); }
 function mkst(){ status = 0;  updatePills('steady'); }
@@ -170,7 +170,7 @@ function applyYearPop(){
     popChart.update('none');
   }
 }
-let status =10;
+
 
 function updateData(){
   let gm = 1 + ((0.6 + Math.random()/3);
