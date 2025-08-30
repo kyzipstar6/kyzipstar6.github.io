@@ -232,7 +232,6 @@ window.resetChart = resetChart;
 
 
 updatePills('steady');
-
+applyChartTheme(document.documentElement.getAttribute('data-theme') === 'dark');
 watchForTitle();
 
-applyChartTheme(document.documentElement.getAttribute('data-theme') === 'dark');
