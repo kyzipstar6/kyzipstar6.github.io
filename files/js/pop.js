@@ -1,8 +1,6 @@
-// files/js/pop.js
 
-// ---------- State ----------
 let pop = 2_500_000;
-let maleRatio = 0.5;       // 0..1
+let maleRatio = 0.5;      
 let males = pop * maleRatio;
 let females = pop - males;
 let sum = pop;
@@ -10,9 +8,8 @@ let sum = pop;
 let year = 4.65e9;
 let started = false;
 
-let autoIntervalId = null; // auto-update toggle (5s)
+let autoIntervalId = null; 
 
-// ---------- Chart ----------
 const canvas = document.getElementById('popChart');
 if (!canvas) {
   console.warn('popChart canvas not found');
@@ -41,7 +38,7 @@ const popChart = popCtx ? new Chart(popCtx, {
   }
 }) : null;
 
-// ---------- UI Pills ----------
+
 const pill = id => document.getElementById(id);
 const pillTotal   = pill('pillTotal');
 const pillMales   = pill('pillMales');
@@ -61,9 +58,6 @@ function updatePills(modeText){
   if (pillFemales) pillFemales.textContent = fmt(females);
   if (pillYear)    pillYear.textContent    = fmt(year);
   if (pillMode && modeText) pillMode.textContent = modeText;
-}
-
-// ---------- Init/Reset ----------
 function initPopLoop(population){
   if (popChart){
     popChart.data.labels.length = 0;                 // clear safely
