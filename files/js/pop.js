@@ -164,9 +164,9 @@ function applyYearPop(){
   // plot current state as a point
   if (popChart){
     popChart.data.labels.push(`${year}`);
-    popChart.data.datasets[0].data.push(pop);
-    popChart.data.datasets[1].data.push(males);
-    popChart.data.datasets[2].data.push(females);
+    popChart.data.datasets[0].push(pop);
+    popChart.data.datasets[1].push(males);
+    popChart.data.datasets[2].push(females);
     popChart.update('none');
   }
 }
@@ -175,7 +175,7 @@ function applyYearPop(){
 function updateData(){
   let gm = 1 + ((-0.4 + Math.random())/3);
     let sm = 1 + ((-0.5 + Math.random())/3);
-    let stm = 1 + (-(0.5 + Math.random())/10);
+    let stm = 1 + ((-0.5 + Math.random())/10);
     let dm = 1 + ((-0.6 + Math.random())/3);
     if(status == 0)pop*=stm;
     if(status == -1)pop*=dm;
@@ -192,9 +192,9 @@ function updateData(){
 
   if (popChart){
     popChart.data.labels.push(`${year}`);
-    popChart.data.datasets[0].data.push(pop);     // numbers, not strings
-    popChart.data.datasets[1].data.push(males);
-    popChart.data.datasets[2].data.push(females);
+    popChart.data.datasets[0].push(pop);     // numbers, not strings
+    popChart.data.datasets[1].push(males);
+    popChart.data.datasets[2].push(females);
     popChart.update('none');
   }
   updatePills();
