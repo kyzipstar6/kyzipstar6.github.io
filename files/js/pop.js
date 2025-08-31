@@ -21,7 +21,7 @@ const popChart = popCtx ? new Chart(popCtx, {
   data: {
     labels: [],
     datasets: [
-      { label: 'Total Population', data: [], borderColor: 'rgba(17,24,39,1)', tension: 0.25 }
+      ( label: 'Total Population', data: [], borderColor: 'rgba(17,24,39,1)', tension: 0.25 )
     ]
   },
   options: {
