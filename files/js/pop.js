@@ -14,6 +14,18 @@ const canvas = document.getElementById('popChart');
 if (!canvas) {
   console.warn('popChart canvas not found');
 }
+function initPopLoop(population){
+ 
+    popChart.data.labels.length = 0;                
+    popChart.data.datasets[0];
+    popChart.update('none');
+  
+  pop = population;
+  males = pop * maleRatio;
+  females = pop - males;
+  sum = pop;
+  updatePills();
+}
 const popCtx = canvas ? canvas.getContext('2d') : null;
 
 const popChart = popCtx ? new Chart(popCtx, {
@@ -21,7 +33,7 @@ const popChart = popCtx ? new Chart(popCtx, {
   data: {
     labels: [],
     datasets: [
-      ( label: 'Total Population', data: [], borderColor: 'rgba(17,24,39,1)', tension: 0.25 )
+      { label: 'Total Population', data: [], borderColor: 'rgba(17,24,39,1)', tension: 0.25 }
     ]
   },
   options: {
@@ -57,18 +69,7 @@ function updatePills(modeText){
   if (pillYear)    pillYear.textContent    = fmt(year);
   if (pillMode && modeText) pillMode.textContent = modeText;
 }
-function initPopLoop(population){
- 
-    popChart.data.labels.length = 0;                
-    popChart.data.datasets[0].data.length = 0;
-    popChart.update('none');
-  
-  pop = population;
-  males = pop * maleRatio;
-  females = pop - males;
-  sum = pop;
-  updatePills();
-}
+
 
 function resetChart(){
   initPopLoop(pop); 
