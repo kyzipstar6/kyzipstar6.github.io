@@ -390,6 +390,61 @@
         "Fossil location: Morrison Formation, USA"
       ],
       "tags": ["Saurischia", "Jurassic"]
+    },
+     {
+    "name": "Rusingoryx",
+      "background": "files/images/rusyngoryx.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Clade: Artiodactyla",
+        "Family: Bovidae",
+        "Subamily: Alcelaphinaee"
+      ],
+      "right": [
+        "Up to ~2 m (39 ft) long",
+        "Mass ~500 kg t",
+        "Temporal Range: 75–50 my",
+        "Fossil location:  Rusinga Island in Lake Victoria."
+      ],
+      "tags": ["Mammalia", "Pleistocene"]
+    },
+    {
+    "name": "Damaliscus hypsodon",
+      "background": "files/images/rusyngoryx.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Clade: Artiodactyla",
+        "Family: Bovidae",
+        "Subamily: Alcelaphinaee"
+      ],
+      "right": [
+        "Temporal Range: 75–50 my",
+        "Fossil location: Fossils have been found in Kenya and Tanzania.."
+      ],
+      "tags": ["Alcelaphinaee", "Late Pleistocene"],
+      "notes": ["Ancient type of antelope. Size of an impala."]
+    },
+    {
+    "name": "Impala",
+      "background": "files/images/impala.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Clade: Artiodactyla",
+        "Family: Bovidae",
+        "Tribe: Aepycerotini",
+        "Genus: Aepyceros"
+      ],
+      "right": [
+        "Temporal Range: 50 my - Present",
+        "Size : Males about 75–92 cm (30–36 in)",
+        "Species extintion risk : Minor concern",
+        "Living species just to be found in the african continent."
+      ],
+      "tags": ["Alcelaphinaee", "Late Pleistocene"]
+      
     }
     ]
   }
