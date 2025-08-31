@@ -28,25 +28,24 @@ function initPopLoop(population){
 }
 const popCtx = canvas ? canvas.getContext('2d') : null;
 
-const popChart = popCtx ? new Chart(popCtx, {
+const popChart = new Chart(popCtx, {
   type: 'line',
   data: {
-    labels: [],
-    datasets: [
-      { label: 'Total Population', data: [], borderColor: 'rgba(17,24,39,1)', tension: 0.25 }
-    ]
+    labels: [],                
+    datasets: [{
+      label: 'Population',
+      data: [],
+      borderColor: 'rgba(241, 198, 114, 1)',
+      tension: 0.3
+    }]
   },
   options: {
-    animation: false,
-    parsing: false,
-    normalized: true,
     scales: {
-      x: { title: { display: true, text: 'Time in Earth age (years)' } },
-      y: { title: { display: true, text: 'Population (individuals)' }, beginAtZero: false}
-    },
-    plugins: { legend: { position: 'bottom' } }
+      x: { title: { display: true, text: 'Time' }},
+      y: { title: { display: true, text: 'population' }}
+    }
   }
-}) : null;
+});
 
 
 const pill = id => document.getElementById(id);
