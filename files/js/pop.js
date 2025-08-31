@@ -21,9 +21,7 @@ const popChart = popCtx ? new Chart(popCtx, {
   data: {
     labels: [],
     datasets: [
-      { label: 'Total Population', data: [], borderColor: 'rgba(17,24,39,1)', tension: 0.25 },
-      { label: 'Males',            data: [], borderColor: 'rgba(59,130,246,1)', tension: 0.25 },
-      { label: 'Females',          data: [], borderColor: 'rgba(244,63,94,1)',  tension: 0.25 }
+      { label: 'Total Population', data: [], borderColor: 'rgba(17,24,39,1)', tension: 0.25 }
     ]
   },
   options: {
@@ -63,8 +61,6 @@ function initPopLoop(population){
  
     popChart.data.labels.length = 0;                 // clear safely
     popChart.data.datasets[0].data.length = 0;
-    popChart.data.datasets[1].data.length = 0;
-    popChart.data.datasets[2].data.length = 0;
     popChart.update('none');
   
   pop = population;
@@ -159,9 +155,7 @@ function applyYearPop(){
   
   if(popChart) {
     popChart.data.labels.push(`${year}`);
-    popChart.data.datasets[0].data.push(pop);
-    popChart.data.datasets[1].data.push(males);
-    popChart.data.datasets[2].data.push(females);
+    popChart.data.datasets[].data.push(pop);
     popChart.update();
   }
   
