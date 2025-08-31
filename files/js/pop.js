@@ -155,7 +155,7 @@ function applyYearPop(){
   
   if(popChart) {
     popChart.data.labels.push(`${year}`);
-    popChart.data.datasets[].data.push(pop);
+    popChart.data.datasets[0].data.push(pop);
     popChart.update();
   }
   
