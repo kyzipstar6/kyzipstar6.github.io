@@ -59,7 +59,7 @@ function updatePills(modeText){
 }
 function initPopLoop(population){
  
-    popChart.data.labels.length = 0;                 // clear safely
+    popChart.data.labels.length = 0;                
     popChart.data.datasets[0].data.length = 0;
     popChart.update('none');
   
@@ -71,16 +71,16 @@ function initPopLoop(population){
 }
 
 function resetChart(){
-  initPopLoop(pop);  // keep same pop, just clear the series
+  initPopLoop(pop); 
 }
 
-// ---------- Species scenarios (your watcher retained) ----------
+
 function startScenario({ popStart, yearDelta }){
   initPopLoop(popStart);
   year += yearDelta;
   started = true;
 
-  // honor current auto-update state (don’t stack intervals)
+
   if (autoIntervalId){
     clearInterval(autoIntervalId);
     autoIntervalId = setInterval(updateData, 5000);
@@ -125,11 +125,8 @@ let status = 10;
 
 function mkgr(){ status = 1;  updatePills('grow'); }
 function mkst(){ status = 0;  updatePills('steady'); }
-// you wrote "mide" in HTML spec; keep your original mkde and alias mide to it.
 function mkde(){ status = -1; updatePills('decline'); }
-function mide(){ mkde(); } // alias
-
-// ---------- Auto-update toggle (5s like your original) ----------
+function mide(){ mkde(); } 
 function toggleAutoUpdate(btn){
   if (autoIntervalId){
     clearInterval(autoIntervalId);
@@ -141,13 +138,11 @@ function toggleAutoUpdate(btn){
   }
 }
 
-// ---------- Manual Apply ----------
 function applyYearPop(){
   const y = Number(yearInput?.value);
   const p = Number(popInput?.value);
   if (!Number.isNaN(y)) year = Math.floor(y);
   if (!Number.isNaN(p)) pop  = Math.max(1, Math.floor(p));
-  // recompute split using current maleRatio
   males = pop * maleRatio;
   females = pop - males;
   updatePills();
@@ -171,7 +166,7 @@ function updateData(){
     if(status == -1)pop*=dm;
     if(status == 10)pop*=sm
     if(status == 1)pop*=gm;
-  // jitter around 0.5 but keep males+females = pop
+
   const r = clamp(0.5 + (-0.5 + Math.random())/25, 0.05, 0.95);
   maleRatio = r;
   males = pop * r;
@@ -182,27 +177,22 @@ function updateData(){
 
   if (popChart){
     popChart.data.labels.push(`${year}`);
-    popChart.data.datasets[0].data.push(pop);     // numbers, not strings
-    popChart.data.datasets[1].data.push(males);
-    popChart.data.datasets[2].data.push(females);
+    popChart.data.datasets[0].data.push(pop);     
     popChart.update('none');
   }
   updatePills();
 }
-// === Chart theming hook ===
 function applyChartTheme(isDark){
   if (!window.popChart) return;            
 
-  const axisColor = isDark ? 'rgba(229,231,235,0.9)' : 'rgba(31,41,55,0.9)'; // labels
+  const axisColor = isDark ? 'rgba(229,231,235,0.9)' : 'rgba(31,41,55,0.9)'; 
   const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
 
-  // axes
   popChart.options.scales.x.ticks.color = axisColor;
   popChart.options.scales.y.ticks.color = axisColor;
   popChart.options.scales.x.grid.color = gridColor;
   popChart.options.scales.y.grid.color = gridColor;
 
-  // legend
   if (!popChart.options.plugins) popChart.options.plugins = {};
   if (!popChart.options.plugins.legend) popChart.options.plugins.legend = {};
   if (!popChart.options.plugins.legend.labels) popChart.options.plugins.legend.labels = {};
@@ -211,9 +201,6 @@ function applyChartTheme(isDark){
   popChart.update('none');
 }
 
-// apply current theme once on load (matches HTML script)
-
-// expose for the HTML toggle script
 window.applyChartTheme = applyChartTheme;
 
 window.mkgr = mkgr;
