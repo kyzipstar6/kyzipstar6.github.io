@@ -103,6 +103,9 @@ const SPECIES = {
   'Tawa hallae':                { popStart: 2.78e5,  yearDelta: -115e6 },
   'Tyrannosaurus rex':          { popStart: 7.8e8,   yearDelta: -75e6  },
   'Triceratops':                { popStart: 2.78e5,  yearDelta: -85e6  },
+   'Rusyngorix':                { popStart: 4.78e6,  yearDelta: -2e06  },
+   'Damaliscus hypsodon':       { popStart: 7.78e6,  yearDelta: -2e06  },
+  'Impala':       { popStart: 4.78e6,  yearDelta: -2  }
 };
 
 let lastTitle = '';
