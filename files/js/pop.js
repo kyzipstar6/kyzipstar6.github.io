@@ -103,9 +103,12 @@ const SPECIES = {
   'Tawa hallae':                { popStart: 2.78e5,  yearDelta: -115e6 },
   'Tyrannosaurus rex':          { popStart: 7.8e8,   yearDelta: -75e6  },
   'Triceratops':                { popStart: 2.78e5,  yearDelta: -85e6  },
-   'Rusyngorix':                { popStart: 4.78e6,  yearDelta: -2e06  },
-   'Damaliscus hypsodon':       { popStart: 7.78e6,  yearDelta: -2e06  },
-  'Impala':       { popStart: 4.78e6,  yearDelta: -2  }
+   'Rusyngorix':                { popStart: 4.78e6,  yearDelta: -2e6  },
+   'Damaliscus hypsodon':       { popStart: 7.78e6,  yearDelta: -2e6  },
+  'Impala':       { popStart: 4.78e6,  yearDelta: -2  },
+  'Metridiochoerus':{popStart: 9.65e05, yearDelta: -3.4e6},
+  'Wiwaxia':{popStart:6.3e05, yearDelta: -512e6},
+  'Ceratosaurus': {popStart:4.1e7, yearDelta: -150e6}
 };
 
 let lastTitle = '';
