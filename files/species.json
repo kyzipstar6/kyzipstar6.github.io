@@ -443,8 +443,118 @@
         "Species extintion risk : Minor concern",
         "Living species just to be found in the african continent."
       ],
-      "tags": ["Alcelaphinaee", "Late Pleistocene"]
+      "tags": ["Alcelaphinaee", "Late Pleistocene"],
+      "notes": ["Ancient type of antelope. Size of an impala."]
+    },
+     {
+    "name": "Metridiochoerus",
+      "background": "files/images/metridiochoerus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Clade: Artiodactyla",
+        "Family:Suidae",
+        "Subfamily: Sunae"
+      ],
+      "right": [
+        "Temporal Range: ~3.4 MY",
+        "Size : Males about 75–92 cm (30–36 in)",
+        "Fossil location ; Usno Formation in Ethiopia."
+      ],
+      "tags": ["Suidae", "Late Pleistocene"],
+      "notes": ["Ancient type of sunid."]
+    },
+     {
+    "name": "Metridiochoerus",
+      "background": "files/images/metridiochoerus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Clade: Artiodactyla",
+        "Family:Suidae",
+        "Subfamily: Sunae"
+      ],
+      "right": [
+        "Temporal Range: ~3.4 MY",
+        "Size : Males about 75–92 cm (30–36 in)",
+        "Fossil location ; Usno Formation in Ethiopia."
+      ],
+      "tags": ["Suidae", "Late Pleistocene"],
+      "notes": ["Ancient type of sunid."]
+    },
+    {
+    "name": "Wiwaxia",
+      "background": "files/images/wiwaxia.png",
+      "left": [
+        "Phylum: Chordata",
+        "Superphylum: Lophotrochozoa",
+        "Phylum:  Mollusca (?)",
+        "Family: Wiwaxidae"
+        
+      ],
+      "right": [
+        "Temporal Range: 520-505 Ma",
+        "Size : 5 cm (2 in) in length and 1 cm (0.39 in) high.",
+        "Fossil location: Wiwaxy Peak in British Columbia."
+      ],
+      "tags": ["Suidae", "Cambrian"]
       
+    },
+    {
+    "name": "Ceratosaurus",
+      "background": "files/images/ceratosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Clade: Therapoda",
+        "Family: †Ceratosauridae"
+      ],
+      "right": [
+        "Temporal Range: 153-148 Ma",
+        "Size :Around 5-7 m long (17-23 ft)",
+        "Fossil location : Found in Utah and Colorado (N.A.). Found in Portugal, Swizerland, etc",
+        "Diet: Carnivorous."
+      ],
+      "tags": ["†Ceratosauridae", "Late Jurassic"],
+      "notes": ["Ate as well as marine as terrestrial fauna. Fossils have been found in Tanzania and Uruguay as well."]
+    },
+    {
+    "name": "Mertensia ovum",
+      "background": "files/images/mertensiaovum.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Ctenophora",
+        "Class: Tentaculata",
+        "Order: Cydippida",
+        "Family: Mertensiidae"
+      ],
+      "right": [
+        "Temporal Range: Present",
+        "Size : Up to 10 centimetres (3.9 in)",
+        "Dwell on northern coastlines"
+      ],
+      "tags": ["Tentaculata", "Cenozoic"],
+      "notes": ["Known as well as the arctic comb jelly. Hermaphroditic species. Sexual and asexual reproduction."]
+    },
+    {
+    "name": "Trichoplax adhaerens",
+      "background": "files/images/trichoplax.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Placozoa",
+        "Class: Uniplacotomia"
+
+      ],
+      "right": [
+        "Temporal Range: Late Triassic - Present",
+        "Size : Up to 4 mm",
+        "Widespread",
+        "Reproduction: Commonly asexual, but occasionally sexual as well"
+      ],
+      "tags": ["Placozoa", "Cenozoic"],
+      "notes": ["One of the four species in the Phyllum Placozoa."]
     }
     ]
   }
