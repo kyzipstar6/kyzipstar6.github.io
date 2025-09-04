@@ -58,7 +58,7 @@ const pillMode    = pill('pillMode');
 const yearInput = document.getElementById('yearInput');
 const popInput  = document.getElementById('popInput');
 
-function fmt(n){ return Number(n).toLocaleString(); }
+function fmt(n){ return Number(n.toFixed(0)).toLocaleString(); }
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
 function updatePills(modeText){
