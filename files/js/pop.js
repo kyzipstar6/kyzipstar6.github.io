@@ -62,9 +62,9 @@ function fmt(n){ return Number(n.toFixed(0)).toLocaleString(); }
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
 function updatePills(modeText){
-  if (pillTotal)   pillTotal.textContent   = fmt(pop);
-  if (pillMales)   pillMales.textContent   = fmt(males);
-  if (pillFemales) pillFemales.textContent = fmt(females);
+  if (pillTotal)   pillTotal.textContent   = fmt(pop.toFixed(0));
+  if (pillMales)   pillMales.textContent   = fmt(males.toFixed(0));
+  if (pillFemales) pillFemales.textContent = fmt(females.toFixed(0));
   if (pillYear)    pillYear.textContent    = fmt(year);
   if (pillMode && modeText) pillMode.textContent = modeText;
 }
