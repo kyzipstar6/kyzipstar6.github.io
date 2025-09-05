@@ -58,13 +58,13 @@ const pillMode    = pill('pillMode');
 const yearInput = document.getElementById('yearInput');
 const popInput  = document.getElementById('popInput');
 
-function fmt(n){ return Number(n.toFixed(0)).toLocaleString(); }
+function fmt(n){ return Number(n).toLocaleString(); }
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
 function updatePills(modeText){
-  if (pillTotal)   pillTotal.textContent   = fmt(pop.toFixed(0));
-  if (pillMales)   pillMales.textContent   = fmt(males.toFixed(0));
-  if (pillFemales) pillFemales.textContent = fmt(females.toFixed(0));
+  if (pillTotal)   pillTotal.textContent   = fmt(pop).toFixed(0);
+  if (pillMales)   pillMales.textContent   = fmt(males).toFixed(0);
+  if (pillFemales) pillFemales.textContent = fmt(females).toFixed(0);
   if (pillYear)    pillYear.textContent    = fmt(year);
   if (pillMode && modeText) pillMode.textContent = modeText;
 }
@@ -166,7 +166,7 @@ function applyYearPop(){
 function updateData(){
   let gm = 1 + ((-0.4 + Math.random())/3);
     let sm = 1 + ((-0.5 + Math.random())/3);
-    let stm = 1 + ((-0.5 + Math.random())/10);
+    let stm = 1 + ((-0.5 + Math.random())/6);
     let dm = 1 + ((-0.6 + Math.random())/3);
     if(status == 0)pop*=stm;
     if(status == -1)pop*=dm;
