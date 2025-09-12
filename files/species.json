@@ -45,6 +45,28 @@
         "tags": ["Billateria", "Edicarian"]
       },
       {
+    "name": "Mustela aistoodonnivalis",
+      "background": "files/images/mustelaaistoodonnivalis.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Mammalia", 
+        "Order: Carnivora", 
+        "Suborder: Caniformia",
+        "Family: Mustelidae",
+        "Genus: Mustela"
+        
+      ],
+      "right": [
+        "Temporal Range: ~28 Ma (Oligocene) - Present",
+        "Body length: 13.1–16.0 centimetres (5.2–6.3 in)",
+        "Inhabits mountains in the Shaanxi and Sichuan provinces of China",
+        "Reproduction: Sexual."
+      ],
+      "tags": ["Mustela", "Caniformia", "Present"],
+      "notes": ["Known as well as pygmy weasel or sichuan weasel."]
+    },
+      {
         "name": "Haplophrentis",
         "background": "files/images/mollusc1.png",
         "left": [
@@ -132,6 +154,27 @@
           "Found in what is now in parts of southern Africa such as Lesotho and South Africa."
         ],
         "tags": ["Ornithischia", "Triassic"]
+      },
+      {
+        "name": "Carcharhinus amblyrhynchos",
+        "background": "files/images/carcharhinusamblyrhynchos.png",
+        "left": [
+          "Phylum: Chordata",
+          "Class: Chondrichthyes",
+          "Subclass: Elasmobranchii",
+          "Division: Selachii",
+          "Order: Carcarhinformes",
+          "Family: Carcarrinhidae"
+        ],
+        "right": [
+          "Most individuals are less than 1.88 metres (6.2 ft) long",
+          "Maximum reported weight of 33.7 kg (74 lb)",
+          "Temporal Range: Cenozoic - Present",
+          "Found in depths less than 60 m",
+          "Native in the Indian and pacific oceans."
+        ],
+        "tags": ["Chondrichthyes", "TPresent", "Grey reef shark", "Threatened"],
+        "notes": ["Known as well as the grey reef shark. It is an endangered cephalopod species."]
       },
       {
         "name": "Caseosaurus",
@@ -555,6 +598,69 @@
       ],
       "tags": ["Placozoa", "Cenozoic"],
       "notes": ["One of the four species in the Phyllum Placozoa."]
+    },
+    {
+    "name": "Eordromaeus",
+      "background": "files/images/eordromaeus.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Reptilia", 
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Clade: Therapoda"
+
+      ],
+      "right": [
+        "Temporal Range: 231.4 - 229 Ma (Carnian)",
+        "Size : Up to 1.2 meters (3.9 feet)",
+        "Found in the Schigualasto Formation, NW Argentina.",
+        "Reproduction: Sexual."
+      ],
+      "tags": ["Dinosauria", "Late Triasic"],
+      "notes": ["Smal-sized saurid."]
+    },
+    {
+    "name": "Branta canadensis",
+      "background": "files/images/brantacanadensis.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Aves", 
+        "Order: Anseriformes",
+        "Family: Anatidae",
+        "Genus: Branta"
+
+      ],
+      "right": [
+        "Temporal Range: Pleistocene - Present",
+        "Size : Up to 1.2 meters (3.9 feet)",
+        "Widespread across North America. Present in the northern West europa (Britain and Scandinavian peninsola)",
+        "Reproduction: Sexual."
+      ],
+      "tags": ["Aves", "Neognatae", "Present"],
+      "notes": ["Popularly known as the canada goose, has variants of atlantic, interior, giant, moffti canada goose."]
+    },
+    {
+    "name": "Lithornis",
+      "background": "files/images/lithornis.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Aves", 
+        "Infraclass: Palaeognathae", 
+        "Order: †Lithornithiformes",
+        "Family: †Lithornithidae"
+        
+
+      ],
+      "right": [
+        "Temporal Range: 56 (Paleocene) - 40 Ma (Eocene)",
+        "Widespread across North America. Present in the northern West europa (Britain and Scandinavian peninsola)",
+        "Reproduction: Sexual."
+      ],
+      "tags": ["Aves", "Palaeognatae", "Present"],
+      "notes": ["Popularly known as the canada goose, has variants of atlantic, interior, giant, moffti canada goose."]
     }
     ]
   }
