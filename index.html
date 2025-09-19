@@ -229,6 +229,7 @@ body { color: var(--panel-fg); }
       </section>
     <section>
     <h1><b>Population management</b></h1>
+      <section>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
         <button class="btn steady"  type="button" onclick="mkst()">Make population stay steady</button>
       </div>
@@ -238,18 +239,33 @@ body { color: var(--panel-fg); }
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
         <button class="btn decline" type="button" onclick="mide()">Make population decline</button>
       </div>
+    </section>
+      <section>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-        <button class="btn decline" type="button" onclick="mide()">Foster predator population</button>
+        <button class="btn grow" type="button" onclick="mide()">Foster predator population</button>
       </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn steady" type="button" onclick="mide()">Stop measures with predators</button>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn decline" type="button" onclick="mide()">Take measures against predators</button>
+      </div>
+      </section>
+      <section>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
         <button class="btn decline" type="button" onclick="mide()">Foster pray population</button>
       </div>
+      </section>
+      <section>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
         <button class="btn decline" type="button" onclick="mide()">Increase forest cover </button>
       </div>
+      </section>
+      <section>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
         <button class="btn decline" type="button" onclick="mide()">Increase mean temperature</button>
       </div>
+    </section>
     </section>
     <footer>
       <button class="btn nav back" id="btnBack" type="button" title="Previous (←)">Back</button>
@@ -368,6 +384,7 @@ body { color: var(--panel-fg); }
   <script src = "files/js/pop.js"></script>
 </body>
 </html>
+
 
 
 
