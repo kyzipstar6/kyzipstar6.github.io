@@ -213,16 +213,7 @@ body { color: var(--panel-fg); }
           <option value="decline">Decline</option>
         </select>
       </div>
-
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-        <button class="btn steady"  type="button" onclick="mkst()">Make population stay steady</button>
-      </div>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-        <button class="btn grow"    type="button" onclick="mkgr()">Make population grow</button>
-      </div>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-        <button class="btn decline" type="button" onclick="mide()">Make population decline</button>
-      </div>
+      
     </div>
 
     <canvas id="popChart"></canvas>
@@ -236,8 +227,30 @@ body { color: var(--panel-fg); }
   </div>
   
       </section>
-    
-
+    <section>
+    <h1><b>Population management</b></h1>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn steady"  type="button" onclick="mkst()">Make population stay steady</button>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn grow"    type="button" onclick="mkgr()">Make population grow</button>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn decline" type="button" onclick="mide()">Make population decline</button>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn decline" type="button" onclick="mide()">Foster predator population</button>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn decline" type="button" onclick="mide()">Foster pray population</button>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn decline" type="button" onclick="mide()">Increase forest cover </button>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn decline" type="button" onclick="mide()">Increase mean temperature</button>
+      </div>
+    </section>
     <footer>
       <button class="btn nav back" id="btnBack" type="button" title="Previous (←)">Back</button>
       <button class="btn nav forward" id="btnForward" type="button" title="Next (→)">Forward</button>
@@ -355,6 +368,7 @@ body { color: var(--panel-fg); }
   <script src = "files/js/pop.js"></script>
 </body>
 </html>
+
 
 
 
