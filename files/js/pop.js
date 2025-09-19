@@ -1,5 +1,6 @@
 
-let pop = 2_500_000;
+let pop = 2_500_000; let forestcv = 65; let pred = 2_375_234;
+let pray= 2_234_543;
 let maleRatio = 0.5;      
 let males = pop * maleRatio;
 let females = pop - males;
@@ -77,6 +78,8 @@ function resetChart(){
 
 function startScenario({ popStart, yearDelta }){
   initPopLoop(popStart);
+  pray = popStart*0.98;
+  predator= popStart*0.97;
   year += yearDelta;
   started = true;
 
@@ -164,14 +167,18 @@ function applyYearPop(){
 
 
 function updateData(){
+  
   let gm = 1 + ((-0.4 + Math.random())/3);
     let sm = 1 + ((-0.5 + Math.random())/3);
     let stm = 1 + ((-0.5 + Math.random())/6);
     let dm = 1 + ((-0.6 + Math.random())/3);
-    if(status == 0)pop*=stm;
-    if(status == -1)pop*=dm;
-    if(status == 10)pop*=sm
-    if(status == 1)pop*=gm;
+    if(status == 0){pop*=stm; }
+    if(status == -1){pop*=dm;}
+    if(status == 10){pop*=sm}
+    if(status == 1){pop*=gm;}
+    pray*=sm;
+    pred*=sm;
+    forestcv *=stm;
 
   const r = clamp(0.5 + (-0.5 + Math.random())/25, 0.05, 0.95);
   maleRatio = r;
