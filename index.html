@@ -191,9 +191,9 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     </section>
 
     <section class="section-card" aria-labelledby="predLabel">
-      <h4 id="predLabel">Predators</h4>
+      <h4 id="predLabel">Predators: </h4> <p id="predval"></p>
       <div class="slider-row">
-        <input id="predatorsRange" type="range" min="0" max="100" value="40" step="1" aria-label="Predator level" oninput="updateEnv('predators', this.value)">
+        <input id="predatorsRange" type="range" min="0" max="10000000" value="400000" step="1" aria-label="Predator level" oninput="updateEnv('predators', this.value)">
         <span class="badge" id="predatorsValue">40</span>
       </div>
       <div class="btn-grid" style="margin-top:.5rem;">
@@ -400,5 +400,6 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     ['predators','prey','forest'].forEach(updateBadge);
   </script>  <script src="files/js/pop.js"></script></body>
 </html>
+
 
 
