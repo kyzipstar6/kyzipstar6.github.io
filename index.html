@@ -206,7 +206,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     <section class="section-card" aria-labelledby="preyLabel">
       <h4 id="preyLabel">Prey</h4>
       <div class="slider-row">
-        <input id="preyRange" type="range" min="0" max="100000" value="543000" step="3" aria-label="Prey level" oninput="updateEnv('prey', this.value)">
+        <input id="preyRange" type="range" min="0" max="10000000" value="543000" step="1" aria-label="Prey level" oninput="updateEnv('prey', this.value)">
         <span class="badge" id="preyValue">543000</span>
       </div>
       <div class="btn-grid" style="margin-top:.5rem;">
@@ -219,7 +219,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     <section class="section-card" aria-labelledby="forestLabel">
       <h4 id="forestLabel">Forest cover</h4>
       <div class="slider-row">
-        <input id="forestRange" type="range" min="0" max="100" value="55" step="1" aria-label="Forest cover percent" oninput="updateEnv('forest', this.value)">
+        <input id="forestRange" type="range" min="0" max="100000000" value="432854" step="1" aria-label="Forest cover percent" oninput="updateEnv('forest', this.value)">
         <span class="badge" id="forestValue">55%</span>
       </div>
       <div class="btn-grid" style="margin-top:.5rem;">
@@ -400,4 +400,5 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     ['predators','prey','forest'].forEach(updateBadge);
   </script>  <script src="files/js/pop.js"></script></body>
 </html>
+
 
