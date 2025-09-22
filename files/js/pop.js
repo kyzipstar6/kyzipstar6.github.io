@@ -55,6 +55,9 @@ const pillMales   = pill('pillMales');
 const pillFemales = pill('pillFemales');
 const pillYear    = pill('pillYear');
 const pillMode    = pill('pillMode');
+const pillPred = pill('predval');
+const pillPrey = pill('preyval');
+const pillForest = pill('forestval');
 
 const yearInput = document.getElementById('yearInput');
 const popInput  = document.getElementById('popInput');
@@ -63,10 +66,13 @@ function fmt(n){ return Number(n).toLocaleString(); }
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
 function updatePills(modeText){
-  if (pillTotal)   pillTotal.textContent   = fmt(pop).toFixed(0);
-  if (pillMales)   pillMales.textContent   = fmt(males).toFixed(0);
-  if (pillFemales) pillFemales.textContent = fmt(females).toFixed(0);
+  if (pillTotal)   pillTotal.textContent   = `${pop.toFixed(0)}`;
+  if (pillMales)   pillMales.textContent   =  `${males.toFixed(0)}`;
+  if (pillFemales) pillFemales.textContent =  `${female.toFixed(0)}`;
   if (pillYear)    pillYear.textContent    = fmt(year);
+    if (pillPred)   pillPred.textContent   = `${pred.toFixed(0)}`;
+    if (pillPrey)   pillPrey.textContent   = `${pray.toFixed(0)}`;
+    if (pillForest)   pillForest.textContent   = `${forestcv.toFixed(1)}`;
   if (pillMode && modeText) pillMode.textContent = modeText;
 }
 
@@ -156,11 +162,24 @@ function applyYearPop(){
   females = pop - males;
   updatePills();
 
-  
+  let chid = 0; let chdmem = 0;
   if(popChart) {
+   
     popChart.data.labels.push(`${year}`);
-    popChart.data.datasets[0].data.push(pop);
+    
+   if(chid==0) popChart.data.datasets[0].data.push(pop);
+       if(chid==1) popChart.data.datasets[0].data.push(males);
+   if(chid==2) popChart.data.datasets[0].data.push(females);
+   if(chid==3) popChart.data.datasets[0].data.push(pred);
+   if(chid==4) popChart.data.datasets[0].data.push(pray);
+   if(chid==5) popChart.data.datasets[0].data.push(forestcv);
+    if(chdmem!=chdid){
+       popChart.data.datasets[0].data.length = 0;
+       popChart.data.labels.length = 0;
+    }
+     chdmem= chdid;
     popChart.update();
+    
   }
   
 }
@@ -172,13 +191,12 @@ function updateData(){
     let sm = 1 + ((-0.5 + Math.random())/3);
     let stm = 1 + ((-0.5 + Math.random())/6);
     let dm = 1 + ((-0.6 + Math.random())/3);
-    if(status == 0){pop*=stm; }
-    if(status == -1){pop*=dm;}
-    if(status == 10){pop*=sm}
-    if(status == 1){pop*=gm;}
-    pray*=sm;
-    pred*=sm;
-    forestcv *=stm;
+    if(status == 0 && chid==0){pop*=stm; }
+    if(status == -1 &&chid==0 ){pop*=dm;}
+    if(status == 10 &&chid==0){pop*=sm;}
+    if(status == 1 && chid==0){pop*=gm;}
+  if(chid!=0){pop*=sm;}if(chid!=1){males*=sm;}if(chid!=2){females*=sm;}if(chid!=3){pray*=sm;}if(chid!=4){pred*=sm;}
+  if(chdid!=5){forestcv*=sm;}
 
   const r = clamp(0.5 + (-0.5 + Math.random())/25, 0.05, 0.95);
   maleRatio = r;
