@@ -4,7 +4,7 @@ let maleRatio = 0.5;
 let males = pop * maleRatio;
 let females = pop - males;
 let sum = pop;
-let chid = 0;
+let chdid = 0;
 let year = 4.65e9;
 let started = false;
 
