@@ -18,6 +18,10 @@ function initPopLoop(population){
  
     popChart.data.labels.length = 0;                
     popChart.data.datasets[0];
+  popChart.data.datasets[1];
+  popChart.data.datasets[2];
+  popChart.data.datasets[3];
+  popChart.data.datasets[4];
     popChart.update('none');
   
   pop = population;
