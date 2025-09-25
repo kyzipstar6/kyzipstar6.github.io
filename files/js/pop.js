@@ -206,9 +206,9 @@ function applyYearPop(){
   if(popChart) {
    
     popChart.data.labels.push(`${year}`);
-    
+    popChart.data.datasets[1].data.push(males);
    popChart.data.datasets[0].data.push(pop);
-       popChart.data.datasets[1].data.push(males);
+       ;
     popChart.data.datasets[2].data.push(females);
    popChart.data.datasets[3].data.push(pred);
    popChart.data.datasets[4].data.push(pray);
