@@ -44,7 +44,7 @@ const popChart = new Chart(popCtx, {
     },{
       
       label: 'Males',
-      data: [254387,325435],
+      data: [],
       borderColor: 'rgba(201, 18, 114, 1)',
       tension: 0.3
     },{
@@ -210,8 +210,8 @@ function applyYearPop(){
   let chid = 0; let chdmem = 0;
   if(popChart) {
    
-    popChart.data.labels.push(`${year}`);
-    popChart.data.datasets[1].data.push(1+males);
+    popChart.data.labels.push(`${year}`); const mal=males;
+    popChart.data.datasets[1].data.push(mal);
    if(males)popChart.data.datasets[0].data.push(pop);
        
     popChart.data.datasets[2].data.push(females);
