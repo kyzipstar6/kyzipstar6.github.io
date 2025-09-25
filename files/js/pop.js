@@ -200,34 +200,37 @@ function applyYearPop(){
   
 }
 
-
+let predmem = pred; let preymem= pray; let forestcvmem=forestcv;
 function updateData(){
   
   let gm = 1 + ((-0.4 + Math.random())/3);
     let sm = 1 + ((-0.5 + Math.random())/3);
     let stm = 1 + ((-0.5 + Math.random())/6);
     let dm = 1 + ((-0.6 + Math.random())/3);
-    if(status == 0 && chid==0){pop*=stm; }
-    if(status == -1 &&chid==0 ){pop*=dm;}
-    if(status == 10 &&chid==0){pop*=sm;}
-    if(status == 1 && chid==0){pop*=gm;}
-  if(chid!=0){pop*=sm;}if(chid!=1){males*=sm;}if(chid!=2){females*=sm;}if(chid!=3){pray*=sm;}if(chid!=4){pred*=sm;}
+  let gm2 = 1 + ((-0.4 + Math.random())/3);
+    let sm2 = 1 + ((-0.5 + Math.random())/3);
+    let stm2 = 1 + ((-0.5 + Math.random())/6);
+    let dm2 = 1 + ((-0.6 + Math.random())/3);
+    if(status == 0 && chid==0){males*=stm; females*=stm2;}
+    if(status == -1 &&chid==0 ){males*=dm;females*=dm2;}
+    if(status == 10 &&chid==0){females*=sm;males*=sm2;}
+    if(status == 1 && chid==0){females*=gm;males*=gm2;}
+  if(chid!=1){males*=sm;}if(chid!=2){females*=sm;}if(chid!=3){pray*=sm;}if(chid!=4){pred*=sm;}
   if(chid!=5){forestcv*=sm;}
-
+  if(predmem>pred)pop*dm;
+   if(forestcvmem<forestcv&&forestcv<40){pop*dm; pred*dm;pray*dm; females*dm; males*dm;}
   const r = clamp(0.5 + (-0.5 + Math.random())/25, 0.05, 0.95);
-  maleRatio = r;
-  males = pop * r;
-  females = pop - males;
-  sum = pop;
+  pop=males+females;
 
   year += 1;
-
+  predmem=pred;preymem= pray;forestcvmem= forestcv;
   if (popChart){
     popChart.data.labels.push(`${year}`);
     popChart.data.datasets[0].data.push(pop);     
     popChart.update('none');
   }
   updatePills();
+ 
 }
 function applyChartTheme(isDark){
   if (!window.popChart) return;            
