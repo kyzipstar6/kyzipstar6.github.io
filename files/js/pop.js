@@ -68,8 +68,7 @@ const popChart = new Chart(popCtx, {
     } ]
   },
   options: {
-    animated: false,
-    responsive:true,
+    
     scales: {
       x: { title: { display: true, text: 'Time' }},
       y: { title: { display: true, text: 'population' }}
@@ -213,7 +212,7 @@ function applyYearPop(){
    
     popChart.data.labels.push(`${year}`);
     popChart.data.datasets[1].data.push(males);
-   popChart.data.datasets[0].data.push(pop);
+   popChart.data.datasets[1].data.push(pop);
        ;
     popChart.data.datasets[2].data.push(females);
    popChart.data.datasets[3].data.push(pred);
