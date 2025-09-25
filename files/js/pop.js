@@ -4,7 +4,7 @@ let maleRatio = 0.5;
 let males = pop * maleRatio;
 let females = pop - males;
 let sum = pop;
-let chdid = 0;
+let chid = 0;
 let year = 4.65e9;
 let started = false;
 
@@ -172,11 +172,11 @@ function applyYearPop(){
    if(chid==3) popChart.data.datasets[0].data.push(pred);
    if(chid==4) popChart.data.datasets[0].data.push(pray);
    if(chid==5) popChart.data.datasets[0].data.push(forestcv);
-    if(chdmem!=chdid){
+    if(chdmem!=chid){
        popChart.data.datasets[0].data.length = 0;
        popChart.data.labels.length = 0;
     }
-     chdmem= chdid;
+     chdmem= chid;
     popChart.update();
     
   }
@@ -195,7 +195,7 @@ function updateData(){
     if(status == 10 &&chid==0){pop*=sm;}
     if(status == 1 && chid==0){pop*=gm;}
   if(chid!=0){pop*=sm;}if(chid!=1){males*=sm;}if(chid!=2){females*=sm;}if(chid!=3){pray*=sm;}if(chid!=4){pred*=sm;}
-  if(chdid!=5){forestcv*=sm;}
+  if(chid!=5){forestcv*=sm;}
 
   const r = clamp(0.5 + (-0.5 + Math.random())/25, 0.05, 0.95);
   maleRatio = r;
