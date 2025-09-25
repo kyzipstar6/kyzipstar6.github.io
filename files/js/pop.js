@@ -163,10 +163,10 @@ function nudgePr(){
 chid=3;status=-1;
 }
 function fosterPr(){chid=3;status=1;}function steadyPr(){chid=3;status=0;}
-function increaseCV{
+function increaseCV(){
   forestcv+=1.1;
 }
-function decreaseCV{
+function decreaseCV(){
   forestcv-=1.1;
 }
 function applyYearPop(){
