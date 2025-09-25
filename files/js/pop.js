@@ -1,11 +1,10 @@
-
 let pop = 2_500_000; let forestcv = 65; let pred = 2_375_234;
 let pray= 2_234_543;
 let maleRatio = 0.5;      
 let males = pop * maleRatio;
 let females = pop - males;
 let sum = pop;
-
+let chid = 0;
 let year = 4.65e9;
 let started = false;
 
@@ -68,7 +67,7 @@ function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 function updatePills(modeText){
   if (pillTotal)   pillTotal.textContent   = `${pop.toFixed(0)}`;
   if (pillMales)   pillMales.textContent   =  `${males.toFixed(0)}`;
-  if (pillFemales) pillFemales.textContent =  `${female.toFixed(0)}`;
+  if (pillFemales) pillFemales.textContent =  `${females.toFixed(0)}`;
   if (pillYear)    pillYear.textContent    = fmt(year);
     if (pillPred)   pillPred.textContent   = `${pred.toFixed(0)}`;
     if (pillPrey)   pillPrey.textContent   = `${pray.toFixed(0)}`;
