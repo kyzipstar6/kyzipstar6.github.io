@@ -153,7 +153,22 @@ function toggleAutoUpdate(btn){
     if (btn) btn.textContent = 'Auto-update: ON';
   }
 }
-
+function fosterPd(){
+chid=4;status=1;
+}
+function nudgePd(){
+chid=4;status=-1;
+}function steadyPd(){chid=4;status=0;}
+function nudgePr(){
+chid=3;status=-1;
+}
+function fosterPr(){chid=3;status=1;}function steadyPr(){chid=3;status=0;}
+function increaseCV{
+  forestcv+=1.1;
+}
+function decreaseCV{
+  forestcv-=1.1;
+}
 function applyYearPop(){
   const y = Number(yearInput?.value);
   const p = Number(popInput?.value);
