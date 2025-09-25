@@ -44,7 +44,7 @@ const popChart = new Chart(popCtx, {
     },{
       
       label: 'Males',
-      data: [],
+      data: [254387,325435],
       borderColor: 'rgba(201, 18, 114, 1)',
       tension: 0.3
     },{
