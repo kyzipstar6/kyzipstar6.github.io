@@ -170,9 +170,9 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     <canvas id="popChart"></canvas>
 
     <div class="buttons btn-grid" role="group" aria-label="Chart actions">
+            <button class="btn secondary" type="button" onclick="toggleAutoUpdate(this)">Auto-update: OFF</button>
       <button class="btn secondary" type="button" onclick="applyYearPop()">Apply year & population</button>
       <button class="btn secondary" type="button" onclick="updateData()" title="Advance one step">Tick +1 year</button>
-      <button class="btn secondary" type="button" onclick="toggleAutoUpdate(this)">Auto-update: OFF</button>
       <button class="btn secondary" type="button" onclick="resetChart()">Reset chart</button>
     </div>
   </div>
@@ -182,7 +182,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
 <section class="sections" aria-label="Population controls">
   <div class="section-grid">
     <section class="section-card" aria-labelledby="trendLabel">
-      <h4 id="trendLabel">Population trend</h4><p id="popval"></p>
+      <h4 id="trendLabel">Population</h4><p id="popval"></p>
       <div class="btn-grid">
         <button class="btn steady" type="button" onclick="mkst(); setTrendSelect('steady')">Stay steady</button>
         <button class="btn grow"   type="button" onclick="mkgr(); setTrendSelect('grow')">Grow</button>
@@ -194,8 +194,9 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
       <h4 id="predLabel">Predators </h4> <p id="predval"></p>
       
       <div class="btn-grid" style="margin-top:.5rem;">
-        <button class="btn grow" type="button" onclick="fosterPd()">Foster predators</button>
         <button class="btn steady" type="button" onclick="steadyPd()">Neutral measures</button>
+        <button class="btn grow" type="button" onclick="fosterPd()">Foster predators</button>
+        
         <button class="btn decline" type="button" onclick="nudgePd()">Reduce predators</button>
       </div>
     </section>
@@ -204,8 +205,8 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
       <h4 id="preyLabel">Preys</h4> <p id="preyval"></p>
       
       <div class="btn-grid" style="margin-top:.5rem;">
+         <button class="btn steady" type="button" onclick="steadyPt()">Neutral measures</button>
         <button class="btn grow" type="button" onclick="fosterPr()">Foster preys</button>
-        <button class="btn steady" type="button" onclick="steadyPt()">Neutral measures</button>
         <button class="btn decline" type="button" onclick="nudgePr()">Reduce preys</button>
       </div>
     </section>
@@ -214,8 +215,8 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
       <h4 id="forestLabel">Forest cover</h4> <p id="forestval"></p>
      
       <div class="btn-grid" style="margin-top:.5rem;">
+                <button class="btn steady" type="button" onclick="stedyCv()">Keep stable</button>
         <button class="btn grow" type="button" onclick="increaseCv()">Increase cover</button>
-        <button class="btn steady" type="button" onclick="stedyCv()">Keep stable</button>
         <button class="btn decline" type="button" onclick="reduceCv()">Decrease cover</button>
       </div>
     </section>
@@ -391,6 +392,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     ['predators','prey','forest'].forEach(updateBadge);
   </script>  <script src="files/js/pop.js"></script></body>
 </html>
+
 
 
 
