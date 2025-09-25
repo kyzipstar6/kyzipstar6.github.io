@@ -37,7 +37,31 @@ const popChart = new Chart(popCtx, {
       data: [],
       borderColor: 'rgba(241, 198, 114, 1)',
       tension: 0.3
-    }]
+    },{
+      
+      label: 'Males',
+      data: [],
+      borderColor: 'rgba(201, 18, 114, 1)',
+      tension: 0.3
+    },{
+    
+      label: 'Females',
+      data: [],
+      borderColor: 'rgba(21, 198, 14, 1)',
+      tension: 0.3
+    },{
+     
+      label: 'Predators',
+      data: [],
+      borderColor: 'rgba(131, 98, 114, 120)',
+      tension: 0.3
+    },{
+     
+      label: 'Preyd',
+      data: [],
+      borderColor: 'rgba(81, 98, 114, 131)',
+      tension: 0.3
+    } ]
   },
   options: {
     scales: {
@@ -183,11 +207,11 @@ function applyYearPop(){
    
     popChart.data.labels.push(`${year}`);
     
-   if(chid==0) popChart.data.datasets[0].data.push(pop);
-       if(chid==1) popChart.data.datasets[0].data.push(males);
-   if(chid==2) popChart.data.datasets[0].data.push(females);
-   if(chid==3) popChart.data.datasets[0].data.push(pred);
-   if(chid==4) popChart.data.datasets[0].data.push(pray);
+   popChart.data.datasets[0].data.push(pop);
+       popChart.data.datasets[1].data.push(males);
+    popChart.data.datasets[2].data.push(females);
+   popChart.data.datasets[3].data.push(pred);
+   popChart.data.datasets[4].data.push(pray);
    if(chid==5) popChart.data.datasets[0].data.push(forestcv);
     if(chdmem!=chid){
        popChart.data.datasets[0].data.length = 0;
