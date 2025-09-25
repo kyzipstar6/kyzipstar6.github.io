@@ -57,6 +57,7 @@ const pillMode    = pill('pillMode');
 const pillPred = pill('predval');
 const pillPrey = pill('preyval');
 const pillForest = pill('forestval');
+const pillPop = pill('popval');
 
 const yearInput = document.getElementById('yearInput');
 const popInput  = document.getElementById('popInput');
@@ -72,6 +73,7 @@ function updatePills(modeText){
     if (pillPred)   pillPred.textContent   = `${pred.toFixed(0)}`;
     if (pillPrey)   pillPrey.textContent   = `${pray.toFixed(0)}`;
     if (pillForest)   pillForest.textContent   = `${forestcv.toFixed(1)}`;
+  if (pillPop)   pillPop.textContent   = `${pop.toFixed(0)}`;
   if (pillMode && modeText) pillMode.textContent = modeText;
 }
 
