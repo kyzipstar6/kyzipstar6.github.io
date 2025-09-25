@@ -192,40 +192,31 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
 
     <section class="section-card" aria-labelledby="predLabel">
       <h4 id="predLabel">Predators </h4> <p id="predval"></p>
-      <div class="slider-row">
-        <input id="predatorsRange" type="range" min="0" max="10000000" value="400000" step="1" aria-label="Predator level" oninput="updateEnv('predators', this.value)">
-        <span class="badge" id="predatorsValue">40</span>
-      </div>
+      
       <div class="btn-grid" style="margin-top:.5rem;">
-        <button class="btn grow" type="button" onclick="nudge('predators', +5)">Foster predators</button>
-        <button class="btn steady" type="button" onclick="setExact('predators', 50)">Neutral measures</button>
-        <button class="btn decline" type="button" onclick="nudge('predators', -5)">Reduce predators</button>
+        <button class="btn grow" type="button" onclick="fosterPd()">Foster predators</button>
+        <button class="btn steady" type="button" onclick="steadyPd()">Neutral measures</button>
+        <button class="btn decline" type="button" onclick="nudgePd()">Reduce predators</button>
       </div>
     </section>
 
     <section class="section-card" aria-labelledby="preyLabel">
       <h4 id="preyLabel">Preys</h4> <p id="preyval"></p>
-      <div class="slider-row">
-        <input id="preyRange" type="range" min="0" max="10000000" value="543000" step="1" aria-label="Prey level" oninput="updateEnv('prey', this.value)">
-        <span class="badge" id="preyValue">543000</span>
-      </div>
+      
       <div class="btn-grid" style="margin-top:.5rem;">
-        <button class="btn grow" type="button" onclick="nudge('prey', +5)">Foster preys</button>
-        <button class="btn steady" type="button" onclick="setExact('prey', 50)">Neutral measures</button>
-        <button class="btn decline" type="button" onclick="nudge('prey', -5)">Reduce preys</button>
+        <button class="btn grow" type="button" onclick="fosterPr()">Foster preys</button>
+        <button class="btn steady" type="button" onclick="steadyPt()">Neutral measures</button>
+        <button class="btn decline" type="button" onclick="nudgePr()">Reduce preys</button>
       </div>
     </section>
 
     <section class="section-card" aria-labelledby="forestLabel">
       <h4 id="forestLabel">Forest cover</h4> <p id="forestval"></p>
-      <div class="slider-row">
-        <input id="forestRange" type="range" min="0" max="100" value="55" step="1" aria-label="Forest cover percent" oninput="updateEnv('forest', this.value)">
-        <span class="badge" id="forestValue">55%</span>
-      </div>
+     
       <div class="btn-grid" style="margin-top:.5rem;">
-        <button class="btn grow" type="button" onclick="nudge('forest', +1)">Increase cover</button>
-        <button class="btn steady" type="button" onclick="setExact('forest', 50)">Keep stable</button>
-        <button class="btn decline" type="button" onclick="nudge('forest', -1)">Decrease cover</button>
+        <button class="btn grow" type="button" onclick="increaseCv()">Increase cover</button>
+        <button class="btn steady" type="button" onclick="stedyCv()">Keep stable</button>
+        <button class="btn decline" type="button" onclick="reduceCv()">Decrease cover</button>
       </div>
     </section>
   </div>
@@ -400,6 +391,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     ['predators','prey','forest'].forEach(updateBadge);
   </script>  <script src="files/js/pop.js"></script></body>
 </html>
+
 
 
 
