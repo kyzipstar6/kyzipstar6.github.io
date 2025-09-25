@@ -33,13 +33,13 @@ function initPopLoop(population){
 const popCtx = canvas ? canvas.getContext('2d') : null;
 
 const popChart = new Chart(popCtx, {
-  type: 'line',
+  type: 'scatter',
   data: {
     labels: [],                
     datasets: [{
       label: 'Population',
       data: [],
-      borderColor: 'rgba(241, 198, 114, 1)',
+      borderColor: 'rgba(91, 198, 114, 81)',
       tension: 0.3
     },{
       
@@ -61,13 +61,15 @@ const popChart = new Chart(popCtx, {
       tension: 0.3
     },{
      
-      label: 'Preyd',
+      label: 'Preys',
       data: [],
       borderColor: 'rgba(81, 98, 114, 131)',
       tension: 0.3
     } ]
   },
   options: {
+    animated: false,
+    responsive:true,
     scales: {
       x: { title: { display: true, text: 'Time' }},
       y: { title: { display: true, text: 'population' }}
