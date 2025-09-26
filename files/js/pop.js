@@ -255,8 +255,9 @@ function applyYearPop(){
 }
 
 let predmem = pred; let preymem= pray; let forestcvmem=forestcv;
+let alls = [males,females,pray,pred];
 function updateData(){
-  
+  for(let i =0; i<4;i++){}
   let gm = 1 + ((-0.4 + Math.random())/3);
     let sm = 1 + ((-0.5 + Math.random())/3);
     let stm = 1 + ((-0.5 + Math.random())/6);
