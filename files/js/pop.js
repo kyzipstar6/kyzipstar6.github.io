@@ -124,7 +124,7 @@ function startScenario({ popStart, yearDelta }){
 
   if (autoIntervalId){
     clearInterval(autoIntervalId);
-    autoIntervalId = setInterval(updateData, 5000);
+    autoIntervalId = setInterval(updateData, 10000);
   }
   updatePills();
 }
@@ -198,7 +198,7 @@ function toggleAutoUpdate(btn){
     autoIntervalId = null;
     if (btn) btn.textContent = 'Auto-update: OFF';
   } else {
-    autoIntervalId = setInterval(updateData, 5000);
+    autoIntervalId = setInterval(updateData, 10000);
     if (btn) btn.textContent = 'Auto-update: ON';
   }
 }
@@ -276,7 +276,7 @@ function updateData(){
   const r = clamp(0.5 + (-0.5 + Math.random())/25, 0.05, 0.95);
   pop=males+females;
 
-  year += 1;
+  year += 2;
   predmem=pred;preymem= pray;forestcvmem= forestcv;
   if (popChart){
     popChart.data.labels.push(`${year}`);
