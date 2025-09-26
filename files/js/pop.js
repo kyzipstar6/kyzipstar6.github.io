@@ -23,11 +23,13 @@ function initPopLoop(population){
   popChart.data.datasets[3];
   popChart.data.datasets[4];
     popChart.update('none');
-  
+  initchart();
   pop = population;
   males = pop * maleRatio;
   females = pop - males;
   sum = pop;
+
+  
   updatePills();
 }
 const popCtx = canvas ? canvas.getContext('2d') : null;
@@ -126,6 +128,24 @@ function startScenario({ popStart, yearDelta }){
   }
   updatePills();
 }
+function initchart(){
+  const c = [4,5,6,7,8];
+  for (const r of c){
+    popChart.data.labels.push(`${year}`); 
+    popChart.data.datasets[1].data.push(1);
+   if(males)popChart.data.datasets[0].data.push(2);
+       
+    popChart.data.datasets[2].data.push(3);
+   popChart.data.datasets[3].data.push(4);
+   popChart.data.datasets[4].data.push(5);
+    popChart.data.datasets[0].data.length = 0;
+      popChart.data.datasets[1].data.length = 0;
+      popChart.data.datasets[2].data.length = 0;
+      popChart.data.datasets[3].data.length = 0;
+      popChart.data.datasets[4].data.length = 0;
+       popChart.data.labels.length = 0;
+  }
+}
 
 const SPECIES = {
   'Rafatazmia chitrakootensis': { popStart: 2.78e9,  yearDelta: -560e6 },
@@ -220,7 +240,12 @@ function applyYearPop(){
    if(chid==5) popChart.data.datasets[0].data.push(forestcv);
     if(chdmem!=chid){
        popChart.data.datasets[0].data.length = 0;
+      popChart.data.datasets[1].data.length = 0;
+      popChart.data.datasets[2].data.length = 0;
+      popChart.data.datasets[3].data.length = 0;
+      popChart.data.datasets[4].data.length = 0;
        popChart.data.labels.length = 0;
+       
     }
      chdmem= chid;
     popChart.update();
