@@ -257,19 +257,28 @@ function applyYearPop(){
 let predmem = pred; let preymem= pray; let forestcvmem=forestcv;
 let alls = [males,females,pray,pred];
 function updateData(){
-  for(let i =0; i<4;i++){};
+  for(let i =0; i<4;i++){
+    let gm = 1 + ((-0.4 + Math.random())/3);
+    let sm = 1 + ((-0.5 + Math.random())/3);
+    let stm = 1 + ((-0.5 + Math.random())/6);
+    let dm = 1 + ((-0.6 + Math.random())/3);
+    
+     alls[i]*=stm;
+    
+  };
   let gm = 1 + ((-0.4 + Math.random())/3);
     let sm = 1 + ((-0.5 + Math.random())/3);
     let stm = 1 + ((-0.5 + Math.random())/6);
     let dm = 1 + ((-0.6 + Math.random())/3);
+    
   let gm2 = 1 + ((-0.4 + Math.random())/3);
     let sm2 = 1 + ((-0.5 + Math.random())/3);
     let stm2 = 1 + ((-0.5 + Math.random())/6);
     let dm2 = 1 + ((-0.6 + Math.random())/3);
-    if(status == 0 && chid==0){males*=stm; females*=stm2;}
-    if(status == -1 &&chid==0 ){males*=dm;females*=dm2;}
-    if(status == 10 &&chid==0){females*=sm;males*=sm2;}
-    if(status == 1 && chid==0){females*=gm;males*=gm2;}
+  if(status == -1 &&chid==0 ){males*=dm;}
+    if(status == 10 &&chid==0){females*=sm;}
+    if(status == 1 && chid==0){females*=gm;}
+   
   if(chid!=1){males*=sm;}if(chid!=2){females*=sm;}if(chid!=3){pray*=sm;}if(chid!=4){pred*=sm;}
   if(chid!=5){forestcv*=sm;}
   if(predmem>pred)pop*dm;
