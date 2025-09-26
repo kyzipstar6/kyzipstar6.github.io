@@ -23,7 +23,7 @@ function initPopLoop(population){
   popChart.data.datasets[3];
   popChart.data.datasets[4];
     popChart.update('none');
-  initchart();
+  
   pop = population;
   males = pop * maleRatio;
   females = pop - males;
@@ -198,7 +198,7 @@ function toggleAutoUpdate(btn){
     autoIntervalId = null;
     if (btn) btn.textContent = 'Auto-update: OFF';
   } else {
-    autoIntervalId = setInterval(updateData, 10000);
+    autoIntervalId = setInterval(updateData, 5000);
     if (btn) btn.textContent = 'Auto-update: ON';
   }
 }
@@ -230,13 +230,13 @@ function applyYearPop(){
   let chid = 0; let chdmem = 0;
   if(popChart) {
    
-    popChart.data.labels.push(`${year}`); const mal=males;
-    popChart.data.datasets[1].data.push(mal);
-   if(males)popChart.data.datasets[0].data.push(pop);
+    popChart.data.labels.push(`${year}`); 
+    popChart.data.datasets[1].data.push(males);popChart.update('none');
+   if(males)popChart.data.datasets[0].data.push(pop);popChart.update('none');
        
-    popChart.data.datasets[2].data.push(females);
-   popChart.data.datasets[3].data.push(pred);
-   popChart.data.datasets[4].data.push(pray);
+    popChart.data.datasets[2].data.push(females);popChart.update('none');
+   popChart.data.datasets[3].data.push(pred);popChart.update('none');
+   popChart.data.datasets[4].data.push(pray);popChart.update('none');
    if(chid==5) popChart.data.datasets[0].data.push(forestcv);
     if(chdmem!=chid){
        popChart.data.datasets[0].data.length = 0;
@@ -282,6 +282,14 @@ function updateData(){
     popChart.data.labels.push(`${year}`);
     popChart.data.datasets[0].data.push(pop);     
     popChart.update('none');
+    
+    popChart.data.labels.push(`${year}`); 
+    popChart.data.datasets[1].data.push(males);popChart.update('none');
+   if(males)popChart.data.datasets[0].data.push(pop);popChart.update('none');
+       
+    popChart.data.datasets[2].data.push(females);popChart.update('none');
+   popChart.data.datasets[3].data.push(pred);popChart.update('none');
+   popChart.data.datasets[4].data.push(pray);popChart.update('none');
   }
   updatePills();
  
