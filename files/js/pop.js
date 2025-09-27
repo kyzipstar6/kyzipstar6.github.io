@@ -114,10 +114,10 @@ function resetChart(){
 }
 
 
-function startScenario({ popStart, yearDelta }){
+function startScenario({ popStart, yearDelta,prd,pyd }){
   initPopLoop(popStart);
-  pray = popStart*0.98;
-  predator= popStart*0.97;
+  pray = pyd;
+  predator= prd;
   year += yearDelta;
   started = true;
 
@@ -128,46 +128,29 @@ function startScenario({ popStart, yearDelta }){
   }
   updatePills();
 }
-function initchart(){
-  const c = [4,5,6,7,8];
-  for (const r of c){
-    popChart.data.labels.push(`${year}`); 
-    popChart.data.datasets[1].data.push(1);
-   if(males)popChart.data.datasets[0].data.push(2);
-       
-    popChart.data.datasets[2].data.push(3);
-   popChart.data.datasets[3].data.push(4);
-   popChart.data.datasets[4].data.push(5);
-    popChart.data.datasets[0].data.length = 0;
-      popChart.data.datasets[1].data.length = 0;
-      popChart.data.datasets[2].data.length = 0;
-      popChart.data.datasets[3].data.length = 0;
-      popChart.data.datasets[4].data.length = 0;
-       popChart.data.labels.length = 0;
-  }
-}
+
 
 const SPECIES = {
-  'Rafatazmia chitrakootensis': { popStart: 2.78e9,  yearDelta: -560e6 },
-  'Cyclomedusa':                { popStart: 2.78e5,  yearDelta: -115e6 },
-  'Kymbrella':                  { popStart: 2.78e8,  yearDelta: -552e6 },
-  'Haplophrentis':              { popStart: 2.78e5,  yearDelta: -515e6 },
-  'Aegirocassis':               { popStart: 2.78e5,  yearDelta: -115e6 },
-  'Onychophora':                { popStart: 2.345e9, yearDelta: -450e6 },
-  'Herrerasaurus':              { popStart: 2.78e5,  yearDelta: -115e6 },
-  'Abrictosaurus':              { popStart: 2e6,     yearDelta: -250e6 },
-  'Caseosaurus':                { popStart: 2.78e5,  yearDelta: -115e6 },
-  'Staurikosaurus':             { popStart: 2.78e5,  yearDelta: -115e6 },
-  'Chindesaurus':               { popStart: 2.78e5,  yearDelta: -115e6 },
-  'Tawa hallae':                { popStart: 2.78e5,  yearDelta: -115e6 },
-  'Tyrannosaurus rex':          { popStart: 7.8e8,   yearDelta: -75e6  },
-  'Triceratops':                { popStart: 2.78e5,  yearDelta: -85e6  },
-   'Rusyngorix':                { popStart: 4.78e6,  yearDelta: -2e6  },
-   'Damaliscus hypsodon':       { popStart: 7.78e6,  yearDelta: -2e6  },
-  'Impala':       { popStart: 4.78e6,  yearDelta: -2  },
-  'Metridiochoerus':{popStart: 9.65e05, yearDelta: -3.4e6},
-  'Wiwaxia':{popStart:6.3e05, yearDelta: -512e6},
-  'Ceratosaurus': {popStart:4.1e7, yearDelta: -150e6}
+  'Rafatazmia chitrakootensis': { popStart: 2.78e9,  yearDelta: -560e6, prd:2.95e08,pyd:0 },
+  'Cyclomedusa':                { popStart: 2.78e5,  yearDelta: -115e60,prd:2.95e08,pyd:10.521e07 },
+  'Kymbrella':                  { popStart: 2.78e8,  yearDelta: -552e6 ,prd:2.95e08,pyd:10.521e07},
+  'Haplophrentis':              { popStart: 2.78e5,  yearDelta: -515e6,prd:2.95e08,pyd:10.521e07 },
+  'Aegirocassis':               { popStart: 2.78e5,  yearDelta: -115e6,prd:4.95e05,pyd:10.52e07 },
+  'Onychophora':                { popStart: 2.345e9, yearDelta: -450e6,prd:2.95e10,pyd:4.521e08},
+  'Herrerasaurus':              { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e08,pyd:10.521e07},
+  'Abrictosaurus':              { popStart: 2e6,     yearDelta: -250e6,prd:2.95e08,pyd:10.521e07 },
+  'Caseosaurus':                { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e08,pyd:10.521e07},
+  'Staurikosaurus':             { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e08,pyd:10.521e07},
+  'Chindesaurus':               { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e06,pyd:8.521e07},
+  'Tawa hallae':                { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e08,pyd:10.521e07 },
+  'Tyrannosaurus rex':          { popStart: 7.8e8,   yearDelta: -75e6 ,prd:2.95e08,pyd:10.521e07 },
+  'Triceratops':                { popStart: 2.78e5,  yearDelta: -85e6 ,prd:2.95e08,pyd:10.521e07 },
+   'Rusyngorix':                { popStart: 4.78e6,  yearDelta: -2e6 ,prd:2.95e08,pyd:10.521e07 },
+   'Damaliscus hypsodon':       { popStart: 7.78e6,  yearDelta: -2e6 ,prd:2.95e08,pyd:10.521e07 },
+  'Impala':       { popStart: 4.78e6,  yearDelta: -2 ,prd:2.95e08,pyd:10.521e07 },
+  'Metridiochoerus':{popStart: 9.65e05, yearDelta: -3.4e6 ,prd:2.95e08,pyd:10.521e07 },
+  'Wiwaxia':{popStart:6.3e05, yearDelta: -512e6,prd:2.95e08,pyd:10.521e07},
+  'Ceratosaurus': {popStart:4.1e7, yearDelta: -150e6,prd:2.95e08,pyd:10.521e07 }
 };
 
 let lastTitle = '';
