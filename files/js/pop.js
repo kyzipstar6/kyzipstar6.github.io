@@ -139,12 +139,12 @@ const SPECIES = {
   'Onychophora':                { popStart: 2.345e9, yearDelta: -450e6,prd:2.95e10,pyd:4.521e08},
   'Herrerasaurus':              { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e08,pyd:10.521e07},
   'Abrictosaurus':              { popStart: 2e6,     yearDelta: -250e6,prd:2.95e08,pyd:10.521e07 },
-  'Caseosaurus':                { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e08,pyd:10.521e07},
-  'Staurikosaurus':             { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e08,pyd:10.521e07},
+  'Caseosaurus':                { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e06,pyd:10.521e07},
+  'Staurikosaurus':             { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e06,pyd:10.521e07},
   'Chindesaurus':               { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e06,pyd:8.521e07},
-  'Tawa hallae':                { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e08,pyd:10.521e07 },
-  'Tyrannosaurus rex':          { popStart: 7.8e8,   yearDelta: -75e6 ,prd:2.95e08,pyd:10.521e07 },
-  'Triceratops':                { popStart: 2.78e5,  yearDelta: -85e6 ,prd:2.95e08,pyd:10.521e07 },
+  'Tawa hallae':                { popStart: 2.78e5,  yearDelta: -115e6,prd:2.95e06,pyd:10.521e07 },
+  'Tyrannosaurus rex':          { popStart: 7.8e6,   yearDelta: -75e6 ,prd:2.95e06,pyd:10.521e07 },
+  'Triceratops':                { popStart: 2.78e5,  yearDelta: -85e6 ,prd:2,pyd:10.521e07},
    'Rusyngorix':                { popStart: 4.78e6,  yearDelta: -2e6 ,prd:2.95e08,pyd:10.521e07 },
    'Damaliscus hypsodon':       { popStart: 7.78e6,  yearDelta: -2e6 ,prd:2.95e08,pyd:10.521e07 },
   'Impala':       { popStart: 4.78e6,  yearDelta: -2 ,prd:2.95e08,pyd:10.521e07 },
@@ -269,7 +269,7 @@ function updateData(){
   const r = clamp(0.5 + (-0.5 + Math.random())/25, 0.05, 0.95);
   pop=males+females;
 
-  year += 2;
+  year += 7;
   predmem=pred;preymem= pray;forestcvmem= forestcv;
   if (popChart){
     popChart.data.labels.push(`${year}`);
