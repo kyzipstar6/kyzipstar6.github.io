@@ -100,7 +100,33 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
   .btn.forward { justify-self: start; }
   .chart-controls { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
+/* DESCRIPTION SECTION */
+.description-section { padding: .5rem 1rem; margin: .5rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.7); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+:root[data-theme="dark"] .description-section { background: rgba(17,24,39,0.65); border: 1px solid rgba(255,255,255,0.04); }
 
+.desc-header { display:flex; gap:.5rem; align-items:center; justify-content:space-between; }
+.desc-title { margin:0; font-size:1rem; color:var(--panel-fg); }
+.desc-toggle { appearance:none; border:1px solid var(--field-border); background:var(--field-bg); color:var(--panel-fg); padding:.4rem .6rem; border-radius:999px; cursor:pointer; }
+.desc-toggle:focus { outline:2px solid var(--focus); outline-offset:2px; }
+
+.desc-body { margin-top:.6rem; padding-top:.6rem; border-top:1px dashed rgba(0,0,0,0.04); }
+:root[data-theme="dark"] .desc-body { border-top-color: rgba(255,255,255,0.04); }
+
+.desc-lead { margin:0 0 .5rem 0; color:var(--muted-fg); }
+.desc-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+.desc-card { padding:.6rem; border-radius:10px; background: rgba(255,255,255,0.6); }
+:root[data-theme="dark"] .desc-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.025); }
+
+.desc-card h3 { margin:0 0 .4rem 0; font-size:1rem; color:var(--panel-fg); }
+.desc-card ul, .desc-card ol { margin:0; padding-left:1rem; color:var(--muted-fg); }
+
+.desc-footer { margin-top:.5rem; color:var(--muted-fg); font-size:12px; }
+
+/* small screens: collapse to a single column and hide details by default */
+@media (max-width:720px){
+  .desc-grid { grid-template-columns: 1fr; }
+  .desc-body[hidden] { display:none; }
+                                                         }
 /* Dark theme */
 :root[data-theme="dark"]{
   --panel-bg: rgba(17,24,39,0.85);
@@ -118,6 +144,102 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
   </style>
 </head>
 <body>
+  <!-- DESCRIPTION SECTION: paste directly after your <header> -->
+<section id="descriptionSection" class="description-section" aria-label="Site description">
+  <div class="desc-header">
+    <h2 class="desc-title">About this site</h2>
+    <button id="descToggle" class="desc-toggle" aria-expanded="false" aria-controls="descBody">Show help</button>
+  </div>
+
+  <div id="descBody" class="desc-body" hidden>
+    <p class="desc-lead">
+      Welcome — this interactive browser explores species data and population simulations.
+      Use the controls and tabs to switch species, view population evolution, and inspect email statistics.
+    </p>
+
+    <div class="desc-grid">
+      <div class="desc-card">
+        <h3>How to use</h3>
+        <ol>
+          <li>Use the <strong>Search</strong> or <strong>Picker</strong> to change species.</li>
+          <li>Open the <strong>Evolution</strong> tab to view the population line chart. Use the triplet buttons to set trend: <em>grow / steady / decline</em>.</li>
+          <li>Use <strong>Apply</strong> to set the year and population, <strong>Tick</strong> to advance one year, or toggle <strong>Auto-update</strong> for continuous simulation.</li>
+          <li>Open the <strong>Emails</strong> tab to view a pie chart showing emails vs other items — adjust total and rate to reflect your data.</li>
+        </ol>
+      </div>
+
+      <div class="desc-card">
+        <h3>Controls & UI</h3>
+        <ul>
+          <li><strong>Theme toggle</strong> (🌙 / ☀️) switches Day / Night and recolors charts.</li>
+          <li><strong>Tabs / Combo</strong> let you switch between Evolution and Emails (select appears on small screens).</li>
+          <li>If a chart looks blank, ensure Chart.js is loaded and the browser console shows no errors.</li>
+        </ul>
+      </div>
+
+      <div class="desc-card">
+        <h3>Data & privacy</h3>
+        <p>
+          This site runs entirely in your browser. No data is sent to external servers by default.
+          If you choose to use any external services (email forms, image uploads), those will show a notice.
+        </p>
+      </div>
+
+      <div class="desc-card">
+        <h3>Troubleshooting</h3>
+        <ul>
+          <li>If the page is empty: confirm <code>files/js/chart.js</code> (Chart.js) and <code>files/species.json</code> are present.</li>
+          <li>“Chart not found” console error → Chart.js missing. Add the CDN script or the local file.</li>
+          <li>Charts plot zeros → ensure population is a positive number and your dataset arrays were not replaced (see Reset).</li>
+        </ul>
+        <p>Still stuck? <a href="mailto:youremail@example.com">Email me</a> or use the site contact.</p>
+      </div>
+    </div>
+
+    <div class="desc-footer">
+      <small>Tip: this description auto-hides on small screens; use the combo select to switch sections quickly.</small>
+    </div>
+  </div>
+</section>
+  <script>
+  (function(){
+    const toggle = document.getElementById('descToggle');
+    const body = document.getElementById('descBody');
+    const section = document.getElementById('descriptionSection');
+    const KEY = 'site.description.open';
+
+    function setOpen(open){
+      if (!toggle || !body) return;
+      toggle.setAttribute('aria-expanded', String(!!open));
+      toggle.textContent = open ? 'Hide help' : 'Show help';
+      if (open) body.hidden = false; else body.hidden = true;
+      try { localStorage.setItem(KEY, open ? '1' : '0'); } catch(e) {}
+    }
+
+    // init: prefer saved state; default to open on wide screens, closed on small screens
+    let saved = null;
+    try { saved = localStorage.getItem(KEY); } catch(e) {}
+    const preferOpen = (saved === null) ? (window.innerWidth > 720) : (saved === '1');
+
+    setOpen(preferOpen);
+
+    if (toggle){
+      toggle.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        setOpen(!isOpen);
+      });
+    }
+
+    // Make sure description section restyles with theme (optional)
+    if (document.documentElement.getAttribute('data-theme') === 'dark'){
+      section?.classList.add('desc-dark');
+    }
+
+    // Expose small helpers for dev/testing
+    window.showDescription = () => setOpen(true);
+    window.hideDescription = () => setOpen(false);
+  })();
+</script>
   <div class="scrim"></div>
   <main class="window" role="application" aria-label="All Species browser">
     <header>
@@ -392,6 +514,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     ['predators','prey','forest'].forEach(updateBadge);
   </script>  <script src="files/js/pop.js"></script></body>
 </html>
+
 
 
 
