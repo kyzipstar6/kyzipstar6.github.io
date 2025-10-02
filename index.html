@@ -145,7 +145,11 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
 </head>
 <body>
   <!-- DESCRIPTION SECTION: paste directly after your <header> -->
-<section id="descriptionSection" class="description-section" aria-label="Site description">
+
+  <div class="scrim"></div>
+  <main class="window" role="application" aria-label="All Species browser">
+    <header>
+      <section id="descriptionSection" class="description-section" aria-label="Site description">
   <div class="desc-header">
     <h2 class="desc-title">About this site</h2>
     <button id="descToggle" class="desc-toggle" aria-expanded="false" aria-controls="descBody">Show help</button>
@@ -239,10 +243,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     window.showDescription = () => setOpen(true);
     window.hideDescription = () => setOpen(false);
   })();
-</script>
-  <div class="scrim"></div>
-  <main class="window" role="application" aria-label="All Species browser">
-    <header>
+  </script>
       <h1 id="title">—</h1>
       <div class="controls">
         <input id="search" type="search" placeholder="Search species…" aria-label="Search species" autocomplete="off" />
@@ -514,6 +515,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     ['predators','prey','forest'].forEach(updateBadge);
   </script>  <script src="files/js/pop.js"></script></body>
 </html>
+
 
 
 
