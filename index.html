@@ -95,7 +95,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
   .window { margin: 0; border-radius: 0; min-height: 100vh; }
   .content { grid-template-columns: 1fr; }
   .right { align-items: flex-start; }
-  .right .row { text-align: left; }
+  .right .row { text-align: left; padding: .5rem;}
   footer { grid-template-columns: 1fr; }
   .btn.forward { justify-self: start; }
   .chart-controls { grid-template-columns: repeat(2,minmax(0,1fr)); }
@@ -389,6 +389,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
 
       left.innerHTML = '';
       right.innerHTML = '';
+      notes.innerHTML = '';
       (d.left || []).forEach(t => {
         const div = document.createElement('div');
         div.className = 'row';
@@ -401,6 +402,13 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
         div.textContent = t;
         right.appendChild(div);
       });
+      if(notes)(d.notes || []).forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'row';
+        div.textContent = t;
+        notes.appendChild(div);
+      });
+      
 
       meta.innerHTML = '';
       (d.tags || []).forEach(t => {
@@ -517,6 +525,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     ['predators','prey','forest'].forEach(updateBadge);
   </script>  <script src="files/js/pop.js"></script></body>
 </html>
+
 
 
 
