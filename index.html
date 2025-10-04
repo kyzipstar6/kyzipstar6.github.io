@@ -161,6 +161,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
 <section class="content">
   <div class="left" id="left"></div>
   <div class="right" id="right"></div>
+    <div class="notes" id="notes"></div>
 </section>
 
 <!-- CHARTS SECTION (combo) -->
@@ -357,6 +358,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     const title = el('title');
     const left = el('left');
     const right = el('right');
+    const notes = el('notes');
     const meta = el('meta');
     const picker = el('picker');
     const search = el('search');
@@ -515,6 +517,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75
     ['predators','prey','forest'].forEach(updateBadge);
   </script>  <script src="files/js/pop.js"></script></body>
 </html>
+
 
 
 
