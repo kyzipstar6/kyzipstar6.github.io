@@ -1,296 +1,472 @@
 {
-    "items": [
-      {
-        "name": "Rafatazmia chitrakootensis",
-        "background": "files/images/rafatazmia.png",
-        "left": [
-          "Domain: Eukaryota",
-          "(unranked): Archaeplastida",
-          "Division: Rodophita",
-          "Class: Bangiophyceae",
-          "Order: Bangiales"
-        ],
-        "right": [
-          "First life vestiges",
-          "Fossil location: Found in  Vindhya Ranges of central India"
-        ],
-        "tags": ["Rodophita eukaryota", "Proterozoic"]
-      },
-      {
-        "name": "Cyclomedusa",
-        "background": "files/images/cyclomedusa.png",
-        "left": [
-          "Kingdom: Animalia",
-          "Subkingdom: Eumetazoa"
-        ],
-        "right": [
-          "Measuring up to 35 mm (1.4 in) long",
-          "Temporal Range: 550-545 Ma",
-          "Fossil location: JiangChuang, China"
-        ],
-        "tags": ["Eumetazoa", "Edicarian"]
-      },
-      {
-        "name": "Kymbrella",
-        "background": "files/images/kimbrella.png",
-        "left": [
-          "Kingdom: Animalia",
-          "Clade: Billateria"
-        ],
-        "right": [
-          "Reached up to 15 cm in length, 5–7 cm in width, and 3–4 cm in height.",
-          "Temporal Range: 558-555 Ma",
-          "Fossil location: Near the white sea, Russia"
-        ],
-        "tags": ["Billateria", "Edicarian"]
-      },
-      {
-    "name": "Mustela aistoodonnivalis",
+  "items": [
+    {
+      "name": "Rafatazmia chitrakootensis",
+      "background": "files/images/rafatazmia.png",
+      "left": [
+        "Domain: Eukaryota",
+        "(unranked): Archaeplastida",
+        "Division: Rodophita",
+        "Class: Bangiophyceae",
+        "Order: Bangiales"
+      ],
+      "right": [
+        "First life vestiges",
+        "Fossil location: Found in  Vindhya Ranges of central India"
+      ],
+      "tags": [
+        "Rodophita eukaryota",
+        "Proterozoic",
+        "Terrestrial and Marine"
+      ]
+    },
+    {
+      "name": "Cyclomedusa",
+      "background": "files/images/cyclomedusa.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Subkingdom: Eumetazoa"
+      ],
+      "right": [
+        "Measuring up to 35 mm (1.4 in) long",
+        "Temporal Range: 550-545 Ma",
+        "Fossil location: JiangChuang, China"
+      ],
+      "tags": [
+        "Eumetazoa",
+        "Edicarian",
+        "Marine"
+      ]
+    },
+    {
+      "name": "Kymbrella",
+      "background": "files/images/kimbrella.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Clade: Billateria"
+      ],
+      "right": [
+        "Reached up to 15 cm in length, 57 cm in width, and 34 cm in height.",
+        "Temporal Range: 558-555 Ma",
+        "Fossil location: Near the white sea, Russia"
+      ],
+      "tags": [
+        "Billateria",
+        "Edicarian",
+        "Marine"
+      ]
+    },
+    {
+      "name": "Mustela aistoodonnivalis",
       "background": "files/images/mustelaaistoodonnivalis.png",
       "left": [
         "Kingdom: Animalia",
         "Phylum: Chordata",
-        "Class: Mammalia", 
-        "Order: Carnivora", 
+        "Class: Mammalia",
+        "Order: Carnivora",
         "Suborder: Caniformia",
         "Family: Mustelidae",
         "Genus: Mustela"
-        
       ],
       "right": [
         "Temporal Range: ~28 Ma (Oligocene) - Present",
-        "Body length: 13.1–16.0 centimetres (5.2–6.3 in)",
+        "Body length: 13.116.0 centimetres (5.26.3 in)",
         "Inhabits mountains in the Shaanxi and Sichuan provinces of China",
         "Reproduction: Sexual."
       ],
-      "tags": ["Mustela", "Caniformia", "Present"],
-      "notes": ["Known as well as pygmy weasel or sichuan weasel."]
+      "tags": [
+        "Mustela",
+        "Caniformia",
+        "Marine",
+        "Present"
+      ],
+      "notes": [
+        "Known as well as pygmy weasel or sichuan weasel."
+      ]
     },
-      {
-        "name": "Haplophrentis",
-        "background": "files/images/mollusc1.png",
-        "left": [
-          "Kingdom: Animalia",
-          "Class: Hyolitha",
-          "Clade: Hyolitida"
-        ],
-        "right": [
-          "Reached shell length up to 4.6 centimetres (1.8 in) ",
-          "Temporal Range: ~536 Ma",
-          "Fossil location: Spence Shale, and occurs prolifically at the Marble Canyon, USA"
-        ],
-        "tags": ["Hyolitha", "Furongian, late Cambrian"]
-      },
-      {
-        "name": "Aegirocassis",
-        "background": "files/images/aegirocassis.png",
-        "left": [
-          "Kingdom: Animalia",
-          "Phylum: Arthropoda",
-          "Order: †Radiodonta",
-          "Family: †Hurdiidae",
-          "Subfamily: †Aegirocassisinae"
-        ],
-        "right": [
-          "Length exceeding 2 meters (6.6 ft) ",
-          "Temporal Range: ~480 Ma",
-          "Fossil location: In the Fezouata Formation of Morocco."
-        ],
-        "tags": ["Hurdiidae", "Late tremadocian, Ordoviian"]
-      },
-      {
-        "name": "Onychophora",
-        "background": "files/images/onychophora.png",
-        "left": [
-          "Kingdom: Animalia",
-          "Subkingdom: Eumetazoa",
-          "Clade: ParaHoxozoa",
-          "Clade: Bilateria",
-          "Clade: Nephrozoa",
-          "Clade: Protostomia",
-          "Superphylum: Ecdysozoa",
-          "Clade: Panarthropoda",
-          "Phylum: Onychophora"
-        ],
-        "right": [
-          "Temporal Range: ~480 Ma"
-        ],
-        "tags": ["Billateria", "Carboniferus"]
-      },
-      {
-        "name": "Herrerasaurus",
-        "background": "files/images/herrerasaurus.png",
-        "left": [
-          "Phylum: Chordata",
-          "Class: Reptilia",
-          "Clade: Dinosauria",
-          "Clade: Saurischia",
-          "Family: †Herrerasauridae"
-        ],
-        "right": [
-          "Measuring 6 m (20 ft) long",
-          "Weighing around 350 kg (770 lb)",
-          "Temporal Range: 231.4–228.91 Ma",
-          "Diet: Carnivoric",
-          "Fossil location: Ischigualasto Formation, Argentina"
-        ],
-        "tags": ["Saurischia", "Triassic"]
-      },
-      {
-        "name": "Abrictosaurus",
-        "background": "files/images/abrictosaurus.png",
-        "left": [
-          "Phylum: Chordata",
-          "Class: Reptilia",
-          "Clade: Dinosauria",
-          "Clade: Ornithischia",
-          "Family & Subfamily: †Heterodontosauridae"
-        ],
-        "right": [
-          "Measuring 1.2 metres (3.9 ft) long",
-          "Weighed less than 45 kilograms (99 lb)",
-          "Temporal Range: 199–196 Ma",
-          "Diet: Herbivore or omnivore",
-          "Found in what is now in parts of southern Africa such as Lesotho and South Africa."
-        ],
-        "tags": ["Ornithischia", "Triassic"]
-      },
-      {
-        "name": "Carcharhinus amblyrhynchos",
-        "background": "files/images/carcharhinusamblyrhynchos.png",
-        "left": [
-          "Phylum: Chordata",
-          "Class: Chondrichthyes",
-          "Subclass: Elasmobranchii",
-          "Division: Selachii",
-          "Order: Carcarhinformes",
-          "Family: Carcarrinhidae"
-        ],
-        "right": [
-          "Most individuals are less than 1.88 metres (6.2 ft) long",
-          "Maximum reported weight of 33.7 kg (74 lb)",
-          "Temporal Range: Cenozoic - Present",
-          "Found in depths less than 60 m",
-          "Native in the Indian and pacific oceans."
-        ],
-        "tags": ["Chondrichthyes", "TPresent", "Grey reef shark", "Threatened"],
-        "notes": ["Known as well as the grey reef shark. It is an endangered cephalopod species."]
-      },
-      {
-        "name": "Caseosaurus",
-        "background": "files/images/herrerasaurus.png",
-        "left": [
-          "Phylum: Chordata",
-          "Class: Reptilia",
-          "Clade: Dinosauria",
-          "Clade: Saurischia",
-          "Family: †Herrerasauridae"
-        ],
-        "right": [
-          "Measuring 2 m (6.6 ft) long",
-          "Unknown weighing, maybe 350 kg",
-          "Temporal Range: 221.5 to 212 Ma",
-          "Diet: Perhaps Carnivoric",
-          "Found in Texas, North America."
-        ],
-        "tags": ["Herrerasauridae", "Norian, Triassic"]
-      },
-      {
-        "name": "Staurikosaurus",
-        "background": "files/images/staurikosaurus.png",
-        "left": [
-          "Phylum: Chordata",
-          "Class: Reptilia",
-          "Clade: Dinosauria",
-          "Clade: Saurischia",
-          "Family: †Herrerasauridae"
-        ],
-        "right": [
-          "Measuring 2.2–2.25 metres (7 ft 3 in – 7 ft 5 in) ",
-          "Body mass: 12 kilograms (26 lb)",
-          "Temporal Range: 213 to 210 Ma",
-          "Diet: Perhaps Carnivorous",
-          "Found in Santa Maria Formation, Brazil."
-        ],
-        "tags": ["Chindesaurus, Saurischia", "Late Triassic"]
-      },
-      {
-        "name": "Chindesaurus",
-        "background": "files/images/herrerasaurus.png",
-        "left": [
-          "Phylum: Chordata",
-          "Class: Reptilia",
-          "Clade: Dinosauria",
-          "Clade: Saurischia",
-          "Family: †Chindesaurus"
-        ],
-        "right": [
-          "Length: measuring 3 to 4 meters (9.8 to 13.1 feet)",
-          "Body mass: 23–45 kg",
-          "Temporal Range: 213 to 210 Ma",
-          "Diet: Carnivorous",
-          "Found in Late Triassic sediments throughout Arizona, New Mexico, and Texas"
-        ],
-        "tags": ["Chindesaurus, Saurischia", "Late Triassic"]
-      },
-      {
-        "name": "Tawa hallae",
-        "background": "files/images/tawahallae.png",
-        "left": [
-          "Phylum: Chordata",
-          "Class: Reptilia",
-          "Clade: Dinosauria",
-          "Clade: Saurischia",
-          "Family: Theropoda"
-        ],
-        "right": [
-          "Length: measuring  2.5 m (8 ft 2 in)",
-          "Body mass: 15 kg (33 lb)",
-          "Temporal Range: 215 Ma",
-          "Diet: Carnivorous",
-          "Found in the Hayden Quarry of Ghost Ranch, New Mexico, US"
-        ],
-        "tags": ["Theropodae", "Late Triassic"]
-      },
-      
-      {
-        "name": "Tyrannosaurus rex",
-        "background": "files/images/herrerasaurus.png",
-        "left": [
-          "Phylum: Chordata",
-          "Class: Reptilia",
-          "Clade: Dinosauria",
-          "Clade: Saurischia",
-          "Family: †Tyrannosauridae"
-        ],
-        "right": [
-          "Up to 12.3 m (40 ft) long",
-          "Mass ~8–14 t",
-          "Temporal Range: 68–66 Ma",
-          "Fossil location: Hell Creek Formation, USA"
-          
-        ],
-        "tags": ["Saurischia", "Cretaceous"]
-      },
-      {
-        "name": "Triceratops",
-        "background": "files/images/herrerasaurus.png",
-        "left": [
-          "Phylum: Chordata",
-          "Class: Reptilia",
-          "Clade: Dinosauria",
-          "Clade: Ornithischia",
-          "Family: †Ceratopsidae"
-        ],
-        "right": [
-          "~9 m (30 ft) long",
-          "Mass ~6–12 t",
-          "Temporal Range: 68–66 Ma",
-          "Fossil location: Lance Formation, USA"
-        ],
-        "tags": ["Ornithischia", "Cretaceous"]
-      },
-      {
+    {
+      "name": "Haplophrentis",
+      "background": "files/images/mollusc1.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Class: Hyolitha",
+        "Clade: Hyolitida"
+      ],
+      "right": [
+        "Reached shell length up to 4.6 centimetres (1.8 in) ",
+        "Temporal Range: ~536 Ma",
+        "Fossil location: Spence Shale, and occurs prolifically at the Marble Canyon, USA"
+      ],
+      "tags": [
+        "Hyolitha",
+        "Furongian, late Cambrian",
+        "Marine"
+      ]
+    },
+    {
+      "name": "Aegirocassis",
+      "background": "files/images/aegirocassis.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Arthropoda",
+        "Order: Radiodonta",
+        "Family: Hurdiidae",
+        "Subfamily: Aegirocassisinae"
+      ],
+      "right": [
+        "Length exceeding 2 meters (6.6 ft) ",
+        "Temporal Range: ~480 Ma",
+        "Fossil location: In the Fezouata Formation of Morocco."
+      ],
+      "tags": [
+        "Hurdiidae",
+        "Late tremadocian, Ordoviian",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Onychophora",
+      "background": "files/images/onychophora.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Subkingdom: Eumetazoa",
+        "Clade: ParaHoxozoa",
+        "Clade: Bilateria",
+        "Clade: Nephrozoa",
+        "Clade: Protostomia",
+        "Superphylum: Ecdysozoa",
+        "Clade: Panarthropoda",
+        "Phylum: Onychophora"
+      ],
+      "right": [
+        "Temporal Range: ~480 Ma"
+      ],
+      "tags": [
+        "Billateria",
+        "Carboniferus",
+        "Marine"
+      ]
+    },
+    {
+      "name": "Herrerasaurus",
+      "background": "files/images/herrerasaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Family: Herrerasauridae"
+      ],
+      "right": [
+        "Measuring 6 m (20 ft) long",
+        "Weighing around 350 kg (770 lb)",
+        "Temporal Range: 231.4228.91 Ma",
+        "Diet: Carnivoric",
+        "Fossil location: Ischigualasto Formation, Argentina"
+      ],
+      "tags": [
+        "Saurischia",
+        "Triassic",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Abrictosaurus",
+      "background": "files/images/abrictosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Ornithischia",
+        "Family & Subfamily: Heterodontosauridae"
+      ],
+      "right": [
+        "Measuring 1.2 metres (3.9 ft) long",
+        "Weighed less than 45 kilograms (99 lb)",
+        "Temporal Range: 199196 Ma",
+        "Diet: Herbivore or omnivore",
+        "Found in what is now in parts of southern Africa such as Lesotho and South Africa."
+      ],
+      "tags": [
+        "Ornithischia",
+        "Triassic",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Carcharhinus amblyrhynchos",
+      "background": "files/images/carcharhinusamblyrhynchos.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Chondrichthyes",
+        "Subclass: Elasmobranchii",
+        "Division: Selachii",
+        "Order: Carcarhinformes",
+        "Family: Carcarrinhidae"
+      ],
+      "right": [
+        "Most individuals are less than 1.88 metres (6.2 ft) long",
+        "Maximum reported weight of 33.7 kg (74 lb)",
+        "Temporal Range: Cenozoic - Present",
+        "Found in depths less than 60 m",
+        "Native in the Indian and pacific oceans."
+      ],
+      "tags": [
+        "Chondrichthyes",
+        "TPresent",
+        "Grey reef shark",
+        "Threatened",
+        "Marine"
+      ],
+      "notes": [
+        "Known as well as the grey reef shark. It is an endangered cephalopod species."
+      ]
+    },
+    {
+      "name": "Caseosaurus",
+      "background": "files/images/herrerasaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Family: Herrerasauridae"
+      ],
+      "right": [
+        "Measuring 2 m (6.6 ft) long",
+        "Unknown weighing, maybe 350 kg",
+        "Temporal Range: 221.5 to 212 Ma",
+        "Diet: Perhaps Carnivoric",
+        "Found in Texas, North America."
+      ],
+      "tags": [
+        "Herrerasauridae",
+        "Norian, Triassic",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Staurikosaurus",
+      "background": "files/images/staurikosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Family: Herrerasauridae"
+      ],
+      "right": [
+        "Measuring 2.22.25 metres (7 ft 3 in  7 ft 5 in) ",
+        "Body mass: 12 kilograms (26 lb)",
+        "Temporal Range: 213 to 210 Ma",
+        "Diet: Perhaps Carnivorous",
+        "Found in Santa Maria Formation, Brazil."
+      ],
+      "tags": [
+        "Chindesaurus, Saurischia",
+        "Late Triassic",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Chamaeleo calyptratus",
+      "background": "files/images/chamaeleocalyptratus.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Squamala",
+        "Clade: Iguania",
+        "Family: Camaeleonidae",
+        "Genus: Chamaleo"
+      ],
+      "right": [
+        "Measuring 43 to 61 cm (17 to 24 in) ",
+        "Temporal Range: 26 Ma (Early Miocene) to present",
+        "Diet: Presumabily just hervivorous",
+        "Native to Yemen and in Saudi Arabia."
+      ],
+      "tags": [
+        "Chamaleo",
+        "Miocene",
+        "Present",
+        "Terrestial"
+      ],
+      "description": [
+        "Species in the genus Chamaeleo are slow moving, with independently movable eyes, the ability to change skin colouration, a long tongue, usually a prehensile tail, and special leg adaptations for grasping vegetation. Males are generally larger and more colorful than females. Almost all species have a maximum snout-vent length (SVL) between 15 and 40 centimetres (5.9 and 15.7 in). [source:Wikipedia]"
+      ]
+    },
+    {
+      "name": "Daemnosaurus",
+      "background": "files/images/daemnosaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia"
+      ],
+      "right": [
+        "Measuring 2.22.25 metres (7 ft 3 in  7 ft 5 in) ",
+        "Body mass: 9 kilograms (up to 26 kg) (20-50 lb)",
+        "Temporal Range: 213 to 210 Ma",
+        "Diet: Perhaps Carnivorous",
+        "Found in the Triassic Chinle Formation at Ghost Ranch. ."
+      ],
+      "tags": [
+        "Saurischia",
+        "Rhaetian",
+        "Terrestial"
+      ],
+      "description": [
+        " [source:Wikipedia]"
+      ]
+    },
+    {
+      "name": "Varanus komodoensis",
+      "background": "files/images/varanuskomodoensis.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Order: Squamala",
+        "Suborder: Anguimorpha",
+        "Family: Varanidae"
+      ],
+      "right": [
+        "Measuring maximum up to 3 m 1(10 ft) ",
+        "Body mass: Up to 150 kilograms (300 lb)",
+        "Temporal Range: 3.8 Ma to present",
+        "Diet: Perhaps Carnivorous",
+        "Living in hot wet tropical climate."
+      ],
+      "tags": [
+        "Squamala",
+        "Present",
+        "Komodo dragon",
+        "Threatened (EN)",
+        "Terrestial"
+      ],
+      "notes": [
+        "The Komodo Dragon. It is the largest existing species of reptile in the world."
+      ]
+    },
+    {
+      "name": "Rothpletzella",
+      "background": "files/images/varanuskomodoensis.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Order: Squamala",
+        "Suborder: Anguimorpha",
+        "Family: Varanidae"
+      ],
+      "right": [
+        "Measuring maximum up to 3 m 1(10 ft) ",
+        "Body mass: Up to 150 kilograms (300 lb)",
+        "Temporal Range: 3.8 Ma to present",
+        "Diet: Perhaps Carnivorous",
+        "Living in hot wet tropical climate."
+      ],
+      "tags": [
+        "Squamala",
+        "Present",
+        "Komodo dragon",
+        "Threatened (EN)","Terrestial"
+      ],
+      "notes": [
+        "The Komodo Dragon. It is the largest existing species of reptile in the world."
+      ]
+    },
+    {
+      "name": "Chindesaurus",
+      "background": "files/images/herrerasaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Family: Chindesaurus"
+      ],
+      "right": [
+        "Length: measuring 3 to 4 meters (9.8 to 13.1 feet)",
+        "Body mass: 2345 kg",
+        "Temporal Range: 213 to 210 Ma",
+        "Diet: Carnivorous",
+        "Found in Late Triassic sediments throughout Arizona, New Mexico, and Texas"
+      ],
+      "tags": [
+        "Chindesaurus, Saurischia",
+        "Late Triassic",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Tawa hallae",
+      "background": "files/images/tawahallae.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Family: Theropoda"
+      ],
+      "right": [
+        "Length: measuring  2.5 m (8 ft 2 in)",
+        "Body mass: 15 kg (33 lb)",
+        "Temporal Range: 215 Ma",
+        "Diet: Carnivorous",
+        "Found in the Hayden Quarry of Ghost Ranch, New Mexico, US"
+      ],
+      "tags": [
+        "Theropodae",
+        "Late Triassic",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Tyrannosaurus rex",
+      "background": "files/images/herrerasaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Saurischia",
+        "Family: Tyrannosauridae"
+      ],
+      "right": [
+        "Up to 12.3 m (40 ft) long",
+        "Mass ~814 t",
+        "Temporal Range: 6866 Ma",
+        "Fossil location: Hell Creek Formation, USA"
+      ],
+      "tags": [
+        "Saurischia",
+        "Cretaceous",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Triceratops",
+      "background": "files/images/herrerasaurus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Clade: Dinosauria",
+        "Clade: Ornithischia",
+        "Family: Ceratopsidae"
+      ],
+      "right": [
+        "~9 m (30 ft) long",
+        "Mass ~612 t",
+        "Temporal Range: 6866 Ma",
+        "Fossil location: Lance Formation, USA"
+      ],
+      "tags": [
+        "Ornithischia",
+        "Cretaceous",
+        "Terrestial"
+      ]
+    },
+    {
       "name": "Stegosaurus",
       "background": "files/images/stegosaurus.png",
       "left": [
@@ -298,15 +474,19 @@
         "Class: Reptilia",
         "Clade: Dinosauria",
         "Clade: Ornithischia",
-        "Family: †Stegosauridae"
+        "Family: Stegosauridae"
       ],
       "right": [
         "Up to 9 m (30 ft) long",
-        "Mass ~5–7 t",
-        "Temporal Range: 155–150 Ma",
+        "Mass ~57 t",
+        "Temporal Range: 155150 Ma",
         "Fossil location: Morrison Formation, USA"
       ],
-      "tags": ["Ornithischia", "Jurassic"]
+      "tags": [
+        "Ornithischia",
+        "Jurassic",
+        "Terrestial"
+      ]
     },
     {
       "name": "Velociraptor",
@@ -316,15 +496,19 @@
         "Class: Reptilia",
         "Clade: Dinosauria",
         "Clade: Saurischia",
-        "Family: †Dromaeosauridae"
+        "Family: Dromaeosauridae"
       ],
       "right": [
         "Up to 2 m (6.6 ft) long",
-        "Mass ~15–20 kg",
-        "Temporal Range: 75–71 Ma",
+        "Mass ~1520 kg",
+        "Temporal Range: 7571 Ma",
         "Fossil location: Djadochta Formation, Mongolia"
       ],
-      "tags": ["Saurischia", "Cretaceous"]
+      "tags": [
+        "Saurischia",
+        "Cretaceous",
+        "Terrestial"
+      ]
     },
     {
       "name": "Brachiosaurus",
@@ -334,108 +518,301 @@
         "Class: Reptilia",
         "Clade: Dinosauria",
         "Clade: Saurischia",
-        "Family: †Brachiosauridae"
+        "Family: Brachiosauridae"
       ],
       "right": [
         "Up to 22 m (72 ft) long",
-        "Mass ~28–58 t",
-        "Temporal Range: 154–153 Ma",
+        "Mass ~2858 t",
+        "Temporal Range: 154153 Ma",
         "Fossil location: Lance Formation, USA"
       ],
-      "tags": ["Saurischia", "Jurassic"]
+      "tags": [
+        "Saurischia",
+        "Jurassic",
+        "Terrestial"
+      ]
     },
     {
-    "name": "Spinosaurus",
+      "name": "Spinosaurus",
       "background": "files/images/stegosaurus.png",
       "left": [
         "Phylum: Chordata",
         "Class: Reptilia",
         "Clade: Dinosauria",
         "Clade: Saurischia",
-        "Family: †Spinosauridae"
+        "Family: Spinosauridae"
       ],
       "right": [
         "Up to 15 m (49 ft) long",
-        "Mass ~7–20 t",
-        "Temporal Range: 112–93 Ma",
+        "Mass ~720 t",
+        "Temporal Range: 11293 Ma",
         "Fossil location: Kem Kem Beds, Morocco"
       ],
-      "tags": ["Saurischia", "Cretaceous"]
+      "tags": [
+        "Saurischia",
+        "Cretaceous",
+        "Terrestial"
+      ]
     },
     {
-    "name": "Ankylosaurus",
+      "name": "Ankylosaurus",
       "background": "files/images/stegosaurus.png",
       "left": [
         "Phylum: Chordata",
         "Class: Reptilia",
         "Clade: Dinosauria",
         "Clade: Ornithischia",
-        "Family: †Ankylosauridae"
+        "Family: Ankylosauridae"
       ],
       "right": [
         "Up to 8 m (26 ft) long",
         "Mass ~6 t",
-        "Temporal Range: 68–66 Ma",
+        "Temporal Range: 6866 Ma",
         "Fossil location: Hell Creek Formation, USA"
       ],
-      "tags": ["Ornithischia", "Cretaceous"]
+      "tags": [
+        "Ornithischia",
+        "Cretaceous",
+        "Terrestial"
+      ]
     },
     {
-    "name": "Diplodocus",
+      "name": "Diplodocus",
       "background": "files/images/stegosaurus.png",
       "left": [
         "Phylum: Chordata",
         "Class: Reptilia",
         "Clade: Dinosauria",
         "Clade: Ornithischia",
-        "Family: †Diplodocidae"
+        "Family: Diplodocidae"
       ],
       "right": [
         "Up to 25 m (82 ft) long",
         "Mass ~10-16 t",
-        "Temporal Range: 154–150 Ma",
+        "Temporal Range: 154150 Ma",
         "Fossil location: Morrisson Formation, USA"
       ],
-      "tags": ["Saurischia", "Jurassic"]
+      "tags": [
+        "Saurischia",
+        "Jurassic",
+        "Terrestial"
+      ]
     },
     {
-    "name": "Parasaurolophus",
+      "name": "Parasaurolophus",
       "background": "files/images/stegosaurus.png",
       "left": [
         "Phylum: Chordata",
         "Class: Reptilia",
         "Clade: Dinosauria",
         "Clade: Ornithischia",
-        "Family: †Hadrosauridae"
+        "Family: Hadrosauridae"
       ],
       "right": [
         "Up to 10 m (33 ft) long",
         "Mass ~2.5 t",
-        "Temporal Range: 76–73 Ma",
+        "Temporal Range: 7673 Ma",
         "Fossil location: Alberta, Canada"
       ],
-      "tags": ["Ornithischia", "Cretaceous"]
+      "tags": [
+        "Ornithischia",
+        "Cretaceous",
+        "Terrestial"
+      ]
     },
     {
-    "name": "Allosaurus",
+      "name": "Asillifelis",
+      "background": "files/images/asilifelis.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Order: Carnivora",
+        "Family : Felidae",
+        "Subfamily: Felinae",
+        "Genus: Puma"
+      ],
+      "right": [
+        "Up to 10 m (33 ft) long",
+        "Weight: 1-1.6 kg",
+        "Temporal Range: 2313 Ma",
+        "Fossil location: Kenya"
+      ],
+      "tags": [
+        "Felinae",
+        "Miocene",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Dunkleosteus",
+      "background": "files/images/ficuscarica.png",
+      "left": [
+        "Kingdom: Plantae",
+        "Clade: Tracheophytes",
+        "Clade: Angiospermis",
+        "Clade: Eudicots",
+        "Clade: Rosids",
+        "Clade: Rosales",
+        "Genus: Puma"
+      ],
+      "right": [
+        "Up to 10 m (33 ft) long",
+        "Leaves width: 12-25 cm",
+        "Temporal Range: 80-0 Ma",
+        "Fossil location: Kenya"
+      ],
+      "tags": [
+        "Common fig",
+        "Holocene",
+        "Plantae",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Ficus carica",
+      "background": "files/images/ficuscarica.png",
+      "left": [
+        "Kingdom: Plantae",
+        "Clade: Tracheophytes",
+        "Clade: Angiospermis",
+        "Clade: Eudicots",
+        "Clade: Rosids",
+        "Clade: Rosales",
+        "Genus: Puma"
+      ],
+      "right": [
+        "Up to 10 m (33 ft) long",
+        "Leaves width: 12-25 cm",
+        "Temporal Range: 80-0 Ma",
+        "Fossil location: Kenya"
+      ],
+      "tags": [
+        "Common fig",
+        "Holocene",
+        "Plantae",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Rothpletzella",
+      "background": "files/images/rothpletzella.png",
+      "left": [
+        "Domain: Bacteria",
+        "Kingdom: Bacillati",
+        "Phylum: Cyanobacteriota",
+        "Class: Incertae sedis"
+      ],
+      "right": [
+        "Temporal Range: 515155.7 Ma",
+        "Fossil location: Silurian of Gotland (Sweden), Devonian of France, as well as the Ordovician of China."
+      ],
+      "notes": [
+        "Genus of calcimicrobe. Genus of cynobacterium."
+      ],
+      "tags": [
+        "Bacteria",
+        "Cyanobacteria",
+        "Terrestrial and Marine"
+      ]
+    },
+    {
+      "name": "Puma concolor",
+      "background": "files/images/pumaconcolor.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Order: Carnivora",
+        "Family : Felidae",
+        "Subfamily: Felinae",
+        "Genus: Puma"
+      ],
+      "right": [
+        "Temporal Range: 1.20 Ma",
+        "Inhabits North, Central and South America."
+      ],
+      "notes": [
+        " inhabits North, Central and South America."
+      ],
+      "tags": [
+        "Cougar",
+        "Holocene",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Allosaurus",
       "background": "files/images/stegosaurus.png",
       "left": [
         "Phylum: Chordata",
         "Class: Reptilia",
         "Clade: Dinosauria",
         "Clade: Ornithischia",
-        "Family: †Allosauridae"
+        "Family: Allosauridae"
       ],
       "right": [
         "Up to 12 m (39 ft) long",
         "Mass ~2 t",
-        "Temporal Range: 155–145 Ma",
+        "Temporal Range: 155145 Ma",
         "Fossil location: Morrison Formation, USA"
       ],
-      "tags": ["Saurischia", "Jurassic"]
+      "tags": [
+        "Saurischia",
+        "Jurassic",
+        "Terrestial"
+      ]
     },
-     {
-    "name": "Rusingoryx",
+    {
+      "name": "Ficus carica",
+      "background": "files/images/ficuscarica.png",
+      "left": [
+        "Kingdom: Plantae",
+        "Clade: Tracheophytes",
+        "Clade: Angiospermis",
+        "Clade: Eudicots",
+        "Clade: Rosids",
+        "Clade: Rosales",
+        "Genus: Puma"
+      ],
+      "right": [
+        "Up to 10 m (33 ft) long",
+        "Leaves width: 12-25 cm",
+        "Temporal Range: 80-0 Ma"
+      ],
+      "tags": [
+        "Rubber tree",
+        "Holocene",
+        "Plantae",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Cyanea capillata",
+      "background": "files/images/cyaneacapillata.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Cnidaria",
+        "Class: Scyphoa",
+        "Order: Semaeostomae",
+        "Family: Cyaenidae",
+        "Genus: Cyanea"
+      ],
+      "right": [
+        "Cup diameter Up to 2 m (6.6 ft) long",
+        "Tentacles up to 36.6 m",
+        "Temporal Range: 530-0 Ma (Scyphoa)",
+        "Confined to cold, boreal waters of the Arctic, northern Atlantic, and northern Pacific Oceans."
+      ],
+      "tags": [
+        "Polyp",
+        "Holocene",
+        "Animalia",
+        "Marine"
+      ]
+    },
+    {
+      "name": "Rusingoryx",
       "background": "files/images/rusyngoryx.png",
       "left": [
         "Phylum: Chordata",
@@ -447,13 +824,17 @@
       "right": [
         "Up to ~2 m (39 ft) long",
         "Mass ~500 kg t",
-        "Temporal Range: 75–50 my",
+        "Temporal Range: 7550 my",
         "Fossil location:  Rusinga Island in Lake Victoria."
       ],
-      "tags": ["Mammalia", "Pleistocene"]
+      "tags": [
+        "Mammalia",
+        "Pleistocene",
+        "Terrestial"
+      ]
     },
     {
-    "name": "Damaliscus hypsodon",
+      "name": "Damaliscus hypsodon",
       "background": "files/images/rusyngoryx.png",
       "left": [
         "Phylum: Chordata",
@@ -463,14 +844,20 @@
         "Subamily: Alcelaphinaee"
       ],
       "right": [
-        "Temporal Range: 75–50 my",
+        "Temporal Range: 7550 my",
         "Fossil location: Fossils have been found in Kenya and Tanzania.."
       ],
-      "tags": ["Alcelaphinaee", "Late Pleistocene"],
-      "notes": ["Ancient type of antelope. Size of an impala."]
+      "tags": [
+        "Alcelaphinaee",
+        "Late Pleistocene",
+        "Terrestial"
+      ],
+      "notes": [
+        "Ancient type of antelope. Size of an impala."
+      ]
     },
     {
-    "name": "Impala",
+      "name": "Impala",
       "background": "files/images/impala.png",
       "left": [
         "Phylum: Chordata",
@@ -482,69 +869,89 @@
       ],
       "right": [
         "Temporal Range: 50 my - Present",
-        "Size : Males about 75–92 cm (30–36 in)",
+        "Size : Males about 7592 cm (3036 in)",
         "Species extintion risk : Minor concern",
         "Living species just to be found in the african continent."
       ],
-      "tags": ["Alcelaphinaee", "Late Pleistocene"],
-      "notes": ["Ancient type of antelope. Size of an impala."]
-    },
-     {
-    "name": "Metridiochoerus",
-      "background": "files/images/metridiochoerus.png",
-      "left": [
-        "Phylum: Chordata",
-        "Class: Mammalia",
-        "Clade: Artiodactyla",
-        "Family:Suidae",
-        "Subfamily: Sunae"
+      "tags": [
+        "Alcelaphinaee",
+        "Late Pleistocene",
+        "Terrestial"
       ],
-      "right": [
-        "Temporal Range: ~3.4 MY",
-        "Size : Males about 75–92 cm (30–36 in)",
-        "Fossil location ; Usno Formation in Ethiopia."
-      ],
-      "tags": ["Suidae", "Late Pleistocene"],
-      "notes": ["Ancient type of sunid."]
-    },
-     {
-    "name": "Metridiochoerus",
-      "background": "files/images/metridiochoerus.png",
-      "left": [
-        "Phylum: Chordata",
-        "Class: Mammalia",
-        "Clade: Artiodactyla",
-        "Family:Suidae",
-        "Subfamily: Sunae"
-      ],
-      "right": [
-        "Temporal Range: ~3.4 MY",
-        "Size : Males about 75–92 cm (30–36 in)",
-        "Fossil location ; Usno Formation in Ethiopia."
-      ],
-      "tags": ["Suidae", "Late Pleistocene"],
-      "notes": ["Ancient type of sunid."]
+      "notes": [
+        "Ancient type of antelope. Size of an impala."
+      ]
     },
     {
-    "name": "Wiwaxia",
+      "name": "Metridiochoerus",
+      "background": "files/images/metridiochoerus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Clade: Artiodactyla",
+        "Family:Suidae",
+        "Subfamily: Sunae"
+      ],
+      "right": [
+        "Temporal Range: ~3.4 MY",
+        "Size : Males about 7592 cm (3036 in)",
+        "Fossil location ; Usno Formation in Ethiopia."
+      ],
+      "tags": [
+        "Suidae",
+        "Late Pleistocene",
+        "Terrestial"
+      ],
+      "notes": [
+        "Ancient type of sunid."
+      ]
+    },
+    {
+      "name": "Metridiochoerus",
+      "background": "files/images/metridiochoerus.png",
+      "left": [
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Clade: Artiodactyla",
+        "Family:Suidae",
+        "Subfamily: Sunae"
+      ],
+      "right": [
+        "Temporal Range: ~3.4 MY",
+        "Size : Males about 7592 cm (3036 in)",
+        "Fossil location ; Usno Formation in Ethiopia."
+      ],
+      "tags": [
+        "Suidae",
+        "Late Pleistocene",
+        "Terrestial"
+      ],
+      "notes": [
+        "Ancient type of sunid."
+      ]
+    },
+    {
+      "name": "Wiwaxia",
       "background": "files/images/wiwaxia.png",
       "left": [
         "Phylum: Chordata",
         "Superphylum: Lophotrochozoa",
         "Phylum:  Mollusca (?)",
         "Family: Wiwaxidae"
-        
       ],
       "right": [
         "Temporal Range: 520-505 Ma",
         "Size : 5 cm (2 in) in length and 1 cm (0.39 in) high.",
         "Fossil location: Wiwaxy Peak in British Columbia."
       ],
-      "tags": ["Suidae", "Cambrian"]
-      
+      "tags": [
+        "Suidae",
+        "Cambrian",
+        "Terrestial"
+      ]
     },
     {
-    "name": "Ceratosaurus",
+      "name": "Ceratosaurus",
       "background": "files/images/ceratosaurus.png",
       "left": [
         "Phylum: Chordata",
@@ -552,7 +959,7 @@
         "Clade: Dinosauria",
         "Clade: Saurischia",
         "Clade: Therapoda",
-        "Family: †Ceratosauridae"
+        "Family: Ceratosauridae"
       ],
       "right": [
         "Temporal Range: 153-148 Ma",
@@ -560,11 +967,17 @@
         "Fossil location : Found in Utah and Colorado (N.A.). Found in Portugal, Swizerland, etc",
         "Diet: Carnivorous."
       ],
-      "tags": ["†Ceratosauridae", "Late Jurassic"],
-      "notes": ["Ate as well as marine as terrestrial fauna. Fossils have been found in Tanzania and Uruguay as well."]
+      "tags": [
+        "Ceratosauridae",
+        "Late Jurassic",
+        "Terrestial"
+      ],
+      "notes": [
+        "Ate as well as marine as terrestrial fauna. Fossils have been found in Tanzania and Uruguay as well."
+      ]
     },
     {
-    "name": "Mertensia ovum",
+      "name": "Mertensia ovum",
       "background": "files/images/mertensiaovum.png",
       "left": [
         "Kingdom: Animalia",
@@ -578,17 +991,22 @@
         "Size : Up to 10 centimetres (3.9 in)",
         "Dwell on northern coastlines"
       ],
-      "tags": ["Tentaculata", "Cenozoic"],
-      "notes": ["Known as well as the arctic comb jelly. Hermaphroditic species. Sexual and asexual reproduction."]
+      "tags": [
+        "Tentaculata",
+        "Cenozoic",
+        "Marine"
+      ],
+      "notes": [
+        "Known as well as the arctic comb jelly. Hermaphroditic species. Sexual and asexual reproduction."
+      ]
     },
     {
-    "name": "Trichoplax adhaerens",
+      "name": "Trichoplax adhaerens",
       "background": "files/images/trichoplax.png",
       "left": [
         "Kingdom: Animalia",
         "Phylum: Placozoa",
         "Class: Uniplacotomia"
-
       ],
       "right": [
         "Temporal Range: Late Triassic - Present",
@@ -596,20 +1014,25 @@
         "Widespread",
         "Reproduction: Commonly asexual, but occasionally sexual as well"
       ],
-      "tags": ["Placozoa", "Cenozoic"],
-      "notes": ["One of the four species in the Phyllum Placozoa."]
+      "tags": [
+        "Placozoa",
+        "Cenozoic",
+        "Marine"
+      ],
+      "notes": [
+        "One of the four species in the Phyllum Placozoa."
+      ]
     },
     {
-    "name": "Eordromaeus",
+      "name": "Eordromaeus",
       "background": "files/images/eordromaeus.png",
       "left": [
         "Kingdom: Animalia",
         "Phylum: Chordata",
-        "Class: Reptilia", 
+        "Class: Reptilia",
         "Clade: Dinosauria",
         "Clade: Saurischia",
         "Clade: Therapoda"
-
       ],
       "right": [
         "Temporal Range: 231.4 - 229 Ma (Carnian)",
@@ -617,20 +1040,25 @@
         "Found in the Schigualasto Formation, NW Argentina.",
         "Reproduction: Sexual."
       ],
-      "tags": ["Dinosauria", "Late Triasic"],
-      "notes": ["Smal-sized saurid."]
+      "tags": [
+        "Dinosauria",
+        "Late Triasic",
+        "Terrestial"
+      ],
+      "notes": [
+        "Smal-sized saurid."
+      ]
     },
     {
-    "name": "Branta canadensis",
+      "name": "Branta canadensis",
       "background": "files/images/brantacanadensis.png",
       "left": [
         "Kingdom: Animalia",
         "Phylum: Chordata",
-        "Class: Aves", 
+        "Class: Aves",
         "Order: Anseriformes",
         "Family: Anatidae",
         "Genus: Branta"
-
       ],
       "right": [
         "Temporal Range: Pleistocene - Present",
@@ -638,29 +1066,341 @@
         "Widespread across North America. Present in the northern West europa (Britain and Scandinavian peninsola)",
         "Reproduction: Sexual."
       ],
-      "tags": ["Aves", "Neognatae", "Present"],
-      "notes": ["Popularly known as the canada goose, has variants of atlantic, interior, giant, moffti canada goose."]
+      "tags": [
+        "Aves",
+        "Neognatae",
+        "Present",
+        "Aerial"
+      ],
+      "notes": [
+        "Popularly known as the canada goose, has variants of atlantic, interior, giant, moffti canada goose."
+      ]
     },
     {
-    "name": "Lithornis",
+      "name": "Lithornis",
       "background": "files/images/lithornis.png",
       "left": [
         "Kingdom: Animalia",
         "Phylum: Chordata",
-        "Class: Aves", 
-        "Infraclass: Palaeognathae", 
-        "Order: †Lithornithiformes",
-        "Family: †Lithornithidae"
-        
-
+        "Class: Aves",
+        "Infraclass: Palaeognathae",
+        "Order: Lithornithiformes",
+        "Family: Lithornithidae"
       ],
       "right": [
         "Temporal Range: 56 (Paleocene) - 40 Ma (Eocene)",
         "Widespread across North America. Present in the northern West europa (Britain and Scandinavian peninsola)",
         "Reproduction: Sexual."
       ],
-      "tags": ["Aves", "Palaeognatae", "Present"],
-      "notes": ["Popularly known as the canada goose, has variants of atlantic, interior, giant, moffti canada goose."]
+      "tags": [
+        "Aves",
+        "Palaeognatae",
+        "Present",
+        "Aerial"
+      ],
+      "notes": [
+        "Popularly known as the canada goose, has variants of atlantic, interior, giant, moffti canada goose."
+      ]
+    },
+    {
+      "name": "Archaeopteryx lithographica",
+      "background": "files/images/archaeopteryx.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Aves",
+        "Order: Archaeopterygiformes",
+        "Family: Archaeopterygidae"
+      ],
+      "right": [
+        "Temporal Range: 150.8148.5 Ma (Late Jurassic)",
+        "Length: 0.5 m (1.6 ft)",
+        "Fossil location: Solnhofen Limestone, Germany"
+      ],
+      "tags": [
+        "Aves",
+        "Jurassic",
+        "Transitional Fossil",
+        "Aerial"
+      ]
+    },
+    {
+      "name": "Ichthyosaurus communis",
+      "background": "files/images/ichthyosaurus.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Order: Ichthyosauria",
+        "Family: Ichthyosauridae"
+      ],
+      "right": [
+        "Temporal Range: 199189 Ma (Early Jurassic)",
+        "Length: 23 m (6.69.8 ft)",
+        "Fossil location: Dorset, England"
+      ],
+      "tags": [
+        "Marine reptile",
+        "Jurassic"
+      ]
+    },
+    {
+      "name": "Smilodon fatalis",
+      "background": "files/images/smilodon.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Order: Carnivora",
+        "Family: Felidae",
+        "Subfamily: Machairodontinae"
+      ],
+      "right": [
+        "Temporal Range: 2.5 Ma  10,000 years ago",
+        "Weight: 160280 kg (350620 lb)",
+        "Fossil location: La Brea Tar Pits, California, USA"
+      ],
+      "tags": [
+        "Mammalia",
+        "Pleistocene",
+        "Saber-toothed cat",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Megatherium americanum",
+      "background": "files/images/megatherium.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Order: Pilosa",
+        "Family: Megatheriidae"
+      ],
+      "right": [
+        "Temporal Range: 2.6 Ma  10,000 years ago",
+        "Length: Up to 6 m (20 ft)",
+        "Fossil location: South America, mainly Argentina"
+      ],
+      "tags": [
+        "Mammalia",
+        "Pleistocene",
+        "Giant ground sloth",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Australopithecus afarensis",
+      "background": "files/images/australopithecus.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Order: Primates",
+        "Family: Hominidae"
+      ],
+      "right": [
+        "Temporal Range: 3.92.9 Ma",
+        "Height: 1.051.51 m (3 ft 5 in  4 ft 11 in)",
+        "Fossil location: Hadar, Ethiopia; Laetoli, Tanzania"
+      ],
+      "tags": [
+        "Hominidae",
+        "Pliocene",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Tiktaalik roseae",
+      "background": "files/images/tiktaalik.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Superclass: Tetrapodomorpha",
+        "Genus: Tiktaalik"
+      ],
+      "right": [
+        "Temporal Range: 375 Ma (Late Devonian)",
+        "Length: 1.22.7 m (3.98.9 ft)",
+        "Fossil location: Ellesmere Island, Canada"
+      ],
+      "tags": [
+        "Transitional Fossil",
+        "Devonian",
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Hallucigenia sparsa",
+      "background": "files/images/hallucigeniasparsa.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Lobopodia",
+        "Order: Hallucigeniidae"
+      ],
+      "right": [
+        "Temporal Range: 508 Ma (Middle Cambrian)",
+        "Length: 1050 mm",
+        "Fossil location: Burgess Shale, Canada"
+      ],
+      "tags": [
+        "Cambrian",
+        "Lobopodia",
+        "Terrestrial"
+      ]
+    },
+    {
+      "name": "Latimeria chalumnae",
+      "background": "files/images/latimeriachalumnae.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Sarcopterygii",
+        "Order: Coelacanthiformes",
+        "Family: Latimeriidae"
+      ],
+      "right": [
+        "Temporal Range: 400 Ma  Present",
+        "Length: Up to 2 m (6.6 ft)",
+        "Found in deep marine waters near the Comoro Islands and Indonesia"
+      ],
+      "tags": [
+        "Sarcopterygii",
+        "Living fossil",
+        "Present",
+        "Marine"
+      ]
+    },
+    {
+      "name": "Pteranodon longiceps",
+      "background": "files/images/pteranodonlongiceps.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Reptilia",
+        "Order: Pterosauria",
+        "Family: Pteranodontidae"
+      ],
+      "right": [
+        "Temporal Range: 8684.5 Ma (Late Cretaceous)",
+        "Wingspan: 57 m (1623 ft)",
+        "Fossil location: Kansas, USA"
+      ],
+      "tags": [
+        "Pterosauria",
+        "Cretaceous",
+        "Aerial"
+      ]
+    },
+    {
+      "name": "Mammuthus primigenius",
+      "background": "files/images/mammuthusprimigenius.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Chordata",
+        "Class: Mammalia",
+        "Order: Proboscidea",
+        "Family: Elephantidae"
+      ],
+      "right": [
+        "Temporal Range: 400,000  4,000 years ago",
+        "Height: Up to 3.4 m (11 ft)",
+        "Fossil location: Siberia, Europe, and North America"
+      ],
+      "tags": [
+        "Mammalia",
+        "Pleistocene",
+        "Woolly mammoth", 
+        "Terrestial"
+      ]
+    },
+    {
+      "name": "Cyanobacteria mats",
+      "background": "files/images/cyanobacteriamats.png",
+      "left": [
+        "Domain: Bacteria",
+        "Kingdom: Bacillati",
+        "Phylum: Cyanobacteriota"
+      ],
+      "right": [
+        "Temporal Range: ~3.5 Gyr"
+       
+      ],
+      "tags": [
+        "Bacteria",
+        "Archean",
+        "Terrestial"
+      ],
+      "notes": ["Among the oldest known life forms; photosynthetic mats that produced oxygen"]
+    },
+    {
+      "name": "Dickinsonia costata",
+      "background": "files/images/dickinsoniacostata.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Articulata",
+        "Class: Dipleurozoa",
+        "Family: Dickinsoniidae"
+      ],
+      "right": [
+        "Temporal Range: 567 Ma - 550 Ma ",
+        "Height: From a few centimeters up to 1.4 m (4.5 ft)",
+        "Fossil location: Found in the Mogilev Formation in the Dniester River Basin of Ukraine"
+      ],
+      "tags": [
+        "Dickinsoniidae",
+        "Edicarian",
+        "Ediacarian biota",
+        "Molusc", 
+        "Marine"
+      ],
+      "notes": ["Flat, oval, ribbed organism; one of the earliest animals."]
+    },
+    {
+      "name": "Opabinia regalis",
+      "background": "files/images/opabiniaregalis.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Arthropoda",
+        "Class: Dinocaridida",
+        "Family: Opabinidae"
+      ],
+      "right": [
+        "Temporal Range: ~505 Ma ",
+        "Height: Measuring up to 7 cm of length",
+        "Fossil location: Found in Burgess Shale Lagerstätte (505 million years ago) of British Columbia."
+      ],
+      "tags": [
+        "Lobopodia",
+        "Cambrian",
+        "Ediacarian biota",
+        "Molusc", 
+        "Marine"
+      ],
+      "notes": ["Had five eyes and a claw-like proboscis."]
+    },
+    {
+      "name": "Opabinia regalis",
+      "background": "files/images/opabiniaregalis.png",
+      "left": [
+        "Kingdom: Animalia",
+        "Phylum: Arthropoda",
+        "Class: Dinocaridida",
+        "Family: Opabinidae"
+      ],
+      "right": [
+        "Temporal Range: ~505 Ma ",
+        "Height: Measuring up to 7 cm of length",
+        "Fossil location: Found in Burgess Shale Lagerstätte (505 million years ago) of British Columbia."
+      ],
+      "tags": [
+        "Lobopodia",
+        "Cambrian",
+        "Ediacarian biota",
+        "Molusc", 
+        "Marine"
+      ],
+      "notes": ["Had five eyes and a claw-like proboscis."]
     }
-    ]
-  }
+  ]
+}
