@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Poker Odds Calculator — Hold'em &amp; Omaha</title>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;padding:18px;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:#0e1620;color:#e6edf3;
+  }
+  h1{font-size:1.35rem;margin:0 0 14px;letter-spacing:.3px}
+  h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:#7d95a9;margin:16px 0 8px}
+  h2:first-child{margin-top:0}
+
+  .wrap{max-width:1180px;margin:0 auto}
+
+  /* ---------- toolbar ---------- */
+  .toolbar{
+    display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;
+    background:#16212c;border:1px solid #24333f;border-radius:12px;
+    padding:12px 14px;margin-bottom:14px;
+  }
+  .toggle{display:flex;background:#0e1620;border:1px solid #24333f;border-radius:9px;overflow:hidden}
+  .toggle button{
+    background:transparent;border:0;color:#8fa6b8;font:inherit;font-weight:600;
+    padding:9px 16px;cursor:pointer;transition:.15s;
+  }
+  .toggle button.active{background:#2f81f7;color:#fff}
+  .toggle button:not(.active):hover{background:#1b2836;color:#d5e2ee}
+
+  .field{display:flex;flex-direction:column;gap:4px;font-size:.72rem;
+         text-transform:uppercase;letter-spacing:.07em;color:#7d95a9;font-weight:600}
+  .field input,.field select{
+    background:#0e1620;border:1px solid #2b3d4d;color:#e6edf3;border-radius:8px;
+    padding:8px 10px;font:inherit;font-size:.9rem;min-width:96px;
+  }
+  .field input:focus,.field select:focus{outline:none;border-color:#2f81f7}
+
+  button.primary{
+    background:#2f81f7;border:0;color:#fff;font:inherit;font-weight:700;
+    padding:10px 20px;border-radius:9px;cursor:pointer;transition:.15s;
+  }
+  button.primary:hover{background:#4a94ff}
+  button.primary:disabled{opacity:.5;cursor:not-allowed}
+  #clearBtn{
+    background:#1b2836;border:1px solid #2b3d4d;color:#c6d5e2;font:inherit;font-weight:600;
+    padding:10px 18px;border-radius:9px;cursor:pointer;
+  }
+  #clearBtn:hover{background:#24333f}
+
+  /* ---------- layout ---------- */
+  .main{display:grid;grid-template-columns:minmax(290px,1fr) minmax(500px,1.25fr);gap:14px}
+  @media(max-width:900px){.main{grid-template-columns:1fr}}
+  .panel{background:#16212c;border:1px solid #24333f;border-radius:12px;padding:14px}
+
+  /* ---------- cards & slots ---------- */
+  .card{
+    width:32px;height:44px;border-radius:5px;flex:0 0 auto;
+    background:linear-gradient(#ffffff,#e9eef4);
+    border:1px solid #b6c2ce;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-weight:800;color:#10161d;user-select:none;cursor:pointer;
+    transition:transform .08s ease, opacity .12s;
+  }
+  .card:hover{transform:translateY(-2px)}
+  .card.red{color:#d1283c}
+  .card .rank{font-size:13px;line-height:1}
+  .card .suit{font-size:12px;line-height:1.15}
+  .card.used{opacity:.2;cursor:not-allowed}
+  .card.used:hover{transform:none}
+
+  .slots{display:flex;gap:6px;flex-wrap:wrap}
+  .slot{
+    width:32px;height:44px;border-radius:5px;flex:0 0 auto;
+    border:1.5px dashed #35485a;background:#101a23;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;color:#3d5468;font-size:15px;transition:.12s;
+  }
+  .slot:hover{border-color:#4d6b85}
+  .slot.filled{border-color:transparent;background:transparent}
+  .slot .card{pointer-events:none}
+  .slot.sel{border-color:#f5b942;border-style:solid;box-shadow:0 0 0 2px rgba(245,185,66,.25)}
+  .slot.filled.sel{border-radius:8px;box-shadow:0 0 0 2px #f5b942}
+
+  .deck{
+    display:grid;grid-template-columns:repeat(13,32px);gap:4px;
+    justify-content:start;overflow-x:auto;padding-bottom:6px;
+  }
+
+  .oppRow{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .oppLabel{font-size:.8rem;color:#9db2c4;width:96px;flex:0 0 auto;font-weight:600}
+  @media(max-width:520px){.oppLabel{width:74px;font-size:.72rem}}
+
+  .hint{font-size:.74rem;color:#61798e;margin:8px 0 0;line-height:1.45}
+
+  /* ---------- progress ---------- */
+  .progressWrap{
+    height:6px;background:#0e1620;border-radius:99px;overflow:hidden;margin-top:14px;
+    display:none;
+  }
+  .progressWrap.on{display:block}
+  .progressBar{height:100%;width:0;background:linear-gradient(90deg,#2f81f7,#56d364);transition:width .1s linear}
+
+  /* ---------- results ---------- */
+  #resultsPanel{margin-top:14px}
+  .summary{font-size:.82rem;color:#8fa6b8;margin-bottom:10px}
+  .summary b{color:#e6edf3}
+  table.res{width:100%;border-collapse:collapse;font-size:.88rem}
+  table.res th{
+    text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;
+    color:#7d95a9;font-weight:700;padding:6px 8px;border-bottom:1px solid #24333f;
+  }
+  table.res td{padding:8px;border-bottom:1px solid #1c2833;vertical-align:middle}
+  table.res tr:last-child td{border-bottom:0}
+  .num{font-variant-numeric:tabular-nums;font-weight:600}
+  .bar{height:8px;border-radius:99px;background:#0e1620;overflow:hidden;min-width:70px}
+  .bar>div{height:100%;border-radius:99px;background:linear-gradient(90deg,#2f81f7,#56d364)}
+  .pname{font-weight:700;white-space:nowrap}
+  .hero-row td{background:rgba(47,129,247,.08)}
+  .hero-row .pname{color:#7cb8ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>♠♥ Poker Odds Calculator ♦♣</h1>
+
+  <div class="toolbar">
+    <div class="toggle" id="modeToggle">
+      <button data-mode="holdem" class="active">Texas Hold'em</button>
+      <button data-mode="omaha">Omaha</button>
+    </div>
+    <label class="field">Opponents
+      <input type="number" id="numOpp" min="1" max="8" value="1">
+    </label>
+    <label class="field">Simulations
+      <select id="precision">
+        <option value="5000">5,000 — fast</option>
+        <option value="20000" selected>20,000 — normal</option>
+        <option value="100000">100,000 — precise</option>
+      </select>
+    </label>
+    <button id="calcBtn" class="primary">Calculate odds</button>
+    <button id="clearBtn">Clear</button>
+  </div>
+
+  <div class="main">
+    <div class="panel">
+      <h2>Your hand</h2>
+      <div class="slots" id="heroSlots"></div>
+
+      <h2>Board</h2>
+      <div class="slots" id="boardSlots"></div>
+      <p class="hint">Leave the board empty for pre-flop, or select 3 (flop), 4 (turn) or 5 (river) cards.</p>
+
+      <h2>Opponents</h2>
+      <div id="oppSlots"></div>
+      <p class="hint">Leave opponent cards empty and the calculator will deal them randomly.</p>
+    </div>
+
+    <div class="panel">
+      <h2>Deck</h2>
+      <div class="deck" id="deckGrid"></div>
+      <p class="hint">Click a slot, then click a card to place it. Click a filled slot to clear it.</p>
+      <div class="progressWrap" id="progressWrap"><div class="progressBar" id="progressBar"></div></div>
+    </div>
+  </div>
+
+  <div class="panel" id="resultsPanel">
+    <h2>Results</h2>
+    <div id="resultsEmpty" class="hint">Press “Calculate odds” to run the simulation.</div>
+    <div id="resultsContent" style="display:none">
+      <div class="summary" id="summary"></div>
+      <table class="res">
+        <thead>
+          <tr><th>Player</th><th>Win</th><th>Tie</th><th>Equity</th><th></th></tr>
+        </thead>
+        <tbody id="resBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CARD MODEL
+   card = (rank-2)*4 + suit      rank 2..14, suit 0=♠ 1=♥ 2=♦ 3=♣
+   ============================================================ */
+const RANKS = ['2','3','4','5','6','7','8','9','T','J','Q','K','A'];
+const SUITS = ['♠','♥','♦','♣'];
+const rankOf = c => (c >> 2) + 2;
+const suitOf = c => c & 3;
+const isRed  = c => (c & 3) === 1 || (c & 3) === 2;
+
+/* ============================================================
+   5-CARD HAND EVALUATOR
+   Returns a single comparable integer:
+     category * 15^5 + kicker values (base 15)
+   Categories: 8=SF 7=Quads 6=FullHouse 5=Flush 4=Straight
+               3=Trips 2=TwoPair 1=Pair 0=HighCard
+   ============================================================ */
+const _cnt = new Int8Array(15);
+const _rk  = new Int8Array(5);
+
+function eval5(a, b, c, d, e) {
+  const cnt = _cnt;
+  cnt.fill(0);
+
+  const s0 = a & 3;
+  const flush = ((b & 3) === s0) & ((c & 3) === s0) & ((d & 3) === s0) & ((e & 3) === s0);
+
+  cnt[(a >> 2) + 2]++;
+  cnt[(b >> 2) + 2]++;
+  cnt[(c >> 2) + 2]++;
+  cnt[(d >> 2) + 2]++;
+  cnt[(e >> 2) + 2]++;
+
+  const rk = _rk;
+  let n = 0;
+  for (let r = 14; r >= 2; r--) if (cnt[r]) rk[n++] = r;
+
+  // straight detection
+  let st = 0;
+  if (n === 5) {
+    if (rk[0] - rk[4] === 4) st = rk[0];
+    else if (rk[0] === 14 && rk[1] === 5) st = 5;   // wheel A-2-3-4-5
+  }
+
+  if (flush && st) return 6075000 + st * 50625;                       // straight flush
+
+  if (n === 2) {                                                      // quads or full house
+    if (cnt[rk[0]] === 4) return 5315625 + rk[0] * 50625 + rk[1] * 3375;
+    if (cnt[rk[1]] === 4) return 5315625 + rk[1] * 50625 + rk[0] * 3375;
+    if (cnt[rk[0]] === 3) return 4556250 + rk[0] * 50625 + rk[1] * 3375;
+    return 4556250 + rk[1] * 50625 + rk[0] * 3375;
+  }
+
+  if (flush) return 3796875 + rk[0]*50625 + rk[1]*3375 + rk[2]*225 + rk[3]*15 + rk[4];
+  if (st)    return 3037500 + st * 50625;
+
+  if (n === 3) {                                                      // trips or two pair
+    if (cnt[rk[0]] === 3) return 2278125 + rk[0]*50625 + rk[1]*3375 + rk[2]*225;
+    if (cnt[rk[1]] === 3) return 2278125 + rk[1]*50625 + rk[0]*3375 + rk[2]*225;
+    if (cnt[rk[2]] === 3) return 2278125 + rk[2]*50625 + rk[0]*3375 + rk[1]*225;
+    if (cnt[rk[0]] === 2 && cnt[rk[1]] === 2) return 1518750 + rk[0]*50625 + rk[1]*3375 + rk[2]*225;
+    if (cnt[rk[0]] === 2 && cnt[rk[2]] === 2) return 1518750 + rk[0]*50625 + rk[2]*3375 + rk[1]*225;
+    return 1518750 + rk[1]*50625 + rk[2]*3375 + rk[0]*225;
+  }
+
+  if (n === 4) {                                                      // one pair
+    let pr = rk[0];
+    if (cnt[rk[1]] === 2) pr = rk[1];
+    else if (cnt[rk[2]] === 2) pr = rk[2];
+    else if (cnt[rk[3]] === 2) pr = rk[3];
+    let v = 759375 + pr * 50625;
+    let k = 0;
+    for (let i = 0; i < 4; i++) {
+      if (rk[i] !== pr) {
+        v += rk[i] * (k === 0 ? 3375 : k === 1 ? 225 : 15);
+        k++;
+      }
+    }
+    return v;
+  }
+
+  // high card
+  return rk[0]*50625 + rk[1]*3375 + rk[2]*225 + rk[3]*15 + rk[4];
+}
+
+/* ============================================================
+   BEST-HAND LOOKUPS
+   ============================================================ */
+// 7 choose 5 = 21 combinations, stored flat
+const HOLDEM_COMBOS = (() => {
+  const o = [];
+  for (let a = 0; a < 7; a++)
+  for (let b = a+1; b < 7; b++)
+  for (let c = b+1; c < 7; c++)
+  for (let d = c+1; d < 7; d++)
+  for (let e = d+1; e < 7; e++) o.push(a,b,c,d,e);
+  return o;
+})();
+
+// Omaha: exactly 2 of 4 hole + exactly 3 of 5 board
+const OM_HOLE_PAIRS = [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
+const OM_BOARD_TRIPLES = (() => {
+  const o = [];
+  for (let a = 0; a < 5; a++)
+  for (let b = a+1; b < 5; b++)
+  for (let c = b+1; c < 5; c++) o.push(a,b,c);
+  return o;
+})();
+
+function bestHoldem(c7) {
+  let best = -1;
+  const H = HOLDEM_COMBOS;
+  for (let i = 0; i < H.length; i += 5) {
+    const s = eval5(c7[H[i]], c7[H[i+1]], c7[H[i+2]], c7[H[i+3]], c7[H[i+4]]);
+    if (s > best) best = s;
+  }
+  return best;
+}
+
+function bestOmaha(hole, board) {
+  let best = -1;
+  const B = OM_BOARD_TRIPLES;
+  for (let h = 0; h < 6; h++) {
+    const hp = OM_HOLE_PAIRS[h];
+    const h0 = hole[hp[0]], h1 = hole[hp[1]];
+    for (let b = 0; b < B.length; b += 3) {
+      const s = eval5(h0, h1, board[B[b]], board[B[b+1]], board[B[b+2]]);
+      if (s > best) best = s;
+    }
+  }
+  return best;
+}
+
+const CAT_NAMES = ['High Card','Pair','Two Pair','Three of a Kind','Straight',
+                   'Flush','Full House','Four of a Kind','Straight Flush'];
+const scoreCategory = s => Math.floor(s / 759375);
+
+/* ============================================================
+   APPLICATION STATE
+   ============================================================ */
+const state = {
+  mode: 'holdem',
+  opps: [[null, null]],
+  hero: [null, null],
+  board: [null, null, null, null, null],
+  sel: null,            // {kind:'hero'|'opp'|'board', p, i}
+  running: false,
+  runId: 0
+};
+
+const holeCount = () => state.mode === 'holdem' ? 2 : 4;
+
+/* ---------- slot helpers ---------- */
+function slotArray(kind, p) {
+  if (kind === 'hero')  return state.hero;
+  if (kind === 'board') return state.board;
+  return state.opps[p];
+}
+const getSlot = (kind, p, i) => slotArray(kind, p)[i];
+const setSlot = (kind, p, i, v) => { slotArray(kind, p)[i] = v; };
+
+function isCardUsed(card) {
+  if (state.hero.includes(card))  return true;
+  if (state.board.includes(card)) return true;
+  return state.opps.some(o => o.includes(card));
+}
+
+function firstEmptySlot() {
+  for (let i = 0; i < state.hero.length; i++)
+    if (state.hero[i] === null) return { kind:'hero', p:0, i };
+  for (let i = 0; i < state.board.length; i++)
+    if (state.board[i] === null) return { kind:'board', p:0, i };
+  for (let p = 0; p < state.opps.length; p++)
+    for (let i = 0; i < state.opps[p].length; i++)
+      if (state.opps[p][i] === null) return { kind:'opp', p, i };
+  return null;
+}
+
+function advanceSelection(kind, p, from) {
+  const arr = slotArray(kind, p);
+  for (let i = from + 1; i < arr.length; i++)
+    if (arr[i] === null) { state.sel = { kind, p, i }; return; }
+  for (let i = 0; i < from; i++)
+    if (arr[i] === null) { state.sel = { kind, p, i }; return; }
+  state.sel = null;
+}
+
+/* ============================================================
+   RENDERING
+   ============================================================ */
+function makeCardEl(card) {
+  const d = document.createElement('div');
+  d.className = 'card' + (isRed(card) ? ' red' : '');
+  const r = document.createElement('span');
+  r.className = 'rank';
+  r.textContent = RANKS[rankOf(card) - 2];
+  const s = document.createElement('span');
+  s.className = 'suit';
+  s.textContent = SUITS[suitOf(card)];
+  d.appendChild(r);
+  d.appendChild(s);
+  return d;
+}
+
+function makeSlotEl(kind, p, i) {
+  const el = document.createElement('div');
+  el.className = 'slot';
+  const card = getSlot(kind, p, i);
+
+  if (card !== null) {
+    el.classList.add('filled');
+    el.appendChild(makeCardEl(card));
+  }
+  if (state.sel && state.sel.kind === kind && state.sel.p === p && state.sel.i === i) {
+    el.classList.add('sel');
+  }
+
+  el.addEventListener('click', () => {
+    if (card !== null) {
+      setSlot(kind, p, i, null);          // click a filled slot to clear it
+      state.sel = { kind, p, i };
+    } else {
+      state.sel = { kind, p, i };
+    }
+    renderAll();
+  });
+
+  return el;
+}
+
+function renderSlots() {
+  const heroEl = document.getElementById('heroSlots');
+  heroEl.innerHTML = '';
+  state.hero.forEach((_, i) => heroEl.appendChild(makeSlotEl('hero', 0, i)));
+
+  const boardEl = document.getElementById('boardSlots');
+  boardEl.innerHTML = '';
+  state.board.forEach((_, i) => boardEl.appendChild(makeSlotEl('board', 0, i)));
+
+  const oppEl = document.getElementById('oppSlots');
+  oppEl.innerHTML = '';
+  state.opps.forEach((hole, p) => {
+    const row = document.createElement('div');
+    row.className = 'oppRow';
+
+    const lab = document.createElement('span');
+    lab.className = 'oppLabel';
+    lab.textContent = 'Opponent ' + (p + 1);
+    row.appendChild(lab);
+
+    const sl = document.createElement('div');
+    sl.className = 'slots';
+    hole.forEach((_, i) => sl.appendChild(makeSlotEl('opp', p, i)));
+    row.appendChild(sl);
+
+    oppEl.appendChild(row);
+  });
+}
+
+let deckEls = null;
+function buildDeck() {
+  const el = document.getElementById('deckGrid');
+  el.innerHTML = '';
+  deckEls = new Array(52);
+  for (let s = 0; s < 4; s++) {
+    for (let r = 14; r >= 2; r--) {
+      const card = (r - 2) * 4 + s;
+      const c = makeCardEl(card);
+      c.addEventListener('click', () => onDeckClick(card));
+      deckEls[card] = c;
+      el.appendChild(c);
+    }
+  }
+}
+
+function refreshDeck() {
+  for (let c = 0; c < 52; c++) {
+    deckEls[c].classList.toggle('used', isCardUsed(c));
+  }
+}
+
+function renderAll() {
+  renderSlots();
+  refreshDeck();
+}
+
+/* ============================================================
+   INTERACTION
+   ============================================================ */
+function onDeckClick(card) {
+  if (isCardUsed(card)) return;
+  if (!state.sel) {
+    state.sel = firstEmptySlot();
+    if (!state.sel) return;
+  }
+  const { kind, p, i } = state.sel;
+  setSlot(kind, p, i, card);
+  advanceSelection(kind, p, i);
+  renderAll();
+}
+
+/* ---------- mode / opponent count ---------- */
+function setMode(mode) {
+  state.mode = mode;
+  const n = holeCount();
+
+  const h = state.hero.slice(0, n);
+  while (h.length < n) h.push(null);
+  state.hero = h;
+
+  state.opps = state.opps.map(o => {
+    const a = o.slice(0, n);
+    while (a.length < n) a.push(null);
+    return a;
+  });
+
+  state.sel = null;
+  document.querySelectorAll('#modeToggle button').forEach(b =>
+    b.classList.toggle('active', b.dataset.mode === mode));
+  renderAll();
+}
+
+function setNumOpponents(n) {
+  n = Math.max(1, Math.min(8, parseInt(n, 10) || 1));
+  state.opps.length = 0;
+  for (let i = 0; i < n; i++) state.opps.push(new Array(holeCount()).fill(null));
+  state.sel = null;
+  renderAll();
+}
+
+function clearAll() {
+  state.hero = new Array(holeCount()).fill(null);
+  state.opps = state.opps.map(() => new Array(holeCount()).fill(null));
+  state.board = [null, null, null, null, null];
+  state.sel = null;
+  renderAll();
+  document.getElementById('resultsContent').style.display = 'none';
+  document.getElementById('resultsEmpty').style.display = '';
+}
+
+/* ============================================================
+   SIMULATION
+   ============================================================ */
+function updateProgress(frac) {
+  document.getElementById('progressBar').style.width = (frac * 100).toFixed(1) + '%';
+}
+
+function renderResults(players, wins, ties, eq, total, ms, note) {
+  const body = document.getElementById('resBody');
+  body.innerHTML = '';
+
+  players.forEach((pl, i) => {
+    const w = wins[i] / total * 100;
+    const t = ties[i] / total * 100;
+    const e = eq[i]   / total * 100;
+
+    const tr = document.createElement('tr');
+    if (i === 0) tr.className = 'hero-row';
+
+    const tdName = document.createElement('td');
+    tdName.className = 'pname';
+    tdName.textContent = pl.name;
+
+    const tdW = document.createElement('td');
+    tdW.className = 'num';
+    tdW.textContent = w.toFixed(2) + '%';
+
+    const tdT = document.createElement('td');
+    tdT.className = 'num';
+    tdT.textContent = t.toFixed(2) + '%';
+
+    const tdE = document.createElement('td');
+    tdE.className = 'num';
+    tdE.textContent = e.toFixed(2) + '%';
+
+    const tdBar = document.createElement('td');
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    const fill = document.createElement('div');
+    fill.style.width = Math.min(100, e) + '%';
+    bar.appendChild(fill);
+    tdBar.appendChild(bar);
+
+    tr.append(tdName, tdW, tdT, tdE, tdBar);
+    body.appendChild(tr);
+  });
+
+  document.getElementById('summary').innerHTML =
+    `<b>${total.toLocaleString()}</b> simulations · <b>${ms.toFixed(0)} ms</b>` +
+    (note ? ' · ' + note : '');
+  document.getElementById('resultsEmpty').style.display = 'none';
+  document.getElementById('resultsContent').style.display = '';
+}
+
+async function calculate() {
+  if (state.running) return;
+
+  // -------- validation --------
+  if (state.hero.some(c => c === null)) {
+    alert('Please select all of your hole cards.');
+    return;
+  }
+  const boardCards = state.board.filter(c => c !== null);
+  const bc = boardCards.length;
+  if (!(bc === 0 || bc === 3 || bc === 4 || bc === 5)) {
+    alert('The board must contain 0, 3, 4 or 5 cards (pre-flop / flop / turn / river).');
+    return;
+  }
+
+  const btn = document.getElementById('calcBtn');
+  const wrap = document.getElementById('progressWrap');
+  const runId = ++state.runId;
+  state.running = true;
+  btn.disabled = true;
+  btn.textContent = 'Calculating…';
+  wrap.classList.add('on');
+  updateProgress(0);
+
+  try {
+    const mode = state.mode;
+
+    // -------- players --------
+    const players = [{ name: 'You', hole: state.hero.slice() }];
+    state.opps.forEach((o, i) =>
+      players.push({ name: 'Opponent ' + (i + 1), hole: o.slice() }));
+    const N = players.length;
+
+    // -------- known cards / deck --------
+    const known = new Set();
+    state.hero.forEach(c => { if (c !== null) known.add(c); });
+    boardCards.forEach(c => known.add(c));
+    state.opps.forEach(o => o.forEach(c => { if (c !== null) known.add(c); }));
+
+    const deck = [];
+    for (let c = 0; c < 52; c++) if (!known.has(c)) deck.push(c);
+
+    // -------- mutable working arrays --------
+    const board = boardCards.slice();
+    while (board.length < 5) board.push(null);
+    const fullBoard = board.slice();
+    const unknownBoardIdx = [];
+    for (let i = 0; i < 5; i++) if (fullBoard[i] === null) unknownBoardIdx.push(i);
+
+    const fullHoles = players.map(p => p.hole.slice());
+    const unknownHoleIdx = fullHoles.map(h => {
+      const a = [];
+      h.forEach((c, i) => { if (c === null) a.push(i); });
+      return a;
+    });
+
+    const need = unknownHoleIdx.reduce((a, b) => a + b.length, 0) + unknownBoardIdx.length;
+    if (need > deck.length) { alert('Not enough cards left in the deck.'); return; }
+
+    // -------- counters --------
+    const wins = new Float64Array(N);
+    const ties = new Float64Array(N);
+    const eq   = new Float64Array(N);
+    const scores = new Float64Array(N);
+    const scratch7 = players.map(() => new Array(7));
+
+    const requested = parseInt(document.getElementById('precision').value, 10);
+    const iterations = need === 0 ? 1 : requested;
+    const chunkSize = mode === 'omaha' ? 1000 : 3000;
+
+    const t0 = performance.now();
+    let done = 0;
+
+    while (done < iterations) {
+      if (runId !== state.runId) return;          // superseded
+      const end = Math.min(done + chunkSize, iterations);
+
+      for (let it = done; it < end; it++) {
+        // partial Fisher–Yates: only the first `need` cards matter
+        for (let i = 0; i < need; i++) {
+          const j = i + ((Math.random() * (deck.length - i)) | 0);
+          const tmp = deck[i]; deck[i] = deck[j]; deck[j] = tmp;
+        }
+
+        let ptr = 0;
+        for (let p = 0; p < N; p++) {
+          const uh = unknownHoleIdx[p];
+          const fh = fullHoles[p];
+          for (let k = 0; k < uh.length; k++) fh[uh[k]] = deck[ptr++];
+        }
+        for (let k = 0; k < unknownBoardIdx.length; k++)
+          fullBoard[unknownBoardIdx[k]] = deck[ptr++];
+
+        // evaluate everyone
+        let best = -1;
+        for (let p = 0; p < N; p++) {
+          let s;
+          if (mode === 'holdem') {
+            const sc = scratch7[p];
+            sc[0] = fullHoles[p][0];
+            sc[1] = fullHoles[p][1];
+            sc[2] = fullBoard[0];
+            sc[3] = fullBoard[1];
+            sc[4] = fullBoard[2];
+            sc[5] = fullBoard[3];
+            sc[6] = fullBoard[4];
+            s = bestHoldem(sc);
+          } else {
+            s = bestOmaha(fullHoles[p], fullBoard);
+          }
+          scores[p] = s;
+          if (s > best) best = s;
+        }
+
+        let winners = 0;
+        for (let p = 0; p < N; p++) if (scores[p] === best) winners++;
+        const share = 1 / winners;
+        for (let p = 0; p < N; p++) {
+          if (scores[p] === best) {
+            if (winners === 1) wins[p]++; else ties[p]++;
+            eq[p] += share;
+          }
+        }
+      }
+
+      done = end;
+      updateProgress(done / iterations);
+      await new Promise(r => setTimeout(r, 0));
+    }
+
+    const ms = performance.now() - t0;
+
+    // -------- hero's current made hand (only if board complete) --------
+    let note = '';
+    if (bc === 5) {
+      let heroScore;
+      if (mode === 'holdem') {
+        const sc = state.hero.concat(boardCards);
+        heroScore = bestHoldem(sc);
+      } else {
+        heroScore = bestOmaha(state.hero, boardCards);
+      }
+      note = 'Your best hand: <b>' + CAT_NAMES[scoreCategory(heroScore)] + '</b>';
+    }
+
+    renderResults(players, wins, ties, eq, iterations, ms, note);
+
+  } finally {
+    state.running = false;
+    btn.disabled = false;
+    btn.textContent = 'Calculate odds';
+    wrap.classList.remove('on');
+    updateProgress(0);
+  }
+}
+
+/* ============================================================
+   WIRING
+   ============================================================ */
+document.querySelectorAll('#modeToggle button').forEach(b => {
+  b.addEventListener('click', () => setMode(b.dataset.mode));
+});
+document.getElementById('numOpp').addEventListener('change', e => {
+  setNumOpponents(e.target.value);
+  e.target.value = state.opps.length;
+});
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.getElementById('clearBtn').addEventListener('click', clearAll);
+
+/* boot */
+buildDeck();
+renderAll();
+</script>
+</body>
+</html>
